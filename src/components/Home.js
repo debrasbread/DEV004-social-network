@@ -31,8 +31,8 @@ container.appendChild(imgFondo);
 
   // Creación de un elemento button y asignación a la variable button
   const iniciarSesionBtn = document.createElement("button");
-
-  iniciarSesionBtn.classList.add = "iniciarSesionBtn";
+//quitandole el add, me funciono
+  iniciarSesionBtn.classList = "iniciarSesionBtn";
 
   container.appendChild(iniciarSesionBtn);
 
