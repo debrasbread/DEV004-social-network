@@ -1,37 +1,92 @@
-.contenedorGeneral {
-  grid-column: 1;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  position: relative;
-  width: 432px;
-  height: 870px;
-  background: linear-gradient(0deg, #ffff, #ffff), #ffff;
-  border: 0.5px solid #000000;
-  border-radius: 20px;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+ }
+
+/*.contenedorGeneral {
+  position: relative;
+  width: 500px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+}*/
 
 .logoMarchantes {
   position: absolute;
   width: 200px;
   height: 200px;
-  backdrop-filter: blur(2px);
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 55px;
+  top: 140px;
 }
 
-.imagenFondo {
-  box-sizing: border-box;
-  position: absolute;
-  width: 661px;
-  height: 903px;
-}
-
-.iniciarSesionBtn {
-  position: absolute;
-  top: 651px;
-  left: 95px;
+/*.iniciarSesionBtn {
+  margin-top: 2rem;
   background-color: #d9d9d9;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem 1rem;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 1.2rem;
 }
+*/
+
+.registroLink {
+  margin-top: 0;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+  padding-top: 300px;
+}
+
+.registroLink a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/*
+.imagenFondo {
+  box-sizing: border-box;
+  position: absolute;
+  width: 430px;
+  height: 868px;
+  border-radius: 20px;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 50%;
+}
+*/
+
+  @media (min-width: 768px) {
+    .ghibliLogo img {
+      max-width: 80%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .ghibliLogo img {
+      max-width: 60%;
+    }
+  }
