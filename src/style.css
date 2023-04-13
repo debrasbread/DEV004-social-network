@@ -1,8 +1,10 @@
+/* @media (max-width: 767.98px) { */
+
 .contenedorGeneral {
   grid-column: 1;
   box-sizing: border-box;
   position: relative;
-  width: 432px;
+  width: 414px;
   height: 870px;
   background: linear-gradient(0deg, #ffff, #ffff), #ffff;
   border: 0.5px solid #000000;
@@ -42,3 +44,18 @@
 .iniciarSesionBtn:active {
   background-color:#e86864
 }
+.loginInput{
+  position: absolute;
+  top: 600px;
+  left: 90px;
+  right: 90px;
+  background-color: white;
+  color:black;
+
+}
+
+.claveInput{
+  position:absolute;
+  
+}
+/* } */

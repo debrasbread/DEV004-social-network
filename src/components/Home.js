@@ -11,27 +11,27 @@ export function createHome() {
 
   container.appendChild(logo);
 
-// Imagen de fondo
-/*
-const imgFondo = document.createElement("img");
-imgFondo.classList.add("imagenFondo");
-imgFondo.src = "../imagenes/marchantes-fondo-home.jpg";
+  // Imagen de fondo
+  /*
+  const imgFondo = document.createElement("img");
+  imgFondo.classList.add("imagenFondo");
+  imgFondo.src = "../imagenes/marchantes-fondo-home.jpg";
+  
+  container.appendChild(imgFondo);
+  */
 
-container.appendChild(imgFondo);
-*/
 
-
-/*
-  // Creación de un elemento h1 y asignación a la variable title
-  const title = document.createElement("h1");
-  // Creación de un elemento p y asignación a la variable text
-  const text = document.createElement("p");
-
-*/
+  /*
+    // Creación de un elemento h1 y asignación a la variable title
+    const title = document.createElement("h1");
+    // Creación de un elemento p y asignación a la variable text
+    const text = document.createElement("p");
+  
+  */
 
   // Creación de un elemento button y asignación a la variable button
   const iniciarSesionBtn = document.createElement("button");
-//quitandole el add, me funciono
+  //quitandole el add, me funciono
   iniciarSesionBtn.classList = "iniciarSesionBtn";
 
   container.appendChild(iniciarSesionBtn);
@@ -42,10 +42,26 @@ container.appendChild(imgFondo);
 
   // Asignación de una cadena vacía al elemento p (no se establece ningún texto)
   //text.textContent =
-  
+
   // Asignación del texto "Iniciar sesión" al elemento button
-  iniciarSesionBtn.textContent = "Iniciar sesión"; 
- 
+  iniciarSesionBtn.textContent = "Iniciar sesión";
+
+  const loginForm = document.createElement("form")
+  loginForm.classList = "loginForm"
+  container.appendChild(loginForm)
+
+
+  //input del Email
+  const mailInput = document.createElement("input")
+  mailInput.classList = "mailInput"
+  container.appendChild(mailInput)
+  mailInput.placeholder = "Email"
+
+  //input de la clave
+  const claveInput = document.createElement("input")
+  claveInput.classList = "claveInput"
+  container.appendChild(claveInput)
+  claveInput.placeholder = "Clave"
 
   /*
   // Agregado del elemento h1 al elemento div
@@ -59,7 +75,7 @@ container.appendChild(imgFondo);
   // Establecimiento del color verde para el fondo del elemento button
   button.style.backgroundColor = "green";
 */
-  
+
 
   // Retorna el elemento div (con sus elementos hijos dentro)
   return container;
