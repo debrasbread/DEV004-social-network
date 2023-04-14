@@ -2,7 +2,7 @@ export function createHome() {
   // Creación de un elemento div y asignación a la variable container
   const container = document.createElement("div");
 
-  // Background
+  // Imagen de fondo
   const backgroundImg = document.createElement("img");
   backgroundImg.classList.add("backgroundImg");
   backgroundImg.src = "../imagenes/background-mercado.jpg";

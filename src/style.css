@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -20,17 +20,20 @@ body {
 #contenedor-General {
   box-sizing: border-box;
   position: relative;
-  display: grid;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.7);
   text-align: center;
   width: 350px;
   height: 100vh;
-  grid-template-columns: repeat(3, 1fr); 
-  grid-template-rows: auto auto auto 1fr; 
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto 1fr;
   align-items: center; /*centra horizontalmente los elementos*/
-  justify-items: center; /*centra verticalmente los elementos*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/*********HOME*********/
 
 .backgroundImg {
   background-size: cover;
@@ -60,7 +63,7 @@ body {
   background-color: #d9d9d9;
   border-radius: 10px;
   padding: 8px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-size: 1.2rem;
   top: 500px;
@@ -81,4 +84,106 @@ body {
 
 .registroLink a:hover {
   text-decoration: underline;
+}
+
+/*********LOGIN*********/
+
+/* Texto "Inicia sesión" */
+h1 {
+  position: absolute;
+  width: 211px;
+  height: 17px;
+  left: 0px;
+  top: 292px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+
+  color: rgba(0, 0, 0, 0.64);
+}
+/* Email o teléfono */
+.emailTelLabel {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 150px);
+  width: 300px;
+  text-align: left;
+  display: block;
+}
+
+.emailTelInput {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 150px);
+  width: 300px;
+  
+  display: block;
+  border: none;
+  border-bottom: 1px solid black;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+/*Contraseña*/
+
+.contraseñaLabel {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 150px);
+  width: 300px;
+  text-align: left;
+  display: block;
+  margin-top: 10px;
+}
+
+.contraseñaInput {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 150px);
+  width: 300px;
+  
+  border-top: none;/*REVISAR PARA DEJAR SÓLO LÍNEA*/
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid black;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+
+/* Botón Continuar */
+.continuarBtnLogin {
+  position: absolute;
+  margin-top: 2rem;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 8px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 1.2rem;
+  top: 500px;
+}
+
+/* Botón Google Login */
+.GoogleBtnLogin {
+  position: absolute;
+  margin-top: 7rem;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 8px 16px 8px 40px; /* Añade un poco más de padding a la izquierda para acomodar el logo */
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 1.2rem;
+  display: flex; /* Usa flexbox para alinear los elementos dentro del botón */
+  align-items: center; /* Centra verticalmente los elementos dentro del botón */
+}
+
+.GoogleBtnLogin img {
+  margin-right: 8px; /* Añade un poco de espacio entre el logo y el texto */
 }
