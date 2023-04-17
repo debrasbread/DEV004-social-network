@@ -1,32 +1,59 @@
-/* @media (max-width: 767.98px) { */
 
-.contenedorGeneral {
-  grid-column: 1;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+#contenedor-General {
   box-sizing: border-box;
   position: relative;
-  width: 414px;
-  height: 870px;
-  background: linear-gradient(0deg, #ffff, #ffff), #ffff;
-  border: 0.5px solid #000000;
-  border-radius: 20px;
+  display: grid;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  width: 350px;
+  height: 100vh;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: auto auto auto 1fr; 
+  align-items: center; /*centra horizontalmente los elementos*/
+  justify-items: center; /*centra verticalmente los elementos*/
+
+}
+
+.backgroundImg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 50%;
+  background-image: url("../imagenes/background-mercado.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 }
 
 .logoMarchantes {
   position: absolute;
   width: 200px;
   height: 200px;
-  backdrop-filter: blur(2px);
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 55px;
-}
-
-.imagenFondo {
-  box-sizing: border-box;
-  position: absolute;
-  width: 661px;
-  height: 903px;
+  top: 100px;
 }
 
 .iniciarSesionBtn {
@@ -57,5 +84,33 @@
 .claveInput{
   position:absolute;
   
+
+  position: absolute;
+  margin-top: 2rem;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  padding: 8px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-size: 1.2rem;
+  top: 500px;
+}
+
+.registroLink {
+  position: absolute;
+  margin-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 3px;
+  top: 600px;
+}
+
+.registroLink a {
+  color: white;
+}
+
+.registroLink a:hover {
+  text-decoration: underline;
+
 }
 /* } */
