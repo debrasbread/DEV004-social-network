@@ -1,6 +1,6 @@
 export function createHome() {
   // Creación de un elemento div y asignación a la variable container
-  const container = document.createElement("div");
+  const container = document.createElement("section");
 
   // Background
   const backgroundImg = document.createElement("img");
@@ -9,7 +9,7 @@ export function createHome() {
   container.appendChild(backgroundImg);
 
   // Contenedor principal
-  const contenedorGeneral = document.createElement("div");
+  const contenedorGeneral = document.createElement("section");
   contenedorGeneral.id = "contenedor-General";
   contenedorGeneral.classList.add("contenedorGeneral");
   container.appendChild(contenedorGeneral);
