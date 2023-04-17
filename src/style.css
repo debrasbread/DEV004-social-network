@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 * {
@@ -30,6 +31,7 @@ body {
   grid-template-rows: auto auto auto 1fr; 
   align-items: center; /*centra horizontalmente los elementos*/
   justify-items: center; /*centra verticalmente los elementos*/
+
 }
 
 .backgroundImg {
@@ -55,6 +57,34 @@ body {
 }
 
 .iniciarSesionBtn {
+  position:absolute;
+  top: 651px;
+  left: 95px;
+  right: 95px;
+  background-color:#fefbfb;
+  color:#000000;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-color: #e86864;
+  font-size: 24px;
+}
+.iniciarSesionBtn:active {
+  background-color:#e86864
+}
+.loginInput{
+  position: absolute;
+  top: 600px;
+  left: 90px;
+  right: 90px;
+  background-color: white;
+  color:black;
+
+}
+
+.claveInput{
+  position:absolute;
+  
+
   position: absolute;
   margin-top: 2rem;
   background-color: #d9d9d9;
@@ -81,4 +111,6 @@ body {
 
 .registroLink a:hover {
   text-decoration: underline;
+
 }
+/* } */

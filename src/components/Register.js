@@ -6,7 +6,6 @@ export function CreateRegister() {
   //le damos classname
   formRegistro.className = "formRegistro";
 
-  
   const inputRegistro = document.createElement("input")
 
 
