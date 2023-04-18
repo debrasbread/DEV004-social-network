@@ -3,13 +3,13 @@
 import { addRoutes, onNavigate } from "./lib/router/index.js";
 import { createHome } from "./components/Home";
 import { Login } from "./components/Login";
-//import { Register } from "./components/Register";
+import { Register } from "./components/Register";
 //import { loginGoogle } from "./lib/autenticar.js";
 
 addRoutes({
   "/": createHome,
   "/Login": Login,
-  //"/register": Register,
+  "/register": Register,
   //"/loginGoogle": loginGoogle,
 });
 

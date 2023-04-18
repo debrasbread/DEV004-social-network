@@ -65,7 +65,7 @@ body {
   padding: 8px;
   font-family: "Poppins";
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: small;
   top: 500px;
 }
 
@@ -114,7 +114,7 @@ h1 {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: small;
   line-height: 30px;
   text-align: center;
 
@@ -185,7 +185,7 @@ h1 {
   padding: 8px;
   font-family: "Poppins";
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: small;
   top: 500px;
 }
 
@@ -198,7 +198,7 @@ h1 {
   padding: 8px 16px 8px 40px; /* Añade un poco más de padding a la izquierda para acomodar el logo */
   font-family: "Poppins";
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: small;
   display: flex; /* Usa flexbox para alinear los elementos dentro del botón */
   align-items: center; /* Centra verticalmente los elementos dentro del botón */
 }

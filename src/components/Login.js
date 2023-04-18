@@ -2,11 +2,11 @@ export function Login() {
   // Creación de un elemento div y asignación a la variable container
   const container = document.createElement("div");
 
-  // Imagen de fondo
+  // Imagen de fondo 
   const backgroundImgLogin = document.createElement("img");
   backgroundImgLogin.classList.add("backgroundImgLogin");
   backgroundImgLogin.src = "../imagenes/background-mercado.jpg";
-  container.appendChild(backgroundImgLogin);
+  container.appendChild(backgroundImgLogin); 
 
   // Contenedor principal
   const contenedorGeneral = document.createElement("div");
@@ -27,16 +27,16 @@ export function Login() {
   contenedorGeneral.appendChild(iniciarSesion);
   const br = document.createElement('br')
 
-  // Texto "Email o teléfono + input"
-  const emailTelLabel = document.createElement("label");
-  emailTelLabel.setAttribute("for", "emailTelInput");
-  emailTelLabel.textContent = "Email o teléfono";
-  contenedorGeneral.append(emailTelLabel,br);//sólo append
+  // Texto "Email + input"
+  const emailLabel = document.createElement("label");
+  emailLabel.setAttribute("for", "emailInput");
+  emailLabel.textContent = "Email:";
+  contenedorGeneral.append(emailLabel,br);//sólo append
 
-  const emailTelInput = document.createElement("input");
-  emailTelInput.setAttribute("id", "emailTelInput");
-  emailTelInput.setAttribute("type", "text");
-  contenedorGeneral.append(emailTelInput);//sólo append
+  const emailInput = document.createElement("input");
+  emailInput.setAttribute("id", "emailInput");
+  emailInput.setAttribute("type", "text");
+  contenedorGeneral.append(emailInput);//sólo append
 
   // Contraseña
   const contraseñaLabel = document.createElement("label");
