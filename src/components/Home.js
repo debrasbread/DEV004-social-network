@@ -1,37 +1,44 @@
-export function createHome() {
-  
- // Creación de div y asignación a variable container
- const container = document.createElement("div");
+export function home() {
+  // Creación de main y asignación a variable home
+  const containerHome = document.createElement("main");
 
   // Imagen de fondo
-  const backgroundImg = document.createElement("img");
-  backgroundImg.classList.add("backgroundImg");
-  container.appendChild(backgroundImg);
+  const backgroundImgHome = document.createElement("img");
+  backgroundImgHome.classList.add("backgroundImgH");
+  containerHome.appendChild(backgroundImgHome);
 
-  // Contenedor principal
-  const contenedorGeneral = document.createElement("div");
-  contenedorGeneral.id = "contenedor-General";
-  contenedorGeneral.classList.add("contenedorGeneral");
-  container.appendChild(contenedorGeneral);
+  // Contenedor de elementos
+  const contenedorGeneralHome = document.createElement("main");
+  contenedorGeneralHome.id = "contenedor-GeneralH";
+  contenedorGeneralHome.classList.add("contenedorGeneralH");
+  containerHome.appendChild(contenedorGeneralHome);
 
   // Logo
-  const logo = document.createElement("img");
-  logo.classList.add("logoMarchantes");
-  logo.src = "../imagenes/logo-marchantes.png";
-  contenedorGeneral.appendChild(logo);
+  const logoHome = document.createElement("img");
+  logoHome.classList.add("logoH");
+  logoHome.src = "../imagenes/logo-marchantes.png";
+  contenedorGeneralHome.appendChild(logoHome);
 
   // Botón "Iniciar sesión"
-  const iniciarSesionBtn = document.createElement("button");
-  iniciarSesionBtn.classList.add("iniciarSesionBtn");
-  iniciarSesionBtn.textContent = "Iniciar sesión";
-  contenedorGeneral.appendChild(iniciarSesionBtn);
+  const iniciarSesionBtnHome = document.createElement("button");
+  iniciarSesionBtnHome.classList.add("iniciarSesionBtnH");
+  iniciarSesionBtnHome.textContent = "Iniciar sesión";
+  contenedorGeneralHome.appendChild(iniciarSesionBtnHome);
 
   // Texto e hipervínculo "Regístrate"
-  const registroLink = document.createElement("p");
-  registroLink.classList.add("registroLink");
-  registroLink.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
-  contenedorGeneral.appendChild(registroLink);
+  const registroLinkHome = document.createElement("p");
+  registroLinkHome.classList.add("registroLinkH");
+  registroLinkHome.innerHTML =
+    '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
+  contenedorGeneralHome.appendChild(registroLinkHome);
 
-  // Retorna el elemento div (con sus elementos hijos dentro)
-  return container;
+  // Footer
+  const footerHome = document.createElement("footer");
+  footerHome.id = "footer-Home";
+  footerHome.classList.add("footerH");
+  footerHome.textContent = "Marchantes, 2023";
+  contenedorGeneralHome.appendChild(footerHome);
+
+  // Retorna el contenedor principal
+  return containerHome;
 }

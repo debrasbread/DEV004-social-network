@@ -1,76 +1,78 @@
-export function Register() {
+export function register() {
   // Creación de div y asignación a variable container
-  const container = document.createElement("div");
+  const containerRegister = document.createElement("main");
 
   // Imagen de fondo
   const backgroundImgRegister = document.createElement("img");
-  backgroundImgRegister.classList.add("backgroundImgRegister");
-  container.appendChild(backgroundImgRegister);
+  backgroundImgRegister.classList.add("backgroundImgR");
+  containerRegister.appendChild(backgroundImgRegister);
 
-  // Contenedor principal
-  const contenedorGeneral = document.createElement("div");
-  contenedorGeneral.id = "contenedor-General";
-  contenedorGeneral.classList.add("contenedorGeneral");
-  container.appendChild(contenedorGeneral);
+  // Contenedor de elementos
+  const contenedorGeneralRegister = document.createElement("main");
+  contenedorGeneralRegister.id = "contenedor-GeneralR";
+  contenedorGeneralRegister.classList.add("contenedorGeneralR");
+  containerRegister.appendChild(contenedorGeneralRegister);
 
   // Logo
-  const logo = document.createElement("img");
-  logo.classList.add("logoMarchantes");
-  logo.src = "../imagenes/logo-marchantes.png";
-  contenedorGeneral.appendChild(logo);
+  const logoRegister = document.createElement("img");
+  logoRegister.classList.add("logoR");
+  logoRegister.src = "../imagenes/logo-marchantes.png";
+  contenedorGeneralRegister.appendChild(logoRegister);
 
-  // Imagen de fondo
-  const backgroundImgResgister = document.createElement("img");
-  backgroundImgResgister.classList.add("backgroundImgResgister");
-  backgroundImgResgister.src = "../imagenes/background-mercado.jpg";
-  container.appendChild(backgroundImgResgister);
+  /*
+   // Texto "Únete a Marchantes"
+   const uneteRegister = document.createElement("h1");
+   uneteRegister.id = "iniciarSesionL";
+   uneteRegister.classList.add("uneteR");
+   uneteRegister.textContent = "Únete a Marchantes";
+   contenedorGeneralRegister.appendChild(uneteRegister);
+   */
 
   // Formulario
-  const formulario = document.createElement("form");
-  formulario.id = "formulario";
-  formulario.classList.add("formulario-clase");
+  const formularioRegister = document.createElement("form");
+  formularioRegister.id = "formulario-Register";
+  formularioRegister.classList.add("formularioR");
+  contenedorGeneralRegister.appendChild(formularioRegister);
 
-  // Nombre completo
-  const labelNombreCompleto = document.createElement("label");
-  labelNombreCompleto.textContent = "Nombre completo:";
-  labelNombreCompleto.setAttribute("for", "nombreCompleto");
+  // Nombre completo label + input
+  const nombreLabelRegister = document.createElement("label");
+  nombreLabelRegister.textContent = "Nombre completo:";
+  nombreLabelRegister.setAttribute("for", "nombre-InputR");
 
-  const inputNombreCompleto = document.createElement("input");
-  inputNombreCompleto.type = "text";
-  inputNombreCompleto.id = "nombreCompleto";
-  inputNombreCompleto.name = "nombreCompleto";
-  inputNombreCompleto.required = true;
-  inputNombreCompleto.classList.add("input-clase");
+  const nombreInputRegister = document.createElement("input");
+  nombreInputRegister.type = "text";
+  nombreInputRegister.id = "nombre-InputR";
+  nombreInputRegister.name = "nombreCompleto";
+  nombreInputRegister.required = true;
+  nombreInputRegister.classList.add("nombreInputR");
 
-  formulario.append(labelNombreCompleto, inputNombreCompleto);
+  formularioRegister.append(nombreLabelRegister, nombreInputRegister);
 
-  // Correo electrónico
-  const labelCorreoElectronico = document.createElement("label");
-  labelCorreoElectronico.textContent = "Correo electrónico:";
-  labelCorreoElectronico.setAttribute("for", "correoElectronico");
+  // Email label + input
+  const emailLabelRegister = document.createElement("label");
+  emailLabelRegister.textContent = "Correo electrónico:";
+  emailLabelRegister.setAttribute("for", "email-InputR");
 
-  const inputCorreoElectronico = document.createElement("input");
-  inputCorreoElectronico.type = "email";
-  inputCorreoElectronico.id = "correoElectronico";
-  inputCorreoElectronico.name = "correoElectronico";
-  inputCorreoElectronico.required = true;
-  inputCorreoElectronico.classList.add("input-clase");
+  const emailInputRegister = document.createElement("input");
+  emailInputRegister.type = "email";
+  emailInputRegister.id = "email-InputR";
+  emailInputRegister.required = true;
+  emailInputRegister.classList.add("emailInputR");
 
-  formulario.append(labelCorreoElectronico, inputCorreoElectronico);
+  formularioRegister.append(emailLabelRegister, emailInputRegister);
 
   // Contraseña
-  const labelContrasena = document.createElement("label");
-  labelContrasena.textContent = "Contraseña:";
-  labelContrasena.setAttribute("for", "contrasena");
+  const contrasenaLabelRegister = document.createElement("label");
+  contrasenaLabelRegister.textContent = "Contraseña:";
+  contrasenaLabelRegister.setAttribute("for", "contrasena");
 
-  const inputContrasena = document.createElement("input");
-  inputContrasena.type = "password";
-  inputContrasena.id = "contrasena";
-  inputContrasena.name = "contrasena";
-  inputContrasena.required = true;
-  inputContrasena.classList.add("input-clase");
+  const contrasenaInputRegister = document.createElement("input");
+  contrasenaInputRegister.type = "password";
+  contrasenaInputRegister.id = "contrasena-InputR";
+  contrasenaInputRegister.required = true;
+  contrasenaInputRegister.classList.add("contrasenaInputR");
 
-  formulario.append(labelContrasena, inputContrasena);
+  formularioRegister.append(contrasenaLabelRegister, contrasenaInputRegister);
 
   // Repetir contraseña
   const labelRepetirContrasena = document.createElement("label");
@@ -80,33 +82,39 @@ export function Register() {
   const inputRepetirContrasena = document.createElement("input");
   inputRepetirContrasena.type = "password";
   inputRepetirContrasena.id = "repetirContrasena";
-  inputRepetirContrasena.name = "repetirContrasena";
   inputRepetirContrasena.required = true;
-  inputRepetirContrasena.classList.add("input-clase");
+  inputRepetirContrasena.classList.add("repetirContrasenaR");
 
-  formulario.append(labelRepetirContrasena, inputRepetirContrasena);
-
-  // Botón "Continuar"
-  const continuarBtnLogin = document.createElement("button");
-  continuarBtnLogin.classList.add("continuarBtnLogin");
-  continuarBtnLogin.textContent = "Continuar";
-  contenedorGeneral.appendChild(continuarBtnLogin);
-
-  // Botón "Continuar con Google"
-  const GoogleBtnLogin = document.createElement("button");
-  GoogleBtnLogin.classList.add("GoogleBtnLogin");
-  GoogleBtnLogin.textContent = "Continuar con Google";
-  contenedorGeneral.appendChild(GoogleBtnLogin);
-
-  // Logo de Google
-  const logoGoogle = document.createElement("img");
-  logoGoogle.src = "../imagenes/logo-google.png";
-  GoogleBtnLogin.appendChild(logoGoogle);
-
-  formulario.append(botonEnviar);
+  formularioRegister.append(labelRepetirContrasena, inputRepetirContrasena);
 
   // Agregar el formulario al body del documento
-  document.body.append(formulario);
+  document.body.append(formularioRegister);
 
-  return container;
+  // Botón "Continuar"
+  const continuarBtnRegister = document.createElement("button");
+  continuarBtnRegister.classList.add("continuarBtnR");
+  continuarBtnRegister.textContent = "Continuar";
+  contenedorGeneralRegister.appendChild(continuarBtnRegister);
+
+  // Botón "Continuar con Google"
+  const googleBtnRegister = document.createElement("button");
+  googleBtnRegister.classList.add("googleBtnR");
+  googleBtnRegister.textContent = "Continuar con Google";
+
+  // Logo de Google
+  const logoGoogleRegister = document.createElement("img");
+  logoGoogleRegister.src = "../imagenes/logo-google.png";
+  logoGoogleRegister.alt = "Iniciar sesión con Google";
+  googleBtnRegister.appendChild(logoGoogleRegister);
+
+  contenedorGeneralRegister.appendChild(googleBtnRegister);
+
+  // Footer
+  const footerRegister = document.createElement("footer");
+  footerRegister.id = "footer-Register";
+  footerRegister.classList.add("footerR");
+  footerRegister.textContent = "Marchantes, 2023";
+  contenedorGeneralRegister.appendChild(footerRegister);
+
+  return containerRegister;
 }

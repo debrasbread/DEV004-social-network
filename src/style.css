@@ -2,40 +2,27 @@
 
 * {
   font-family: "Poppins", sans-serif;
+  font-size: small;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: grid;
-  place-items: center;
-}
-
-#contenedor-General {
-  box-sizing: border-box;
-  position: relative;
-  margin: 0;
-  background-color: rgba(255, 255, 255, 0.7);
-  text-align: center;
-  width: 350px;
-  height: 100vh;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto auto 1fr;
-  align-items: center; /*centra horizontalmente los elementos*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /*********HOME*********/
 
-.backgroundImg {
+.contenedorGeneralH {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.313);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.backgroundImgH {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -50,45 +37,63 @@ body {
   object-fit: cover;
 }
 
-.logoMarchantes {
+.logoH {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 100px;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20vh;
+  height: 20vh;
+  margin-bottom: 28vh;
 }
 
-.iniciarSesionBtn {
-  position: absolute;
-  margin-top: 2rem;
-  background-color: #d9d9d9;
-  border-radius: 10px;
-  padding: 8px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-size: small;
-  top: 500px;
+.iniciarSesionBtnH {
+  padding: 5px;
+  color: #161515;
+  background-color: #ffffff;
+  margin-top: 10%;
 }
 
-.registroLink {
+.registroLinkH {
   position: absolute;
-  margin-top: 1rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 3px;
-  top: 600px;
+  top: 70vh;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 30vh;
 }
 
-.registroLink a {
-  color: white;
-}
-
-.registroLink a:hover {
-  text-decoration: underline;
+.footerH {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+  font-family: "Poppins";
+  font-size: small;
 }
 
 /*********LOGIN*********/
 
-.backgroundImgLogin {
+.contenedorGeneralL {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.313);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.backgroundImgL {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -103,118 +108,76 @@ body {
   object-fit: cover;
 }
 
-/* Texto "Inicia sesión" */
-h1 {
-  position: absolute;
-  width: 211px;
-  height: 17px;
-  left: 0px;
-  top: 292px;
+.logoL {
+  width: 20vh;
+  height: 20vh;
+  margin-bottom: 2em;
+}
 
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: small;
-  line-height: 30px;
+.emailLabelL {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.emailInputL {
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.contraseñaLabelL {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.contraseñaInputL {
+  margin-bottom: 2em;
+  text-align: left;
+}
+
+.continuarBtnL {
+  padding: 5px;
+  color: #161515;
+  background-color: #ffffff;
+  margin-top: 10%;
+}
+
+#continuar-GoogleBtnL {
+  margin-top: 2em;
+  background-color: #ffffff;
+}
+
+.logoGoogleL {
+  margin-right: 8px; /* Espacio entre el logo y el texto */
+}
+
+.footerL {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
   text-align: center;
-
-  color: rgba(0, 0, 0, 0.64);
-}
-/* Email o teléfono */
-.emailTelLabel {
-  position: absolute;
-  top: calc(50% - 50px);
-  left: calc(50% - 150px);
-  width: 300px;
-  text-align: left;
-  display: block;
-}
-
-.emailTelInput {
-  position: absolute;
-  top: calc(50% - 20px);
-  left: calc(50% - 150px);
-  width: 300px;
-  
-  display: block;
-  border: none;
-  border-bottom: 1px solid black;
-  padding: 0;
-  margin: 0;
-  outline: none;
-}
-
-
-
-
-
-/*Contraseña*/
-
-.contraseñaLabel {
-  position: absolute;
-  top: calc(50% - 50px);
-  left: calc(50% - 150px);
-  width: 300px;
-  text-align: left;
-  display: block;
-  margin-top: 10px;
-}
-
-.contraseñaInput {
-  position: absolute;
-  top: calc(50% - 20px);
-  left: calc(50% - 150px);
-  width: 300px;
-  
-  border-top: none;/*REVISAR PARA DEJAR SÓLO LÍNEA*/
-  border-right: none;
-  border-left: none;
-  border-bottom: 1px solid black;
-  padding: 0;
-  margin: 0;
-  outline: none;
-}
-
-
-/* Botón Continuar */
-.continuarBtnLogin {
-  position: absolute;
-  margin-top: 2rem;
-  background-color: #d9d9d9;
-  border-radius: 10px;
-  padding: 8px;
+  padding: 10px;
   font-family: "Poppins";
-  font-style: normal;
   font-size: small;
-  top: 500px;
 }
 
-/* Botón Google Login */
-.GoogleBtnLogin {
-  position: absolute;
-  margin-top: 7rem;
-  background-color: #d9d9d9;
-  border-radius: 10px;
-  padding: 8px 16px 8px 40px; /* Añade un poco más de padding a la izquierda para acomodar el logo */
-  font-family: "Poppins";
-  font-style: normal;
-  font-size: small;
-  display: flex; /* Usa flexbox para alinear los elementos dentro del botón */
-  align-items: center; /* Centra verticalmente los elementos dentro del botón */
+/*******Register*******/
+
+.contenedorGeneralR {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.313);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.GoogleBtnLogin img {
-  margin-right: 8px; /* Añade un poco de espacio entre el logo y el texto */
-}
-
-/*********REGISTER*********/
-
-.backgroundImgRegister {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 50%;
-  background-image: url("../imagenes/background-register.jpg");
+.backgroundImgR {
   position: fixed;
   top: 0;
   left: 0;
@@ -222,4 +185,67 @@ h1 {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+  background-image: url("../imagenes/background-register.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 50%;
+}
+
+.logoR {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20vh;
+  height: 20vh;
+  margin-bottom: 28vh;
+}
+
+/*
+.uneteR {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 600px;
+}
+*/
+
+.formularioR {
+  display: flex;
+  flex-direction: column;
+  padding-top: 400px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.continuarBtnR {
+  background-color: #47b88f;
+  color: #161515;
+  justify-content: center;
+  align-items: center;
+  margin-top: 350px;
+}
+
+.googleBtnR {
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.logoGoogleR {
+  margin-right: 8px; /* Espacio entre el logo y el texto */
+}
+
+.footerR {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+  font-family: "Poppins";
+  font-size: small;
 }

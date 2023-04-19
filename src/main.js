@@ -1,15 +1,15 @@
-//Este es el punto de entrada de tu aplicacion
-
 import { addRoutes, onNavigate } from "./lib/router/index.js";
-import { createHome } from "./components/Home";
-import { Login } from "./components/Login";
-import { Register } from "./components/Register";
+import { home } from "./components/home.js";
+import { login } from "./components/login.js";
+import { register } from "./components/register.js";
+//import { feed } from './components/feed.js';
 //import { loginGoogle } from "./lib/autenticar.js";
 
 addRoutes({
-  "/": createHome,
-  "/Login": Login,
-  "/register": Register,
+  "/": home,
+  "/login": login,
+  "/register": register,
+  //"/feed": feed,
   //"/loginGoogle": loginGoogle,
 });
 
