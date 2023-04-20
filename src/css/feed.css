@@ -1,0 +1,39 @@
+/*********FEED*********/
+
+.contenedorGeneralF {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.313);
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+.logoF {
+position: absolute;
+width: 86px;
+height: 85px;
+left: 33px;
+top: 23px;
+  }
+
+
+
+
+  
+
+  .footerF {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    font-family: "Poppins";
+    font-size: small;
+  }

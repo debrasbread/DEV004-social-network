@@ -1,0 +1,90 @@
+
+
+/*******REGISTER*******/
+
+.contenedorGeneralR {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.313);
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .backgroundImgR {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    background-image: url("../imagenes/background-register.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 50%;
+  }
+  
+  .logoR {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20vh;
+    height: 20vh;
+    margin-bottom: 28vh;
+  }
+  
+  /*
+  .uneteR {
+    margin-top: 10px;
+    position: absolute;
+    bottom: 600px;
+  }
+  */
+  
+  .formularioR {
+    display: flex;
+    flex-direction: column;
+    padding-top: 400px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .continuarBtnR {
+    background-color: #47b88f;
+    color: #161515;
+    justify-content: center;
+    align-items: center;
+    margin-top: 350px;
+  }
+  
+  .googleBtnR {
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .logoGoogleR {
+    margin-right: 8px; /* Espacio entre el logo y el texto */
+  }
+  
+  .footerR {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    font-family: "Poppins";
+    font-size: small;
+  }
+  
