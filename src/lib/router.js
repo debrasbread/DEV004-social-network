@@ -1,1 +1,2 @@
 
+//exporto onnavigate y addroutes
