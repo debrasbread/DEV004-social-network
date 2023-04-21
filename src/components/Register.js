@@ -39,6 +39,7 @@ export function createRegister() {
   contenedorRegister.appendChild(registrarseAqui);
   // Asignación del texto "registrarse" al elemento button(que queremos que diga el boton en su interior)
   registrarseAqui.textContent = "Registrarse";
+  
   //obtener el valor mediante el event listener
   registrarseAqui.addEventListener("click", () => {
     const emailR = document.getElementById("emailUsuarioRegistro").value;

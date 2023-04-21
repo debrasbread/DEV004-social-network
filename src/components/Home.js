@@ -31,13 +31,6 @@ export function createHome() {
   contenedorGeneral.appendChild(logo);
 
 
-  contenedorGeneral.appendChild(logo);
-
-  //formulario de login
-  // const loginForm = document.createElement("form")
-  // loginForm.classList = "loginForm"
-  // container.appendChild(loginForm)
-
 
   //input del Email
   //como hacer un contenedor paara estos 2 input juntos?
@@ -88,6 +81,7 @@ export function createHome() {
       alert('Verifica los datos, fue imposible registrarte')
     })
   })
+  
 
 //podria retornar en el orden, pero no me funciona
 // section.append(mailInput, claveInput, iniciarSesionBtn, botonRegistro);
