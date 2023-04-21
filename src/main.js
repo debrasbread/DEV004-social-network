@@ -3,14 +3,14 @@
 import { addRoutes, onNavigate } from "./lib/router/index.js";
 import { createHome } from "./components/Home";
 import { Login } from "./components/Login";
-//import { Register } from "./components/Register";
-//import { loginGoogle } from "./lib/autenticar.js";
+import { createRegister } from "./components/Register";
+import { muro } from "./components/Muro.js";
 
 addRoutes({
   "/": createHome,
-  "/Login": Login,
-  //"/register": Register,
-  //"/loginGoogle": loginGoogle,
+  // "/Login": Login,no es necesario
+  "/register": createRegister,
+  "/muro": muro,
 });
 
 window.onload = () => {
