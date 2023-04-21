@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onNavigate } from "../lib/router";
 import { auth } from "/lib/firebase/firebase.js"
+import {signInWithEmail } from '../lib/auth'
 //como importar este archivo?
 // import { firebaseConfig } from "/lib/firebase/firebase.js"
 
@@ -25,19 +26,26 @@ export function createHome() {
 
   //input del Email
   //como hacer un contenedor paara estos 2 input juntos?
-  const mailInput = document.createElement("input")
-  mailInput.classList = "mailInput"
-  contenedorGeneral.appendChild(mailInput)
-  mailInput.placeholder = "Email"
-  mailInput.type = "email"
-  mailInput.id = "emailUsuario"
+  const mailInput = document.createElement("input");
+  mailInput.classList = "mailInput";
+  contenedorGeneral.appendChild(mailInput);
+  mailInput.placeholder = "Email";
+  mailInput.type = "email";
+  mailInput.id = "emailUsuario";
+
+  //label para nombrar el input en el home 
+  const mailLabel = document.createElement("label");
+  mailLabel.textContent = "Ingresa tu email";
+  mailLabel.classList =  "mailLabel";
+  contenedorGeneral.appendChild(mailLabel);
+
   //input de la clave
-  const claveInput = document.createElement("input")
-  claveInput.classList = "claveInput"
-  contenedorGeneral.appendChild(claveInput)
-  claveInput.placeholder = "Contraseña"
-  claveInput.type = "password"
-  claveInput.id = "passwordUsuario"
+  const claveInput = document.createElement("input");
+  claveInput.classList = "claveInput";
+  contenedorGeneral.appendChild(claveInput);
+  claveInput.placeholder = "Contraseña";
+  claveInput.type = "password";
+  claveInput.id = "passwordUsuario";
 
   // Texto e hipervínculo "Regístrate"
   const botonRegistro = document.createElement("section");
@@ -55,28 +63,22 @@ export function createHome() {
   iniciarSesionBtn.textContent = "Iniciar sesión";
   //obtener el valor mediante el event listener
   iniciarSesionBtn.addEventListener("click", () => {
-    const email = document.getElementById("emailUsuario").value
-    const password = document.getElementById("passwordUsuario").value
+    const email = document.getElementById("emailUsuario").value;
+    const password = document.getElementById("passwordUsuario").value;
 
-    // const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user)
-        onNavigate("/muro");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        
-      });
+    signInWithEmail(email, password).then((rep)=>{
+      onNavigate('/muro')
+    }).catch((err)=>{
+      alert('Verifica los datos, fue imposible registrarte')
+    })
   })
 
-
+//podria retornar en el orden, pero no me funciona
+// section.append(mailInput, claveInput, iniciarSesionBtn, botonRegistro);
   // Retorna el contenedor (con sus elementos hijos dentro)
-  return contenedorGeneral;
+  // return section;
+
+return contenedorGeneral;
 }
 
 
