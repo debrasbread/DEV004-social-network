@@ -3,7 +3,7 @@ import { home } from "./components/views/home.js";
 import { login } from "./components/views/login.js";
 import { register } from "./components/views/register.js";
 import { feed } from "./components/views/feed.js";
-//import { loginGoogle } from "./lib/autenticar.js";
+//import { loginGoogle } from './lib/autenticar.js';
 
 addRoutes({
   "/": home,
@@ -11,7 +11,6 @@ addRoutes({
   "/register": register,
   "/feed": feed,
   //"/loginGoogle": loginGoogle,
-  //"/post": post, // El post podría ir dentro del feed y ser una especie de ventana emergente (?)
 });
 
 window.onload = () => {
@@ -21,3 +20,4 @@ window.onload = () => {
 window.onpopstate = () => {
   onNavigate(window.location.pathname);
 };
+
