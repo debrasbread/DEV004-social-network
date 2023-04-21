@@ -13,16 +13,16 @@ export function createHome() {
 
 
   // Background
-  const backgroundImg = document.createElement("img");
-  backgroundImg.classList.add("backgroundImg");
-  backgroundImg.src = "../imagenes/background-mercado.jpg";
-  container.appendChild(backgroundImg);
+  // const backgroundImg = document.createElement("img");
+  // backgroundImg.classList.add("backgroundImg");
+  // backgroundImg.src = "../imagenes/background-mercado.jpg";
+  // contenedorGeneral.appendChild(backgroundImg);
 
   // Contenedor principal
-  const contenedorGeneral = document.createElement("section");
+  // const contenedorGeneral = document.createElement("section");
   contenedorGeneral.id = "contenedor-General";
   contenedorGeneral.classList.add("contenedorGeneral");
-  container.appendChild(contenedorGeneral);
+  // contenedorGeneral.appendChild(contenedorGeneral);
 
   // Logo
   const logo = document.createElement("img");
