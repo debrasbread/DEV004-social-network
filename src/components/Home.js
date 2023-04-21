@@ -7,14 +7,29 @@ import {signInWithEmail } from '../lib/auth'
 
 export function createHome() {
   // Creación de un elemento div y asignación a la variable container
+
   const contenedorGeneral = document.createElement("section");
   contenedorGeneral.classList.add("contenedorGeneral");
 
 
-  //Logo
+  // Background
+  const backgroundImg = document.createElement("img");
+  backgroundImg.classList.add("backgroundImg");
+  backgroundImg.src = "../imagenes/background-mercado.jpg";
+  container.appendChild(backgroundImg);
+
+  // Contenedor principal
+  const contenedorGeneral = document.createElement("section");
+  contenedorGeneral.id = "contenedor-General";
+  contenedorGeneral.classList.add("contenedorGeneral");
+  container.appendChild(contenedorGeneral);
+
+  // Logo
   const logo = document.createElement("img");
   logo.classList.add("logoMarchantes");
   logo.src = "../imagenes/logo-marchantes.png";
+  contenedorGeneral.appendChild(logo);
+
 
   contenedorGeneral.appendChild(logo);
 
@@ -61,6 +76,7 @@ export function createHome() {
   contenedorGeneral.appendChild(iniciarSesionBtn);
   // Asignación del texto "Iniciar sesión" al elemento button
   iniciarSesionBtn.textContent = "Iniciar sesión";
+
   //obtener el valor mediante el event listener
   iniciarSesionBtn.addEventListener("click", () => {
     const email = document.getElementById("emailUsuario").value;
@@ -79,9 +95,6 @@ export function createHome() {
   // return section;
 
 return contenedorGeneral;
+
+ 
 }
-
-
-
-
-
