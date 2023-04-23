@@ -1,3 +1,4 @@
+/*
 //Firebase
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -13,6 +14,8 @@ signInWithEmailAndPassword(auth, email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
   });
+
+  */
 
 export function login() {
   // Creación de main y asignación a variable container

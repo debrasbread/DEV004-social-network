@@ -1,5 +1,7 @@
+/*
 // Importar
 import { createUserWithEmailAndPassword } from '../lib/firebase/autenticar.js';
+*/
 
 export function register() {
   // Creación de div y asignación a variable container
@@ -95,10 +97,12 @@ export function register() {
 
   // Botón 'Continuar'
 
-  /* const continuarBtnRegister = document.createElement('button');
+  const continuarBtnRegister = document.createElement('button');
   continuarBtnRegister.classList.add('continuarBtnR');
   continuarBtnRegister.textContent = 'Continuar';
-  contenedorGeneralRegister.appendChild(continuarBtnRegister);*/
+  contenedorGeneralRegister.appendChild(continuarBtnRegister);
+
+  /*
 
   const continuarBtnRegister = document.createElement('button');
   continuarBtnRegister.classList.add('continuarBtnR');
@@ -122,6 +126,7 @@ export function register() {
       // Podríamos mostrar un mensaje de error al usuario aquí
     }
   });
+  */
 
   // Botón 'Continuar con Google'
   const googleBtnRegister = document.createElement('button');

@@ -1,3 +1,5 @@
+/*
+
 // signOut Firebase
 
 import { getAuth, signOut } from 'firebase/auth';
@@ -10,6 +12,8 @@ signOut(auth)
   .catch((error) => {
     // An error happened.
   });
+
+  */
 
 // Feed
 
