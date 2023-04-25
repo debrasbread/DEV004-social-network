@@ -37,13 +37,6 @@ export function feed() {
   logoFeed.classList.add('logoF');
   logoFeed.src = '../imagenes/logo-marchantes.png';
   contenedorGeneralFeed.appendChild(logoFeed);
-  
-  // Línea separadora 1
-  /*
-  const hrDespuesForm = document.createElement('hr');
-  hrDespuesForm.classList.add('lineaSeparadora1');
-  contenedorGeneralFeed.appendChild(hrDespuesForm);
-  */
 
   /* Formulario */
 
@@ -87,13 +80,6 @@ export function feed() {
 
   // Agregar el formulario al contenedor general
   contenedorGeneralFeed.appendChild(container);
-
-  /*
-  // Línea separadora 2
-  const hrDespuesPost = document.createElement('hr');
-  hrDespuesPost.classList.add('lineaSeparadora2');
-  contenedorGeneralFeed.appendChild(hrDespuesPost);
-  */
 
   // Footer
   const footerFeed = document.createElement('footer');

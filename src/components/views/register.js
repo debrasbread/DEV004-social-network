@@ -1,6 +1,8 @@
 /*
-// Importar
-import { createUserWithEmailAndPassword } from '../lib/firebase/autenticar.js';
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// import {initializeApp} from '../lib/firebase/firebase.js';
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 */
 
 export function register() {
@@ -24,14 +26,14 @@ export function register() {
   logoRegister.src = '../imagenes/logo-marchantes.png';
   contenedorGeneralRegister.appendChild(logoRegister);
 
-  /*
-  // Texto "Únete a Marchantes"
+/*
+  // Texto 'Únete a Marchantes'
   const uneteRegister = document.createElement('h1');
   uneteRegister.id = 'iniciarSesionL';
   uneteRegister.classList.add('uneteR');
   uneteRegister.textContent = 'Únete a Marchantes';
   contenedorGeneralRegister.appendChild(uneteRegister);
-  */
+*/
 
   // Formulario
   const formularioRegister = document.createElement('form');
@@ -79,30 +81,12 @@ export function register() {
 
   formularioRegister.append(contrasenaLabelRegister, contrasenaInputRegister);
 
-  // Repetir contraseña
-  const labelRepetirContrasena = document.createElement('label');
-  labelRepetirContrasena.textContent = 'Repetir contraseña:';
-  labelRepetirContrasena.setAttribute('for', 'repetirContrasena');
-
-  const inputRepetirContrasena = document.createElement('input');
-  inputRepetirContrasena.type = 'password';
-  inputRepetirContrasena.id = 'repetirContrasena';
-  inputRepetirContrasena.required = true;
-  inputRepetirContrasena.classList.add('repetirContrasenaR');
-
-  formularioRegister.append(labelRepetirContrasena, inputRepetirContrasena);
-
   // Agregar el formulario al body del documento
   document.body.append(formularioRegister);
 
-  // Botón 'Continuar'
-
-  const continuarBtnRegister = document.createElement('button');
-  continuarBtnRegister.classList.add('continuarBtnR');
-  continuarBtnRegister.textContent = 'Continuar';
-  contenedorGeneralRegister.appendChild(continuarBtnRegister);
-
   /*
+
+  // Botón 'Continuar'
 
   const continuarBtnRegister = document.createElement('button');
   continuarBtnRegister.classList.add('continuarBtnR');
@@ -117,8 +101,10 @@ export function register() {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         email,
-        contrasena
+        contrasena,
+        auth
       );
+
       // Si el registro fue exitoso, podríamos redirigir al usuario a otra página o mostrar un mensaje de confirmación.
       console.log('Registro exitoso:', userCredential);
     } catch (error) {
@@ -126,7 +112,6 @@ export function register() {
       // Podríamos mostrar un mensaje de error al usuario aquí
     }
   });
-  */
 
   // Botón 'Continuar con Google'
   const googleBtnRegister = document.createElement('button');
@@ -139,7 +124,20 @@ export function register() {
   logoGoogleRegister.alt = 'Iniciar sesión con Google';
   googleBtnRegister.appendChild(logoGoogleRegister);
 
-  contenedorGeneralRegister.appendChild(googleBtnRegister);
+  // Registra un usuario con Google
+  googleBtnRegister.addEventListener('click', async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      // Si el registro fue exitoso, podríamos redirigir al usuario a otra página o mostrar un mensaje de confirmación.
+      console.log('Registro con Google exitoso:', result.user);
+    } catch (error) {
+      console.error('Error al registrar usuario con Google:', error);
+      // Podríamos mostrar un mensaje de error al usuario aquí
+    }
+  });
+
+contenedorGeneralRegister.appendChild(googleBtnRegister); 
+*/
 
   // Footer
   const footerRegister = document.createElement('footer');
@@ -147,6 +145,9 @@ export function register() {
   footerRegister.classList.add('footerR');
   footerRegister.textContent = 'Marchantes, 2023';
   contenedorGeneralRegister.appendChild(footerRegister);
+
+  
+
 
   return containerRegister;
 }

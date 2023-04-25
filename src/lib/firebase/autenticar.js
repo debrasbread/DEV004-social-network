@@ -1,7 +1,5 @@
-/*
+export { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-// Importar funciones que voy a ocupar y exportar
-// Register with email, signin with password, signin with google, login
 
 // Autenticación con correo electrónico y contraseña - Firebase
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -54,5 +52,3 @@ signInWithPopup(auth, provider)
 // Exportar
 export { createUserWithEmailAndPassword };
 
-
-*/
