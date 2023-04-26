@@ -11,6 +11,7 @@ const auth = getAuth();
 
 export function createUser(email, password){
   return createUserWithEmailAndPassword(auth, email, password)
+ 
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
@@ -21,7 +22,9 @@ export function createUser(email, password){
     const errorMessage = error.message;
     // ...
   });
+  
 }
+
 
 // Google - Firebase
 const provider = new GoogleAuthProvider();

@@ -67,23 +67,52 @@ export function register() {
   // Agregar el formulario al body del documento
   contenedorGeneralRegister.append(formularioRegister);
 
-  
+// Botón 'Continuar'
 
-  // Botón 'Continuar'
+console.log('Creating button...');
+const continuarBtnRegister = document.createElement('button');
+continuarBtnRegister.classList.add('continuarBtnR');
+continuarBtnRegister.textContent = 'Continuar';
+contenedorGeneralRegister.appendChild(continuarBtnRegister);
 
-  const continuarBtnRegister = document.createElement('button');
-  continuarBtnRegister.classList.add('continuarBtnR');
-  continuarBtnRegister.textContent = 'Continuar';
-  contenedorGeneralRegister.appendChild(continuarBtnRegister);
 
-  continuarBtnRegister.addEventListener('click',  (event) => {
-    event.preventDefault();
-    const email = emailInputRegister.value;
-    const contrasena = contrasenaInputRegister.value;
-    createUser(email, contrasena).then(()=>{
-      onNavigate('/feed')
-    })
-  });
+
+
+// Click y mensaje de error
+console.log('Se crea msj de error');
+const registroMensaje = document.createElement('p');
+registroMensaje.textContent = 'Debes registrarte para continuar';
+registroMensaje.classList.add('registro-mensaje');
+formularioRegister.appendChild(registroMensaje);
+
+registroMensaje.style.display = 'none';
+
+continuarBtnRegister.addEventListener('click', async (event) => {
+  console.log('Click en btn Continuar');
+  event.preventDefault();
+  const email = emailInputRegister.value;
+  const contrasena = contrasenaInputRegister.value;
+  if (!email || !contrasena) {
+    console.log('Email o contraseña vacíos, se muestra msj de error');
+    registroMensaje.style.display = 'block';
+    return;
+  }
+  try {
+    await createUser(email, contrasena);
+    console.log('Usuario creado satisfactoriamente');
+    onNavigate('/feed');
+  } catch (error) {
+    console.log('Error al crear usuario:', error);
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+  }
+});
+
+
+
+
 
   // Botón 'Continuar con Google'
   const googleBtnRegister = document.createElement('button');
