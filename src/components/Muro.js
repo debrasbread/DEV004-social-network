@@ -12,11 +12,14 @@ export function muro() {
     //boton para cerrar la sesion
     const btnExit = document.createElement('button');
     btnExit.classList = "botonSalir";
-
-    btnExit.textContent = 'Cerrar sesión'
+    btnExit.textContent = 'Cerrar sesión';
+    btnExit.addEventListener('click', ()=>{
+        exit().then((resp)=>{
+        onNavigate('/')
+        })
+    })
+    contenedorMuro.appendChild(btnExit)
     
-    
-
     const logoMuro = document.createElement("img");
     logoMuro.classList.add("logoMarchantesMuro");
     logoMuro.src = "../imagenes/logo-marchantes.png";
@@ -28,12 +31,12 @@ export function muro() {
     contenedorMuro.appendChild(areaDelPost);
     areaDelPost.placeholder = "Escribe aqui..."
 
-    btnExit.addEventListener('click', ()=>{
-        exit().then((resp)=>{
-        onNavigate('/')
-        })
-    })
-    contenedorMuro.appendChild(btnExit)
+    // btnExit.addEventListener('click', ()=>{
+    //     exit().then((resp)=>{
+    //     onNavigate('/')
+    //     })
+    // })
+    // contenedorMuro.appendChild(btnExit)
 
 
     return contenedorMuro

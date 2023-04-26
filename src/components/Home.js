@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onNavigate } from "../lib/router";
 import { auth } from "/lib/firebase/firebase.js"
-import {signInWithEmail, provider, loginGoogle } from '../lib/auth'
+import { signInWithEmail, provider, loginGoogle } from '../lib/auth'
 import { getRedirectResult } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -10,7 +10,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 // import { firebaseConfig } from "/lib/firebase/firebase.js"
 
 export function createHome() {
-  
+
 
   // Contenedor principal
   const contenedorGeneral = document.createElement("section");
@@ -25,9 +25,14 @@ export function createHome() {
   contenedorGeneral.appendChild(logo);
 
 
+  //TEXTO PARA ingresar clave en EL INPUT DEL MAIL
+  const txtIngresaMail = document.createElement("p");
+  txtIngresaMail.classList = "txtIngresaMail";
+  txtIngresaMail.textContent = "Ingresa tu mail";
+  contenedorGeneral.appendChild(txtIngresaMail);
 
-  //input del Email
-  //como hacer un contenedor paara estos 2 input juntos?
+
+  // input del mail en inicio
   const mailInput = document.createElement("input");
   mailInput.classList = "mailInput";
   contenedorGeneral.appendChild(mailInput);
@@ -41,6 +46,13 @@ export function createHome() {
   // mailLabel.classList =  "mailLabel";
   // contenedorGeneral.appendChild(mailLabel);
 
+  //TEXTO DE INGRESAR CLAVE EN INPUT
+  const txtIngresaClave = document.createElement("p");
+  txtIngresaClave.classList = "txtIngresaClave";
+  txtIngresaClave.textContent = "Ingresa tu Clave";
+  contenedorGeneral.appendChild(txtIngresaClave);
+
+  
   //input de la clave
   const claveInput = document.createElement("input");
   claveInput.classList = "claveInput";
@@ -55,16 +67,23 @@ export function createHome() {
   // claveLabel.classList =  "claveLabel";
   // contenedorGeneral.appendChild(claveLabel);
 
-
+//BOTON PARA INICIAR SESION CON GOOGLE
   const botonGoogle = document.createElement("button");
   botonGoogle.classList = "botonGoogle";
   contenedorGeneral.appendChild(botonGoogle);
-  botonGoogle.textContent = "Inicia sesion con Google"
+  botonGoogle.textContent = "Inicia sesión con Google"
   botonGoogle.id = "botonDeGoogle"
   botonGoogle.addEventListener("click", () => {
-  loginGoogle()
-  
-  });  
+    loginGoogle()
+      .then((rep) => {
+        onNavigate('/muro')
+
+      }).catch((err) => {
+        alert('No se pudo iniciar sesión con Google')
+      })
+
+  });
+
 
 
 
@@ -79,7 +98,7 @@ export function createHome() {
     const botonRegistrate = document.getElementById("registrateAqui").value;
     onNavigate('/register')
     // signInWithEmail(botonRegistrate).then((rep)=>{
-      
+
     // }).catch((err)=>{
     //   alert()
     // })
@@ -98,10 +117,11 @@ export function createHome() {
     const email = document.getElementById("emailUsuario").value;
     const password = document.getElementById("passwordUsuario").value;
 
-    signInWithEmail(email, password).then((rep)=>{
+    signInWithEmail(email, password).then((rep) => {
+      console.log('entré')
       onNavigate('/muro')
-    }).catch((err)=>{
-      alert('Verifica los datos, fue imposible registrarte');
+    }).catch((err) => {
+      alert('Verifica los datos ingresados');
     });
   });
 

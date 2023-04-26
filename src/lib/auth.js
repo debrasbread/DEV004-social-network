@@ -3,20 +3,20 @@ const auth = getAuth();
 
 export const signInWithEmail = (email, password)=>{
     return signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("funciona")
-        // Signed in
-        const user = userCredential.user;
-        console.log(user)
-        onNavigate("/muro");
-        // ...
-      })
-      .catch((error) => {
-        console.log("error")
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      // .then((userCredential) => {
+      //   console.log("funciona")
+      //   // Signed in
+      //   const user = userCredential.user;
+      //   console.log(user)
+      //   onNavigate("/muro");
+      //   // ...
+      // })
+      // .catch((error) => {
+      //   console.log("error")
+      //   const errorCode = error.code;
+      //   const errorMessage = error.message;
         
-      });
+      // });
     
 }
 

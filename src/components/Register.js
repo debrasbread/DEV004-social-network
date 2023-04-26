@@ -5,8 +5,14 @@ import {createUser } from '../lib/auth';
 
 
 export function createRegister() {
-  const contenedorRegister = document.createElement("section")
-  contenedorRegister.classList.add("contenedorRegister")
+  const contenedorRegister = document.createElement("section");
+  contenedorRegister.classList.add("contenedorRegister");
+
+  const textoRegistro = document.createElement("p");
+  textoRegistro.classList = "textoRegistro";
+  contenedorRegister.appendChild(textoRegistro);
+  textoRegistro.textContent = "Ingrese su mail y clave para registrarse en la app"
+
 
     //como hacer un contenedor paara estos 2 input juntos?
     const mailRegistro = document.createElement("input");
@@ -40,17 +46,16 @@ export function createRegister() {
 
 
  
-//INTENTO DE CREAR UN BOTON "volver"
-//   const btnVolver = document.createElement('button');
-// btnVolver.textContent = "Volver";
-// btnVolver.classList = "VolverInicio";
-//   btnVolver.addEventListener('click', ()=>{
-//     back().then((resp)=>{
-//     onNavigate('/')
-//     })
-// })
-// // Agregamos el botón al DOM
-// contenedorRegister.appendChild(btnVolver);
+ //boton para volver al inicio 
+ const botonVolver = document.createElement('button');
+ botonVolver.classList = "botonVolver";
+ botonVolver.textContent = 'Atras';
+ botonVolver.addEventListener('click', ()=>{
+     exit().then((resp)=>{
+     onNavigate('/')
+     })
+ })
+ contenedorRegister.appendChild(botonVolver)
 
   
 

@@ -2,15 +2,16 @@
 
 * {
   font-family: 'Alegreya Sans', sans-serif;
-margin: auto;
+  /* margin: auto; */
 
 }
 
+/* --------VISTA DEL INICIO------- */
 .contenedorGeneral {
   margin: auto;
   display: flex;
   justify-content: center;
-  height: 796px;
+  height: 899px;
   width: 414px;
   padding: 10px;
   background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
@@ -33,7 +34,7 @@ margin: auto;
 
 .iniciarSesionBtn {
   position: absolute;
-  top: 600px;
+  top: 550px;
   left: 95px;
   right: 95px;
   background-color: #fefbfb;
@@ -48,6 +49,15 @@ margin: auto;
   background-color: #c4f582c2
 }
 
+.txtIngresaMail {
+  top: 350px;
+  color: #000000;
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+ 
+}
+
 .mailInput {
   position: absolute;
   top: 400px;
@@ -59,25 +69,13 @@ margin: auto;
 
 }
 
-.mailLabel {
+.txtIngresaClave {
   position: absolute;
-  display: flex;
   top: 450px;
-  left: 97px;
-  right: 97px;
-  color: #e86864;
-  font-size: large;
-
-}
-
-.claveLavel {
-
-  display: flex;
-  top: 500px;
-  left: 97px;
-  right: 97px;
-  color: #e86864;
-  font-size: large;
+  color: #000000;
+  font-size: 24px;
+  font-weight: bold;
+ 
 }
 
 .claveInput {
@@ -98,8 +96,10 @@ margin: auto;
   left: 97px;
   right: 70px;
   color: #000000;
+
 }
 
+/* ------VISTA DEL MURO------ */
 .contenedorMuro {
   margin: auto;
   display: flex;
@@ -114,6 +114,7 @@ margin: auto;
   border-radius: 20px;
 }
 
+/* boton de cerrar sesion */
 .botonSalir {
   flex-direction: row-reverse;
   display: flex;
@@ -143,7 +144,6 @@ margin: auto;
 }
 
 .areaDelPost {
-
   border-color: #e86864;
   border-radius: 5px;
   top: 40px;
@@ -155,11 +155,13 @@ margin: auto;
 
 }
 
+/* ------VISTA DEL REGISTRO------ */
 .contenedorRegister {
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: left;
+  /* justify-content: center; */
   height: 896px;
   width: 414px;
   background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
@@ -197,20 +199,44 @@ margin: auto;
   color: #000000;
 }
 
+.textoRegistro {
+  align-items: center;
+  color: #000000;
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  top: 300px;
+}
+
+.botonVolver {
+  flex-direction: row-reverse;
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
+  background-color: #eeeeee;
+  color: #000000;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px #5f605f40;
+  font-size: 16px;
+  border-color: #e86864;
+}
+
 /* } */
 
 /* 
 // MEDIDAS PARA PC`xl` applies to large devices (desktops, less than 1200px) */
 @media only screen and (min-width: 768px) and (max-width: 1400px) {
 
+  /* ------VISTA DEL INICIO------ */
   .contenedorGeneral {
+    position: absolute;
     background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
     display: flex;
     justify-content: center;
     height: 1300px;
     width: 800px;
-    box-sizing: border-box;
-    position: relative;
+    /* box-sizing: border-box; */
+    /* position: relative; */
     border: 0.5px solid #000000;
     border-radius: 20px;
   }
@@ -243,6 +269,15 @@ margin: auto;
     background-color: #c4f582c2
   }
 
+  .txtIngresaMail {
+    top: 450px;
+    color: #000000;
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+   
+  }
+
   .mailInput {
     position: absolute;
     top: 500px;
@@ -254,25 +289,13 @@ margin: auto;
 
   }
 
-  .mailLabel {
+  .txtIngresaClave {
     position: absolute;
-    display: flex;
-    top: 450px;
-    left: 97px;
-    right: 97px;
-    color: #e86864;
-    font-size: large;
+    top: 550px;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
 
-  }
-
-  .claveLavel {
-
-    display: flex;
-    top: 500px;
-    left: 97px;
-    right: 97px;
-    color: #e86864;
-    font-size: large;
   }
 
   .claveInput {
@@ -294,6 +317,7 @@ margin: auto;
     font-size: 24px;
   }
 
+  /* ------VISTA DEL MURO------ */
   .contenedorMuro {
     display: flex;
     flex-direction: column;
@@ -301,7 +325,7 @@ margin: auto;
     height: 896px;
     width: 414px;
     background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     position: relative;
     border: 0.5px solid #000000;
     border-radius: 20px;
@@ -343,11 +367,12 @@ margin: auto;
 
   }
 
+  /* ------VISTA DEL REGISTRO------ */
   .contenedorRegister {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: left;
+    /* align-items: center; */
+    justify-content: center;
     max-height: 896px;
     max-width: 414px;
     background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
@@ -385,4 +410,25 @@ margin: auto;
     color: #000000;
   }
 
+  .textoRegistro {
+    align-content: center;
+    color: #000000;
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    top: 300px;
+  }
+
+  .botonVolver {
+    flex-direction: row-reverse;
+    display: flex;
+    align-self: flex-end;
+    position: absolute;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px #5f605f40;
+    font-size: 16px;
+    border-color: #e86864;
+  }
 }
