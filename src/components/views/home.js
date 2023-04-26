@@ -1,3 +1,5 @@
+import { onNavigate } from '../../lib/router/index';
+
 export function home() {
   // Creación de main y asignación a variable home
   const containerHome = document.createElement('main');
@@ -23,6 +25,13 @@ export function home() {
   const iniciarSesionBtnHome = document.createElement('button');
   iniciarSesionBtnHome.classList.add('iniciarSesionBtnH');
   iniciarSesionBtnHome.textContent = 'Iniciar sesión';
+
+  iniciarSesionBtnHome.addEventListener('click', (event) => {
+    event.preventDefault();
+    onNavigate('/login')
+
+  });
+
   contenedorGeneralHome.appendChild(iniciarSesionBtnHome);
 
   // Texto e hipervínculo 'Regístrate'
@@ -31,19 +40,13 @@ export function home() {
   registroLinkHome.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
   contenedorGeneralHome.appendChild(registroLinkHome);
 
-/*
-
-  continuarBtnRegister.addEventListener('click',  (event) => {
+  registroLinkHome.addEventListener('click', (event) => {
     event.preventDefault();
-    const email = emailInputRegister.value;
-    const contrasena = contrasenaInputRegister.value;
-    createUser(email, contrasena).then(()=>{
-      onNavigate('/feed')
-    })
+    onNavigate('/register')
+
   });
 
-*/
-
+  contenedorGeneralHome.appendChild(registroLinkHome);
 
   // Footer
   const footerHome = document.createElement('footer');

@@ -1,3 +1,6 @@
+import { signInGoogle } from '../../lib/firebase/autenticar';
+import {onNavigate} from '../../lib/router/index';
+
 /*
 //Firebase
 
@@ -81,18 +84,31 @@ export function login() {
   continuarBtnLogin.id = 'continuar-BtnL';
   contenedorGeneralLogin.appendChild(continuarBtnLogin);
 
-  // Botón "Continuar con btn"
-  const GoogleBtnLogin = document.createElement('button');
-  GoogleBtnLogin.classList.add('GoogleBtnL');
-  GoogleBtnLogin.textContent = 'Continuar con Google';
-  GoogleBtnLogin.id = 'continuar-GoogleBtnL';
-  contenedorGeneralLogin.appendChild(GoogleBtnLogin);
+  // Botón "Continuar con Google"
+  const googleBtnLogin = document.createElement('button');
+  googleBtnLogin.classList.add('googleBtnL');
+  googleBtnLogin.textContent = 'Continuar con Google';
+  googleBtnLogin.id = 'continuar-GoogleBtnL';
+  contenedorGeneralLogin.appendChild(googleBtnLogin);
 
-  // Logo de Google
-  const logoGoogle = document.createElement('img');
-  logoGoogle.src = '../imagenes/logo-google.png';
-  logoGoogle.classList.add('logoGoogleL');
-  GoogleBtnLogin.append(logoGoogle);
+/*
+// Logo de Google
+const logoGoogleLogin = document.createElement('img');
+logoGoogleLogin.src = '../imagenes/logo-google.png';
+logoGoogleLogin.alt = 'Iniciar sesión con Google';
+googleBtnLogin.appendChild(logoGoogleLogin);
+*/
+
+// Iniciar sesión con Google
+googleBtnLogin.addEventListener('click',() => {
+  signInGoogle().then(()=>{
+    onNavigate('/feed')
+  })
+  
+});
+
+contenedorGeneralLogin.appendChild(googleBtnLogin); 
+
 
   //Footer
   const footerLogin = document.createElement('footer');
