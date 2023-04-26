@@ -31,6 +31,20 @@ export function home() {
   registroLinkHome.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
   contenedorGeneralHome.appendChild(registroLinkHome);
 
+/*
+
+  continuarBtnRegister.addEventListener('click',  (event) => {
+    event.preventDefault();
+    const email = emailInputRegister.value;
+    const contrasena = contrasenaInputRegister.value;
+    createUser(email, contrasena).then(()=>{
+      onNavigate('/feed')
+    })
+  });
+
+*/
+
+
   // Footer
   const footerHome = document.createElement('footer');
   footerHome.id = 'footer-Home';

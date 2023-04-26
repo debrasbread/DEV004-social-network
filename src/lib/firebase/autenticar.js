@@ -1,12 +1,16 @@
 export { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
+import { initializeApp } from "firebase/app";
+import{firebaseConfig} from './firebase'
 
 // Autenticación con correo electrónico y contraseña - Firebase
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
+initializeApp(firebaseConfig);
 const auth = getAuth();
 
-createUserWithEmailAndPassword(auth, email, password)
+
+export function createUser(email, password){
+  return createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
@@ -17,12 +21,13 @@ createUserWithEmailAndPassword(auth, email, password)
     const errorMessage = error.message;
     // ...
   });
+}
 
 // Google - Firebase
 const provider = new GoogleAuthProvider();
-
+export function signInGoogle(){
 // Acceder con cuenta de Google (popup, ventana emergente)
-signInWithPopup(auth, provider)
+return signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -41,6 +46,8 @@ signInWithPopup(auth, provider)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });
+}
+
 
 // Acceder mediante redireccionamiento Google
 
@@ -49,6 +56,5 @@ signInWithPopup(auth, provider)
 // signInWithRedirect(auth, provider);
 
 
-// Exportar
-export { createUserWithEmailAndPassword };
+
 

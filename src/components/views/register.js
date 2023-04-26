@@ -1,9 +1,6 @@
-/*
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-// import {initializeApp} from '../lib/firebase/firebase.js';
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
-*/
+import { createUser, signInGoogle } from '../../lib/firebase/autenticar';
+import {onNavigate} from '../../lib/router/index';
+
 
 export function register() {
   // Creación de div y asignación a variable container
@@ -41,20 +38,6 @@ export function register() {
   formularioRegister.classList.add('formularioR');
   contenedorGeneralRegister.appendChild(formularioRegister);
 
-  // Nombre completo label + input
-  const nombreLabelRegister = document.createElement('label');
-  nombreLabelRegister.textContent = 'Nombre completo:';
-  nombreLabelRegister.setAttribute('for', 'nombre-InputR');
-
-  const nombreInputRegister = document.createElement('input');
-  nombreInputRegister.type = 'text';
-  nombreInputRegister.id = 'nombre-InputR';
-  nombreInputRegister.name = 'nombreCompleto';
-  nombreInputRegister.required = true;
-  nombreInputRegister.classList.add('nombreInputR');
-
-  formularioRegister.append(nombreLabelRegister, nombreInputRegister);
-
   // Email label + input
   const emailLabelRegister = document.createElement('label');
   emailLabelRegister.textContent = 'Correo electrónico:';
@@ -82,9 +65,9 @@ export function register() {
   formularioRegister.append(contrasenaLabelRegister, contrasenaInputRegister);
 
   // Agregar el formulario al body del documento
-  document.body.append(formularioRegister);
+  contenedorGeneralRegister.append(formularioRegister);
 
-  /*
+  
 
   // Botón 'Continuar'
 
@@ -93,24 +76,13 @@ export function register() {
   continuarBtnRegister.textContent = 'Continuar';
   contenedorGeneralRegister.appendChild(continuarBtnRegister);
 
-  continuarBtnRegister.addEventListener('click', async (event) => {
+  continuarBtnRegister.addEventListener('click',  (event) => {
     event.preventDefault();
-    const nombre = nombreInputRegister.value;
     const email = emailInputRegister.value;
     const contrasena = contrasenaInputRegister.value;
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        email,
-        contrasena,
-        auth
-      );
-
-      // Si el registro fue exitoso, podríamos redirigir al usuario a otra página o mostrar un mensaje de confirmación.
-      console.log('Registro exitoso:', userCredential);
-    } catch (error) {
-      console.error('Error al registrar usuario:', error);
-      // Podríamos mostrar un mensaje de error al usuario aquí
-    }
+    createUser(email, contrasena).then(()=>{
+      onNavigate('/feed')
+    })
   });
 
   // Botón 'Continuar con Google'
@@ -125,19 +97,15 @@ export function register() {
   googleBtnRegister.appendChild(logoGoogleRegister);
 
   // Registra un usuario con Google
-  googleBtnRegister.addEventListener('click', async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      // Si el registro fue exitoso, podríamos redirigir al usuario a otra página o mostrar un mensaje de confirmación.
-      console.log('Registro con Google exitoso:', result.user);
-    } catch (error) {
-      console.error('Error al registrar usuario con Google:', error);
-      // Podríamos mostrar un mensaje de error al usuario aquí
-    }
+  googleBtnRegister.addEventListener('click',() => {
+    signInGoogle().then(()=>{
+      onNavigate('/feed')
+    })
+    
   });
 
 contenedorGeneralRegister.appendChild(googleBtnRegister); 
-*/
+
 
   // Footer
   const footerRegister = document.createElement('footer');

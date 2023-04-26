@@ -81,12 +81,12 @@ export function login() {
   continuarBtnLogin.id = 'continuar-BtnL';
   contenedorGeneralLogin.appendChild(continuarBtnLogin);
 
-  // Botón "Continuar con Google"
+  // Botón "Continuar con btn"
   const GoogleBtnLogin = document.createElement('button');
   GoogleBtnLogin.classList.add('GoogleBtnL');
   GoogleBtnLogin.textContent = 'Continuar con Google';
   GoogleBtnLogin.id = 'continuar-GoogleBtnL';
-  contenedorGeneralLogin.append
+  contenedorGeneralLogin.appendChild(GoogleBtnLogin);
 
   // Logo de Google
   const logoGoogle = document.createElement('img');
