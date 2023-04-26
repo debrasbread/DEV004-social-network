@@ -1,5 +1,6 @@
 import { onNavigate } from "../lib/router";
-import {createUser } from '../lib/auth'
+import {createUser } from '../lib/auth';
+// import { back } from '../lib/auth';
 
 
 
@@ -23,14 +24,11 @@ export function createRegister() {
     claveRegistro.type = "password";
     claveRegistro.id = "passwordUsuarioRegistro";
 
-//input Repetir clave. Es mejor dejarlo en una clave y asi es menos complicado.
-   // const claveRegistro2 = document.createElement("input");
-    //claveRegistro2.classList = "claveInput2";
-  //  contenedorMuro.appendChild(claveRegistro2);
-   // claveRegistro2.placeholder = "Repetir contraseña";
- //   claveRegistro2.type = "password";
- //   claveRegistro2.id = "passwordUsuario2";
-
+     // Logo
+  const logoRegistro = document.createElement("img");
+  logoRegistro.classList.add("logoMarchantes");
+  logoRegistro.src = "../imagenes/logo-marchantes.png";
+  contenedorRegister.appendChild(logoRegistro);
 
   // Creación de un elemento button y asignación a la variable button
   const registrarseAqui = document.createElement("button");
@@ -39,6 +37,27 @@ export function createRegister() {
   contenedorRegister.appendChild(registrarseAqui);
   // Asignación del texto "registrarse" al elemento button(que queremos que diga el boton en su interior)
   registrarseAqui.textContent = "Registrarse";
+
+
+ 
+//INTENTO DE CREAR UN BOTON "volver"
+//   const btnVolver = document.createElement('button');
+// btnVolver.textContent = "Volver";
+// btnVolver.classList = "VolverInicio";
+//   btnVolver.addEventListener('click', ()=>{
+//     back().then((resp)=>{
+//     onNavigate('/')
+//     })
+// })
+// // Agregamos el botón al DOM
+// contenedorRegister.appendChild(btnVolver);
+
+  
+
+// const botonAtras = document.createElement("div")
+// botonAtras.classList.add("botonAtras")
+// botonAtras.appendChild = "javascript:history.go(-1) <a href="#">Regístrate</a>."
+  
   
   //obtener el valor mediante el event listener
   registrarseAqui.addEventListener("click", () => {
