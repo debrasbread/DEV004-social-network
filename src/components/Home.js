@@ -10,8 +10,10 @@ import { GoogleAuthProvider } from "firebase/auth";
 export function createHome() {
 
 
+
   // Contenedor del home
   const contenedorGeneral = document.createElement("section");
+
   contenedorGeneral.id = "contenedor-General";
   contenedorGeneral.classList.add("contenedorGeneral");
   // contenedorGeneral.appendChild(contenedorGeneral);
