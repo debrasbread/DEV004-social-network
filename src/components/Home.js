@@ -52,7 +52,7 @@ export function createHome() {
   txtIngresaClave.textContent = "Ingresa tu Clave";
   contenedorGeneral.appendChild(txtIngresaClave);
 
-  
+
   //input de la clave
   const claveInput = document.createElement("input");
   claveInput.classList = "claveInput";
@@ -68,10 +68,11 @@ export function createHome() {
   // contenedorGeneral.appendChild(claveLabel);
 
 //BOTON PARA INICIAR SESION CON GOOGLE
-  const botonGoogle = document.createElement("button");
+  const botonGoogle = document.createElement("img");
   botonGoogle.classList = "botonGoogle";
   contenedorGeneral.appendChild(botonGoogle);
-  botonGoogle.textContent = "Inicia sesión con Google"
+  botonGoogle.src = "../imagenes/btn_google_signin_light_pressed_web.png";
+  // botonGoogle.textContent = "Inicia sesión con Google"
   botonGoogle.id = "botonDeGoogle"
   botonGoogle.addEventListener("click", () => {
     loginGoogle()
@@ -83,8 +84,6 @@ export function createHome() {
       })
 
   });
-
-
 
 
   // Texto e hipervínculo "Regístrate"

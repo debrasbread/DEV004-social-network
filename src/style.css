@@ -50,10 +50,10 @@
 }
 
 .txtIngresaMail {
-  top: 350px;
+  top: 340px;
   color: #000000;
   position: absolute;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
  
 }
@@ -61,8 +61,8 @@
 .mailInput {
   position: absolute;
   top: 400px;
-  left: 97px;
-  right: 97px;
+  left: 80px;
+  right: 80px;
   background-color: white;
   color: black;
   font-size: 24px;
@@ -71,9 +71,9 @@
 
 .txtIngresaClave {
   position: absolute;
-  top: 450px;
+  top: 440px;
   color: #000000;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
  
 }
@@ -81,8 +81,8 @@
 .claveInput {
   position: absolute;
   top: 500px;
-  left: 97px;
-  right: 97px;
+  left: 80px;
+  right: 80px;
   background-color: white;
   color: black;
   font-size: 24px;
@@ -173,7 +173,7 @@
 
 .registrarseAqui {
   position: absolute;
-  top: 651px;
+  top: 550px;
   left: 95px;
   right: 95px;
   background-color: #fefbfb;
@@ -270,10 +270,10 @@
   }
 
   .txtIngresaMail {
-    top: 450px;
+    top: 440px;
     color: #000000;
     position: absolute;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
    
   }
@@ -281,8 +281,8 @@
   .mailInput {
     position: absolute;
     top: 500px;
-    left: 97px;
-    right: 97px;
+    left: 80px;
+    right: 80px;
     background-color: white;
     color: black;
     font-size: 24px;
@@ -291,9 +291,9 @@
 
   .txtIngresaClave {
     position: absolute;
-    top: 550px;
+    top: 540px;
     color: #000000;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 
   }
@@ -301,8 +301,8 @@
   .claveInput {
     position: absolute;
     top: 600px;
-    left: 97px;
-    right: 97px;
+    left: 80px;
+    right: 80px;
     background-color: white;
     color: black;
     font-size: 24px;
@@ -384,7 +384,7 @@
 
   .registrarseAqui {
     position: absolute;
-    top: 651px;
+    top: 550px;
     left: 95px;
     right: 95px;
     background-color: #fefbfb;
@@ -405,6 +405,14 @@
     color: #e86864;
     position: absolute;
     top: 800px;
+    left: 97px;
+    right: 70px;
+    color: #000000;
+  }
+  .btnImagenGoogle{
+    color: #e86864;
+    position: absolute;
+    top: 750px;
     left: 97px;
     right: 70px;
     color: #000000;
