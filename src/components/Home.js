@@ -6,13 +6,11 @@ import { getRedirectResult } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
-//como importar este archivo?
-// import { firebaseConfig } from "/lib/firebase/firebase.js"
 
 export function createHome() {
 
 
-  // Contenedor principal
+  // Contenedor del home
   const contenedorGeneral = document.createElement("section");
   contenedorGeneral.id = "contenedor-General";
   contenedorGeneral.classList.add("contenedorGeneral");
@@ -40,16 +38,11 @@ export function createHome() {
   mailInput.type = "email";
   mailInput.id = "emailUsuario";
 
-  //label para nombrar el input en el home 
-  // const mailLabel = document.createElement("span");
-  // mailLabel.textContent = "Ingresa tu email";
-  // mailLabel.classList =  "mailLabel";
-  // contenedorGeneral.appendChild(mailLabel);
 
   //TEXTO DE INGRESAR CLAVE EN INPUT
   const txtIngresaClave = document.createElement("p");
   txtIngresaClave.classList = "txtIngresaClave";
-  txtIngresaClave.textContent = "Ingresa tu Clave";
+  txtIngresaClave.textContent = "Ingresa tu clave";
   contenedorGeneral.appendChild(txtIngresaClave);
 
 
@@ -61,17 +54,11 @@ export function createHome() {
   claveInput.type = "password";
   claveInput.id = "passwordUsuario";
 
-  //label para nombrar el input en el home 
-  // const claveLabel = document.createElement("label");
-  // claveLabel.textContent = "Ingresa tu clave";
-  // claveLabel.classList =  "claveLabel";
-  // contenedorGeneral.appendChild(claveLabel);
-
 //BOTON PARA INICIAR SESION CON GOOGLE
   const botonGoogle = document.createElement("img");
   botonGoogle.classList = "botonGoogle";
   contenedorGeneral.appendChild(botonGoogle);
-  botonGoogle.src = "../imagenes/btn_google_signin_light_pressed_web.png";
+  botonGoogle.src = "../imagenes/btn_google_signin_light_normal_web@2x.png";
   // botonGoogle.textContent = "Inicia sesión con Google"
   botonGoogle.id = "botonDeGoogle"
   botonGoogle.addEventListener("click", () => {
@@ -96,11 +83,7 @@ export function createHome() {
   botonRegistro.addEventListener("click", () => {
     const botonRegistrate = document.getElementById("registrateAqui").value;
     onNavigate('/register')
-    // signInWithEmail(botonRegistrate).then((rep)=>{
-
-    // }).catch((err)=>{
-    //   alert()
-    // })
+    
   })
 
   // Creación de un elemento button y asignación a la variable button

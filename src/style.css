@@ -11,12 +11,12 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  height: 899px;
-  width: 414px;
-  padding: 10px;
-  background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
-  box-sizing: border-box;
   position: relative;
+  background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
+  height: 899px;
+  width: 420px;
+  padding: 10px;
+  box-sizing: border-box;
   border: 0.5px solid #000000;
   border-radius: 20px;
 }
@@ -92,7 +92,7 @@
 
 .botonRegistro {
   position: absolute;
-  top: 650px;
+  top: 610px;
   left: 97px;
   right: 70px;
   color: #000000;
@@ -162,8 +162,9 @@
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  height: 896px;
-  width: 414px;
+  height: 899px;
+  width: 420px;
+  padding: 10px;
   background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
   box-sizing: border-box;
   position: relative;
@@ -192,26 +193,26 @@
 
 .botonGoogle {
   color: #e86864;
+  width: 250px;
   position: absolute;
-  top: 700px;
-  left: 97px;
+  top: 670px;
+  left: 90px;
   right: 70px;
   color: #000000;
 }
 
 .textoRegistro {
-  align-items: center;
+  top: 300px;
   color: #000000;
   position: absolute;
   font-size: 24px;
   font-weight: bold;
-  top: 300px;
 }
 
 .botonVolver {
   flex-direction: row-reverse;
   display: flex;
-  align-self: flex-end;
+  align-self: flex-start;
   position: absolute;
   background-color: #eeeeee;
   color: #000000;
@@ -229,14 +230,14 @@
 
   /* ------VISTA DEL INICIO------ */
   .contenedorGeneral {
-    position: absolute;
-    background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
+    margin: auto;
     display: flex;
     justify-content: center;
+    position: relative;
+    background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
     height: 1300px;
     width: 800px;
-    /* box-sizing: border-box; */
-    /* position: relative; */
+    box-sizing: border-box;
     border: 0.5px solid #000000;
     border-radius: 20px;
   }
@@ -369,12 +370,13 @@
 
   /* ------VISTA DEL REGISTRO------ */
   .contenedorRegister {
+    margin: auto;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    max-height: 896px;
-    max-width: 414px;
+    align-items: center;
+    /* justify-content: center; */
+    max-height: 900px;
+    max-width: 430px;
     background: linear-gradient(0deg, #c4f582c2 64%, #e3b386c2 97%);
     box-sizing: border-box;
     position: relative;
@@ -403,34 +405,28 @@
 
   .botonGoogle {
     color: #e86864;
+    width: 250px;
     position: absolute;
-    top: 800px;
-    left: 97px;
-    right: 70px;
-    color: #000000;
-  }
-  .btnImagenGoogle{
-    color: #e86864;
-    position: absolute;
-    top: 750px;
-    left: 97px;
+    top: 670px;
+    left: 90px;
     right: 70px;
     color: #000000;
   }
 
+
   .textoRegistro {
-    align-content: center;
+    top: 300px;
+    /* align-content: center; */
     color: #000000;
     position: absolute;
     font-size: 24px;
     font-weight: bold;
-    top: 300px;
   }
 
   .botonVolver {
     flex-direction: row-reverse;
     display: flex;
-    align-self: flex-end;
+    align-self: flex-start;
     position: absolute;
     background-color: #eeeeee;
     color: #000000;

@@ -6,7 +6,7 @@ import { exit } from "../lib/auth";
 
 
 export function createRegister() {
-  const contenedorRegister = document.createElement("section");
+  const contenedorRegister = document.createElement("form");
   contenedorRegister.classList.add("contenedorRegister");
 
   const textoRegistro = document.createElement("p");
@@ -20,6 +20,7 @@ export function createRegister() {
   mailRegistro.classList = "mailInput";
   contenedorRegister.appendChild(mailRegistro);
   mailRegistro.placeholder = "Email";
+  mailRegistro.setAttribute("required", "");
   mailRegistro.type = "email";
   mailRegistro.id = "emailUsuarioRegistro";
 
@@ -28,6 +29,7 @@ export function createRegister() {
   claveRegistro.classList = "claveInput";
   contenedorRegister.appendChild(claveRegistro);
   claveRegistro.placeholder = "Contraseña";
+  claveRegistro.setAttribute("required", "");
   claveRegistro.type = "password";
   claveRegistro.id = "passwordUsuarioRegistro";
 
@@ -42,6 +44,7 @@ export function createRegister() {
   //Le damos la clase para el css. quitandole el add, me funciono
   registrarseAqui.classList = "registrarseAqui";
   contenedorRegister.appendChild(registrarseAqui);
+  registrarseAqui.setAttribute("type", "submit");
   // Asignación del texto "registrarse" al elemento button(que queremos que diga el boton en su interior)
   registrarseAqui.textContent = "Registrarse";
 
@@ -59,17 +62,20 @@ export function createRegister() {
   contenedorRegister.appendChild(botonVolver)
 
   //obtener el valor mediante el event listener
-  registrarseAqui.addEventListener("click", () => {
+  contenedorRegister.addEventListener("submit", (e) => {
+    e.preventDefault();
     const emailR = document.getElementById("emailUsuarioRegistro").value;
     const passwordR = document.getElementById("passwordUsuarioRegistro").value;
-    console.log("click")
-    createUser(emailR, passwordR).then((rep) => {
-      onNavigate('/muro')
-    }).catch((err) => {
-      alert('Verifica los datos, fue imposible registrarte')
-    })
+
+    createUser(emailR, passwordR)
+    // .then((rep) => {
+    //   // onNavigate('/muro')
+
+    // }).catch((err) => {
+    //   console.log(err)
+    //   alert('Verifica los datos, fue imposible registrarte')
+    // })
   })
-  // const auth = getAuth();
 
   return contenedorRegister
 }

@@ -2,7 +2,7 @@
 // import { onNavigate } from "./components/main"
 
 import { doc } from "firebase/firestore/lite";
-import { exit } from "../lib/auth";
+import { addpost, exit, listarPublicaciones } from "../lib/auth";
 import { onNavigate } from "../lib/router";
 
 export function muro() {
@@ -25,18 +25,24 @@ export function muro() {
     logoMuro.src = "../imagenes/logo-marchantes.png";
     contenedorMuro.appendChild(logoMuro);
 
-    //input del texto/post
+    // input del texto/post
     const areaDelPost = document.createElement("textarea");
     areaDelPost.classList = "areaDelPost";
-    contenedorMuro.appendChild(areaDelPost);
     areaDelPost.placeholder = "Escribe aqui..."
+    contenedorMuro.appendChild(areaDelPost);
 
-    // btnExit.addEventListener('click', ()=>{
-    //     exit().then((resp)=>{
-    //     onNavigate('/')
-    //     })
-    // })
-    // contenedorMuro.appendChild(btnExit)
+
+    const textoPost = document.createElement("button");
+    textoPost.classlist = "areaDePost";
+    textoPost.textContent = 'pruebaPost';
+    contenedorMuro.appendChild(textoPost);
+    textoPost.addEventListener('click', () => {
+        const publicacion = areaDelPost.value;
+        addpost(publicacion)
+        console.log(addpost.publicacion)
+    });
+
+   
 
 
     return contenedorMuro
