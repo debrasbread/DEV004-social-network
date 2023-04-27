@@ -1,25 +1,19 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onNavigate } from "../lib/router";
 import { auth } from "/lib/firebase/firebase.js"
-import {signInWithEmail } from '../lib/auth'
-//como importar este archivo?
-// import { firebaseConfig } from "/lib/firebase/firebase.js"
+import { signInWithEmail, provider, loginGoogle } from '../lib/auth'
+import { getRedirectResult } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+
+
 
 export function createHome() {
-  // Creación de un elemento div y asignación a la variable container
 
+
+
+  // Contenedor del home
   const contenedorGeneral = document.createElement("section");
-  contenedorGeneral.classList.add("contenedorGeneral");
 
-
-  // Background
-  // const backgroundImg = document.createElement("img");
-  // backgroundImg.classList.add("backgroundImg");
-  // backgroundImg.src = "../imagenes/background-mercado.jpg";
-  // contenedorGeneral.appendChild(backgroundImg);
-
-  // Contenedor principal
-  // const contenedorGeneral = document.createElement("section");
   contenedorGeneral.id = "contenedor-General";
   contenedorGeneral.classList.add("contenedorGeneral");
   // contenedorGeneral.appendChild(contenedorGeneral);
@@ -31,16 +25,14 @@ export function createHome() {
   contenedorGeneral.appendChild(logo);
 
 
-  contenedorGeneral.appendChild(logo);
+  //TEXTO PARA ingresar clave en EL INPUT DEL MAIL
+  const txtIngresaMail = document.createElement("p");
+  txtIngresaMail.classList = "txtIngresaMail";
+  txtIngresaMail.textContent = "Ingresa tu mail";
+  contenedorGeneral.appendChild(txtIngresaMail);
 
-  //formulario de login
-  // const loginForm = document.createElement("form")
-  // loginForm.classList = "loginForm"
-  // container.appendChild(loginForm)
 
-
-  //input del Email
-  //como hacer un contenedor paara estos 2 input juntos?
+  // input del mail en inicio
   const mailInput = document.createElement("input");
   mailInput.classList = "mailInput";
   contenedorGeneral.appendChild(mailInput);
@@ -48,11 +40,13 @@ export function createHome() {
   mailInput.type = "email";
   mailInput.id = "emailUsuario";
 
-  //label para nombrar el input en el home 
-  const mailLabel = document.createElement("label");
-  mailLabel.textContent = "Ingresa tu email";
-  mailLabel.classList =  "mailLabel";
-  contenedorGeneral.appendChild(mailLabel);
+
+  //TEXTO DE INGRESAR CLAVE EN INPUT
+  const txtIngresaClave = document.createElement("p");
+  txtIngresaClave.classList = "txtIngresaClave";
+  txtIngresaClave.textContent = "Ingresa tu clave";
+  contenedorGeneral.appendChild(txtIngresaClave);
+
 
   //input de la clave
   const claveInput = document.createElement("input");
@@ -62,12 +56,37 @@ export function createHome() {
   claveInput.type = "password";
   claveInput.id = "passwordUsuario";
 
+//BOTON PARA INICIAR SESION CON GOOGLE
+  const botonGoogle = document.createElement("img");
+  botonGoogle.classList = "botonGoogle";
+  contenedorGeneral.appendChild(botonGoogle);
+  botonGoogle.src = "../imagenes/btn_google_signin_light_normal_web@2x.png";
+  // botonGoogle.textContent = "Inicia sesión con Google"
+  botonGoogle.id = "botonDeGoogle"
+  botonGoogle.addEventListener("click", () => {
+    loginGoogle()
+      .then((rep) => {
+        onNavigate('/muro')
+
+      }).catch((err) => {
+        alert('No se pudo iniciar sesión con Google')
+      })
+
+  });
+
+
   // Texto e hipervínculo "Regístrate"
   const botonRegistro = document.createElement("section");
   botonRegistro.classList.add("botonRegistro");
   botonRegistro.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
   contenedorGeneral.appendChild(botonRegistro);
-
+  botonRegistro.id = "registrateAqui";
+  botonRegistro.style.textAlign = "center";
+  botonRegistro.addEventListener("click", () => {
+    const botonRegistrate = document.getElementById("registrateAqui").value;
+    onNavigate('/register')
+    
+  })
 
   // Creación de un elemento button y asignación a la variable button
   const iniciarSesionBtn = document.createElement("button");
@@ -82,19 +101,14 @@ export function createHome() {
     const email = document.getElementById("emailUsuario").value;
     const password = document.getElementById("passwordUsuario").value;
 
-    signInWithEmail(email, password).then((rep)=>{
+    signInWithEmail(email, password).then((rep) => {
+      console.log('entré')
       onNavigate('/muro')
-    }).catch((err)=>{
-      alert('Verifica los datos, fue imposible registrarte')
-    })
-  })
+    }).catch((err) => {
+      alert('Verifica los datos ingresados');
+    });
+  });
 
-//podria retornar en el orden, pero no me funciona
-// section.append(mailInput, claveInput, iniciarSesionBtn, botonRegistro);
-  // Retorna el contenedor (con sus elementos hijos dentro)
-  // return section;
+  return contenedorGeneral;
 
-return contenedorGeneral;
-
- 
 }
