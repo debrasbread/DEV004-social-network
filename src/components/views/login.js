@@ -1,24 +1,6 @@
 import { signInGoogle } from '../../lib/firebase/autenticar';
-import {onNavigate} from '../../lib/router/index';
+import { onNavigate } from '../../lib/router/index';
 
-/*
-//Firebase
-
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
-const auth = getAuth();
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
-  */
 
 export function login() {
   // Creación de main y asignación a variable container
@@ -77,12 +59,55 @@ export function login() {
   contraseñaInputLogin.classList.add('contraseñaInputL');
   contenedorGeneralLogin.appendChild(contraseñaInputLogin);
 
+
+
+
+
+
+
   // Botón "Continuar"
   const continuarBtnLogin = document.createElement('button');
   continuarBtnLogin.classList.add('continuarBtnL');
   continuarBtnLogin.textContent = 'Continuar';
   continuarBtnLogin.id = 'continuar-BtnL';
   contenedorGeneralLogin.appendChild(continuarBtnLogin);
+
+
+// Click y mensaje de error
+console.log('Se crea msj de error');
+const loginMensaje = document.createElement('p');
+loginMensaje.textContent = 'Debes iniciar sesión para continuar';
+loginMensaje.classList.add('login-mensaje');
+contenedorGeneralLogin.appendChild(loginMensaje);
+
+loginMensaje.style.display = 'none';
+
+continuarBtnLogin.addEventListener('click', async (event) => {
+  console.log('Click en btn Continuar');
+  event.preventDefault();
+  const email = emailInputLogin.value;
+  const contrasena = contraseñaInputLogin.value;
+  if (!email || !contrasena) {
+    console.log('Email o contraseña vacíos, se muestra msj de error');
+    loginMensaje.style.display = 'block';
+    return;
+  }
+  try {
+    await createUser(email, contrasena);
+    console.log('Usuario creado satisfactoriamente');
+    onNavigate('/feed');
+  } catch (error) {
+    console.log('Error al crear usuario:', error);
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+  }
+});
+ 
+  contenedorGeneralLogin.appendChild(continuarBtnLogin); 
+
+ 
 
   // Botón "Continuar con Google"
   const googleBtnLogin = document.createElement('button');
@@ -91,21 +116,40 @@ export function login() {
   googleBtnLogin.id = 'continuar-GoogleBtnL';
   contenedorGeneralLogin.appendChild(googleBtnLogin);
 
-/*
+
 // Logo de Google
 const logoGoogleLogin = document.createElement('img');
 logoGoogleLogin.src = '../imagenes/logo-google.png';
 logoGoogleLogin.alt = 'Iniciar sesión con Google';
 googleBtnLogin.appendChild(logoGoogleLogin);
-*/
 
-// Iniciar sesión con Google
-googleBtnLogin.addEventListener('click',() => {
-  signInGoogle().then(()=>{
-    onNavigate('/feed')
-  })
+
+  // Click y mensaje de error Google
+  const loginMensajeGoogle = document.createElement('p');
+  loginMensajeGoogle.textContent = 'Debes iniciar sesión para continuar';
+  loginMensajeGoogle.classList.add('login-mensaje');
+  contenedorGeneralLogin.appendChild(loginMensajeGoogle);
   
-});
+  loginMensajeGoogle.style.display = 'none';
+  
+  googleBtnLogin.addEventListener('click', async (event) => {
+    console.log('Click en btn Continuar con Google');
+    event.preventDefault();
+    try {
+      await signInGoogle();
+      console.log('Inicio de sesión satisfactorio');
+      onNavigate('/feed');
+    } catch (error) {
+      console.log('Error al iniciar sesión', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+    }
+  });
+
+
+
 
 contenedorGeneralLogin.appendChild(googleBtnLogin); 
 

@@ -1,19 +1,8 @@
-/*
-
-// signOut Firebase
-
 import { getAuth, signOut } from 'firebase/auth';
+import { onNavigate } from '../../lib/router/index';
 
-const auth = getAuth();
-signOut(auth)
-  .then(() => {
-    // Sign-out successful.
-  })
-  .catch((error) => {
-    // An error happened.
-  });
 
-  */
+
 
 // Feed
 
@@ -81,6 +70,53 @@ export function feed() {
   // Agregar el formulario al contenedor general
   contenedorGeneralFeed.appendChild(container);
 
+
+
+
+
+
+
+  
+   // Botón de cierre de sesión
+const logoutButton = document.createElement('button');
+logoutButton.id = 'logout-button';
+logoutButton.classList.add('logout-button');
+logoutButton.textContent = 'Salir';
+
+// Evento de click en el botón de cierre de sesión
+logoutButton.addEventListener('click', async () => {
+  try {
+    // Objeto de autenticación de Firebase
+    const auth = getAuth();
+
+    // Llama a la función de signOut para cerrar sesión
+    await signOut(auth);
+
+    // Cierre de sesión exitoso
+    console.log('Cierre de sesión exitoso');
+
+    // Redireccionar al usuario a la página principal
+    onNavigate('/');
+  } catch (error) {
+    // Ocurrió un error durante el cierre de sesión
+    console.error('Error durante el cierre de sesión:', error);
+  }
+});
+
+contenedorGeneralFeed.appendChild(logoutButton);
+
+  
+
+
+
+
+
+
+
+
+
+
+
   // Footer
   const footerFeed = document.createElement('footer');
   footerFeed.id = 'footer-Feed';
@@ -90,4 +126,38 @@ export function feed() {
 
   // Retorna el contenedor principal
   return containerFeed;
+
+
 }
+
+/*****CREAR POST*****/
+
+/*
+
+// Evento de envío del formulario para publicar un post
+const form = document.getElementById("post-form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  // Obtener los datos del formulario
+  const title = document.getElementById("post-title").value;
+  const content = document.getElementById("post-content").value;
+  
+  // Crear un nuevo documento en Firestore
+  db.collection("posts").add({
+    title: title,
+    content: content,
+    likes: 0
+  })
+  .then(() => {
+    console.log("Post creado con éxito");
+    form.reset(); // Limpiar el formulario después de enviarlo
+  })
+  .catch((error) => {
+    console.error("Error al crear el post: ", error);
+  });
+});
+
+
+*/

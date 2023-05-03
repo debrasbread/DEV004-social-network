@@ -9,46 +9,39 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 
 
-export function createUser(email, password){
-  return createUserWithEmailAndPassword(auth, email, password)
- 
-  .then((userCredential) => {
+export async function createUser(email, password){
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     // Signed in
     const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
+  } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // ...
-  });
+  }
   
 }
 
 
 // Google - Firebase
 const provider = new GoogleAuthProvider();
-export function signInGoogle(){
+export async function signInGoogle(){
 // Acceder con cuenta de Google (popup, ventana emergente)
-return signInWithPopup(auth, provider)
-  .then((result) => {
+  try {
+    const result = await signInWithPopup(auth, provider);
     // This gives you a Google Access Token. You can use it to access the Google API.
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  }).catch((error) => {
+  } catch (error) {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
     // The email of the user's account used.
     const email = error.customData.email;
     // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-  });
+    const credential_1 = GoogleAuthProvider.credentialFromError(error);
+  }
 }
 
 
@@ -57,7 +50,3 @@ return signInWithPopup(auth, provider)
 // import { signInWithRedirect } from 'firebase/auth';
 
 // signInWithRedirect(auth, provider);
-
-
-
-
