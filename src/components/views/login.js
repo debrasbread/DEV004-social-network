@@ -1,4 +1,4 @@
-import { signInGoogle } from '../../lib/firebase/autenticar';
+import { signInGoogle, loginUser } from '../../lib/firebase/autenticar';
 import { onNavigate } from '../../lib/router/index';
 
 
@@ -65,6 +65,13 @@ export function login() {
 
 
 
+const parrafoError = document.createElement('p');
+contenedorGeneralLogin.appendChild(parrafoError);
+
+
+
+
+
   // Botón "Continuar"
   const continuarBtnLogin = document.createElement('button');
   continuarBtnLogin.classList.add('continuarBtnL');
@@ -93,15 +100,16 @@ continuarBtnLogin.addEventListener('click', async (event) => {
     return;
   }
   try {
-    await createUser(email, contrasena);
+    await loginUser(email, contrasena); // AQUÍ PODRÍA ESTAR EL PROBLEMA - IMPORTAR CORRECTAMENTE
     console.log('Usuario creado satisfactoriamente');
     onNavigate('/feed');
   } catch (error) {
     console.log('Error al crear usuario:', error);
     const errorCode = error.code;
     const errorMessage = error.message;
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+   // const errorDiv = document.getElementById('error-message');
+   
+   parrafoError.innerHTML = `Error ${errorCode}: ${errorMessage}`;
   }
 });
  

@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import{firebaseConfig} from './firebase'
 
 // Autenticación con correo electrónico y contraseña - Firebase
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -21,6 +21,17 @@ export async function createUser(email, password){
   
 }
 
+export async function loginUser(email, password){
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    // Signed in
+    const user = userCredential.user;
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  }
+  
+}
 
 // Google - Firebase
 const provider = new GoogleAuthProvider();
