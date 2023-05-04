@@ -70,14 +70,41 @@ export async function signInGoogle(){
 const firestore = getFirestore();
 
 export function createPost(data) {
-  return addDoc(collection(firestore, "Post"), {
+  return addDoc(collection(firestore, "post"), {
     text: data,
     email: auth.currentUser.email
   });
 }
 
 
-export function listarPosts(callback) {
-  const queryPost = query(collection(firestore, "Post"));
+export function verPosts(callback) {
+  const queryPost = query(collection(firestore, "post"));
   onSnapshot(queryPost, callback);
 }
+
+/*
+
+// PROBAR PARA MOSTRAR AUTOR DEL POST
+
+export function verPosts(callback) {
+  const queryPost = query(collection(firestore, "post"));
+  onSnapshot(queryPost, (snapshot) => {
+    const posts = [];
+    snapshot.forEach((doc) => {
+      const post = doc.data();
+      post.id = doc.id;
+
+      // Obtener el autor del post utilizando el email del usuario
+      const authorEmail = post.email;
+      const author = authorEmail.substring(0, authorEmail.indexOf('@'));
+
+      // Agregar el autor al objeto del post
+      post.author = author;
+
+      posts.push(post);
+    });
+    callback(posts);
+  });
+}
+
+*/

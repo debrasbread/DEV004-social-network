@@ -1,6 +1,6 @@
 import { getAuth, signOut } from 'firebase/auth';
 import { onNavigate } from '../../lib/router/index';
-import { createPost, listarPosts, loginUser } from '../../lib/firebase/autenticar';
+import { createPost, verPosts, loginUser } from '../../lib/firebase/autenticar';
 
 
 export function feed() {
@@ -47,47 +47,30 @@ export function feed() {
   imageUpload.accept = 'image/*';
   optionsBox.appendChild(imageUpload);
 
-  
+
   const sendButton = document.createElement('button');
   sendButton.classList.add('compose-option', 'compose-send');
   sendButton.textContent = 'Publicar';
   optionsBox.appendChild(sendButton);
 
-/*
   sendButton.addEventListener('click', async () => {
     const postData = textBox.value;
 
     try {
-      await createPost(postData);
-      console.log('Post creado exitosamente');
-      textBox.value = '';
+      await loginUser(); // Llamada a la función loginUser para iniciar sesión
+
+      const auth = getAuth();
+      if (auth.currentUser) {
+        await createPost(postData);
+        console.log('Post creado exitosamente');
+        textBox.value = '';
+      } else {
+        console.error('El usuario no ha iniciado sesión');
+      }
     } catch (error) {
       console.error('Error al crear el post:', error);
     }
   });
-*/
-
-
-
-sendButton.addEventListener('click', async () => {
-  const postData = textBox.value;
-
-  try {
-    await loginUser(); // Llamada a la función loginUser para iniciar sesión
-
-    const auth = getAuth();
-    if (auth.currentUser) {
-      await createPost(postData);
-      console.log('Post creado exitosamente');
-      textBox.value = '';
-    } else {
-      console.error('El usuario no ha iniciado sesión');
-      // Aquí puedes mostrar un mensaje de error o redirigir a la página de inicio de sesión
-    }
-  } catch (error) {
-    console.error('Error al crear el post:', error);
-  }
-});
 
   contenedorGeneralFeed.appendChild(container);
 
@@ -119,20 +102,57 @@ sendButton.addEventListener('click', async () => {
   postsContainer.id = 'posts-container';
   contenedorGeneralFeed.appendChild(postsContainer);
 
-  listarPosts(updatePosts);
+  verPosts(updatePosts);
+
+  // Separador
 
   function updatePosts(snapshot) {
     postsContainer.innerHTML = '';
-
-    snapshot.forEach((doc) => {
+  
+    snapshot.forEach((doc, index) => {
       const post = doc.data();
-
+  
       const listItem = document.createElement('div');
       listItem.textContent = post.text;
-
+  
       postsContainer.appendChild(listItem);
+  
+      if (index !== snapshot.size - 1) {
+        const separator = document.createElement('hr');
+        separator.classList.add('post-separator');
+        postsContainer.appendChild(separator);
+      }
     });
   }
+  
+  
+  
+  
 
   return containerFeed;
 }
+
+/*
+// Mostrar usuario autor del post
+
+function updatePosts(snapshot) {
+  postsContainer.innerHTML = '';
+
+  snapshot.forEach((doc) => {
+    const post = doc.data();
+
+    const listItem = document.createElement('div');
+
+    const postText = document.createElement('div');
+    postText.textContent = post.text;
+    listItem.appendChild(postText);
+
+    const postAuthor = document.createElement('div');
+    postAuthor.textContent = `Autor: ${post.usuario}`;
+    listItem.appendChild(postAuthor);
+
+    postsContainer.appendChild(listItem);
+  });
+}
+*/
+
