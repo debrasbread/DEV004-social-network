@@ -2,6 +2,23 @@ import { createUser, signInGoogle } from '../../lib/firebase/autenticar';
 import {onNavigate} from '../../lib/router/index';
 
 
+
+/*
+
+import { collection, addDoc } from "firebase/firestore";
+
+// Add a new document with a generated id.
+const docRef = await addDoc(collection(db, "usuarios"), {
+  email: '',
+  password: ''
+});
+console.log("Document written with ID: ", docRef.id);
+
+
+*/
+
+
+
 export function register() {
   // Creación de div y asignación a variable container
   const containerRegister = document.createElement('main');

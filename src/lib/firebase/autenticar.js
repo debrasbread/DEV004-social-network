@@ -2,6 +2,10 @@ export { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 import { initializeApp } from "firebase/app";
 import{firebaseConfig} from './firebase'
 
+// NUEVO - FIRESTORE
+import { addDoc, collection, getFirestore, query, onSnapshot } from "firebase/firestore";
+
+
 // Autenticación con correo electrónico y contraseña - Firebase
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -13,6 +17,7 @@ export async function createUser(email, password){
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     // Signed in
+  
     const user = userCredential.user;
   } catch (error) {
     const errorCode = error.code;
@@ -61,3 +66,18 @@ export async function signInGoogle(){
 // import { signInWithRedirect } from 'firebase/auth';
 
 // signInWithRedirect(auth, provider);
+
+const firestore = getFirestore();
+
+export function createPost(data) {
+  return addDoc(collection(firestore, "Post"), {
+    text: data,
+    email: auth.currentUser.email
+  });
+}
+
+
+export function listarPosts(callback) {
+  const queryPost = query(collection(firestore, "Post"));
+  onSnapshot(queryPost, callback);
+}
