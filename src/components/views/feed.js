@@ -1,6 +1,7 @@
 import { getAuth, signOut } from 'firebase/auth';
 import { onNavigate } from '../../lib/router/index';
-import { createPost, listarPosts } from '../../lib/firebase/autenticar';
+import { createPost, listarPosts, loginUser } from '../../lib/firebase/autenticar';
+
 
 export function feed() {
   const containerFeed = document.createElement('main');
@@ -46,11 +47,13 @@ export function feed() {
   imageUpload.accept = 'image/*';
   optionsBox.appendChild(imageUpload);
 
+  
   const sendButton = document.createElement('button');
   sendButton.classList.add('compose-option', 'compose-send');
   sendButton.textContent = 'Publicar';
   optionsBox.appendChild(sendButton);
 
+/*
   sendButton.addEventListener('click', async () => {
     const postData = textBox.value;
 
@@ -62,6 +65,29 @@ export function feed() {
       console.error('Error al crear el post:', error);
     }
   });
+*/
+
+
+
+sendButton.addEventListener('click', async () => {
+  const postData = textBox.value;
+
+  try {
+    await loginUser(); // Llamada a la función loginUser para iniciar sesión
+
+    const auth = getAuth();
+    if (auth.currentUser) {
+      await createPost(postData);
+      console.log('Post creado exitosamente');
+      textBox.value = '';
+    } else {
+      console.error('El usuario no ha iniciado sesión');
+      // Aquí puedes mostrar un mensaje de error o redirigir a la página de inicio de sesión
+    }
+  } catch (error) {
+    console.error('Error al crear el post:', error);
+  }
+});
 
   contenedorGeneralFeed.appendChild(container);
 
