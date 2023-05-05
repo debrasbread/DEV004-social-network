@@ -83,10 +83,10 @@ export function verPosts(callback) {
 }
 
 
-/*
+
 // OBTENER EL USUARIO QUE ACCEDIÓ
 
-const user = auth.currentUser;
+export const user = auth.currentUser;
 
 if (user) {
   // User is signed in, see docs for a list of available properties
@@ -95,7 +95,7 @@ if (user) {
 } else {
   // No user is signed in.
 }
-*/
+
 
 // OBTENER PERFIL DE UN USUARIO
 

@@ -104,7 +104,6 @@ export function feed() {
 
   verPosts(updatePosts);
 
-
   async function updatePosts(snapshot) {
     postsContainer.innerHTML = '';
   
@@ -116,7 +115,8 @@ export function feed() {
         const post = doc.data();
   
         const listItem = document.createElement('div');
-        listItem.textContent = post.text;
+        const postContent = `${userProfile.displayName}: ${post.text}`;
+        listItem.textContent = postContent;
   
         postsContainer.appendChild(listItem);
   
@@ -131,6 +131,7 @@ export function feed() {
       console.error('Error al obtener el perfil del usuario:', error);
     }
   }
+  
   
   
   return containerFeed;
