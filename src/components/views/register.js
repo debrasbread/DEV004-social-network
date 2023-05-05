@@ -132,13 +132,13 @@ continuarBtnRegister.addEventListener('click', async (event) => {
   googleBtnRegister.classList.add('googleBtnR');
   googleBtnRegister.textContent = 'Continuar con Google';
 
-  /*
+  
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
   logoGoogleRegister.alt = 'Iniciar sesión con Google';
   googleBtnRegister.appendChild(logoGoogleRegister);
-  */
+  
 
   // Click y mensaje de error Google
 const registroMensajeGoogle = document.createElement('p');
@@ -149,33 +149,22 @@ formularioRegister.appendChild(registroMensajeGoogle);
 registroMensajeGoogle.style.display = 'none';
 
 
-  googleBtnRegister.addEventListener('click', async (event) => {
-    console.log('Click en btn Continuar con Google');
-    event.preventDefault();
-    const email = emailInputRegister.value;
-    const contrasena = contrasenaInputRegister.value;
-    if (!email || !contrasena) {
-      console.log('Email o contraseña vacíos, se muestra msj de error');
-      registroMensaje.style.display = 'block';
-      return;
-    }
-    try {
-      await signInGoogle(email, contrasena);
-      console.log('Usuario creado satisfactoriamente');
-      onNavigate('/feed');
-    } catch (error) {
-      console.log('Error al crear usuario:', error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const errorDiv = document.getElementById('error-message');
-      errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
-    }
-  });
+googleBtnRegister.addEventListener('click', async (event) => {
+  console.log('Click en btn Continuar con Google');
+  event.preventDefault();
+  try {
+    await signInGoogle();
+    console.log('Registro satisfactorio');
+    onNavigate('/feed');
+  } catch (error) {
+    console.log('Error al registrarse', error);
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+  }
+});
   
-
-
-
-
 
 contenedorGeneralRegister.appendChild(googleBtnRegister); 
 
