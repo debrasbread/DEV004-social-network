@@ -82,29 +82,48 @@ export function verPosts(callback) {
   onSnapshot(queryPost, callback);
 }
 
+
 /*
+// OBTENER EL USUARIO QUE ACCEDIÓ
 
-// PROBAR PARA MOSTRAR AUTOR DEL POST
+const user = auth.currentUser;
 
-export function verPosts(callback) {
-  const queryPost = query(collection(firestore, "post"));
-  onSnapshot(queryPost, (snapshot) => {
-    const posts = [];
-    snapshot.forEach((doc) => {
-      const post = doc.data();
-      post.id = doc.id;
-
-      // Obtener el autor del post utilizando el email del usuario
-      const authorEmail = post.email;
-      const author = authorEmail.substring(0, authorEmail.indexOf('@'));
-
-      // Agregar el autor al objeto del post
-      post.author = author;
-
-      posts.push(post);
-    });
-    callback(posts);
-  });
+if (user) {
+  // User is signed in, see docs for a list of available properties
+  // https://firebase.google.com/docs/reference/js/firebase.User
+  // ...
+} else {
+  // No user is signed in.
 }
-
 */
+
+// OBTENER PERFIL DE UN USUARIO
+
+export const getUserProfile = () => {
+  return new Promise((resolve, reject) => {
+    const user = auth.currentUser;
+  
+    if (user !== null) {
+      // The user object has basic properties such as display name, email, etc.
+      const displayName = user.displayName;
+      const email = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+  
+      // The user's ID, unique to the Firebase project. Do NOT use
+      // this value to authenticate with your backend server, if
+      // you have one. Use User.getToken() instead.
+      const uid = user.uid;
+  
+      resolve({
+        displayName,
+        email,
+        photoURL,
+        emailVerified,
+        uid
+      });
+    } else {
+      reject(new Error('No hay usuario autenticado'));
+    }
+  });
+};

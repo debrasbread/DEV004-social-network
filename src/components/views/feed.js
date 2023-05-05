@@ -1,6 +1,6 @@
 import { getAuth, signOut } from 'firebase/auth';
 import { onNavigate } from '../../lib/router/index';
-import { createPost, verPosts, loginUser } from '../../lib/firebase/autenticar';
+import { createPost, verPosts, loginUser, getUserProfile } from '../../lib/firebase/autenticar';
 
 
 export function feed() {
@@ -104,55 +104,34 @@ export function feed() {
 
   verPosts(updatePosts);
 
-  // Separador
 
-  function updatePosts(snapshot) {
+  async function updatePosts(snapshot) {
     postsContainer.innerHTML = '';
   
-    snapshot.forEach((doc, index) => {
-      const post = doc.data();
+    try {
+      const userProfile = await getUserProfile();
+      console.log(userProfile);
   
-      const listItem = document.createElement('div');
-      listItem.textContent = post.text;
+      snapshot.forEach((doc, index) => {
+        const post = doc.data();
   
-      postsContainer.appendChild(listItem);
+        const listItem = document.createElement('div');
+        listItem.textContent = post.text;
   
-      if (index !== snapshot.size - 1) {
-        const separator = document.createElement('hr');
-        separator.classList.add('post-separator');
-        postsContainer.appendChild(separator);
-      }
-    });
+        postsContainer.appendChild(listItem);
+  
+        // Separador
+        if (index !== snapshot.size - 1) {
+          const separator = document.createElement('hr');
+          separator.classList.add('post-separator');
+          postsContainer.appendChild(separator);
+        }
+      });
+    } catch (error) {
+      console.error('Error al obtener el perfil del usuario:', error);
+    }
   }
   
   
-  
-  
-
   return containerFeed;
 }
-
-/*
-// Mostrar usuario autor del post
-
-function updatePosts(snapshot) {
-  postsContainer.innerHTML = '';
-
-  snapshot.forEach((doc) => {
-    const post = doc.data();
-
-    const listItem = document.createElement('div');
-
-    const postText = document.createElement('div');
-    postText.textContent = post.text;
-    listItem.appendChild(postText);
-
-    const postAuthor = document.createElement('div');
-    postAuthor.textContent = `Autor: ${post.usuario}`;
-    listItem.appendChild(postAuthor);
-
-    postsContainer.appendChild(listItem);
-  });
-}
-*/
-
