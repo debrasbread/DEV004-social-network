@@ -1,5 +1,5 @@
 import { createUser, signInGoogle } from '../../lib/firebase/autenticar';
-import {onNavigate} from '../../lib/router/index';
+import { onNavigate } from '../../lib/router/index';
 
 
 
@@ -40,14 +40,14 @@ export function register() {
   logoRegister.src = '../imagenes/logo-marchantes.png';
   contenedorGeneralRegister.appendChild(logoRegister);
 
-/*
-  // Texto 'Únete a Marchantes'
-  const uneteRegister = document.createElement('h1');
-  uneteRegister.id = 'iniciarSesionL';
-  uneteRegister.classList.add('uneteR');
-  uneteRegister.textContent = 'Únete a Marchantes';
-  contenedorGeneralRegister.appendChild(uneteRegister);
-*/
+  /*
+    // Texto 'Únete a Marchantes'
+    const uneteRegister = document.createElement('h1');
+    uneteRegister.id = 'iniciarSesionL';
+    uneteRegister.classList.add('uneteR');
+    uneteRegister.textContent = 'Únete a Marchantes';
+    contenedorGeneralRegister.appendChild(uneteRegister);
+  */
 
   // Formulario
   const formularioRegister = document.createElement('form');
@@ -84,44 +84,44 @@ export function register() {
   // Agregar el formulario al body del documento
   contenedorGeneralRegister.append(formularioRegister);
 
-// Botón 'Continuar'
+  // Botón 'Continuar'
 
-const continuarBtnRegister = document.createElement('button');
-continuarBtnRegister.classList.add('continuarBtnR');
-continuarBtnRegister.textContent = 'Continuar';
-contenedorGeneralRegister.appendChild(continuarBtnRegister);
+  const continuarBtnRegister = document.createElement('button');
+  continuarBtnRegister.classList.add('continuarBtnR');
+  continuarBtnRegister.textContent = 'Continuar';
+  contenedorGeneralRegister.appendChild(continuarBtnRegister);
 
-// Click y mensaje de error
-console.log('Se crea msj de error');
-const registroMensaje = document.createElement('p');
-registroMensaje.textContent = 'Debes registrarte para continuar';
-registroMensaje.classList.add('registro-mensaje');
-formularioRegister.appendChild(registroMensaje);
+  // Click y mensaje de error
+  console.log('Se crea msj de error');
+  const registroMensaje = document.createElement('p');
+  registroMensaje.textContent = 'Debes registrarte para continuar';
+  registroMensaje.classList.add('registro-mensaje');
+  formularioRegister.appendChild(registroMensaje);
 
-registroMensaje.style.display = 'none';
+  registroMensaje.style.display = 'none';
 
-continuarBtnRegister.addEventListener('click', async (event) => {
-  console.log('Click en btn Continuar');
-  event.preventDefault();
-  const email = emailInputRegister.value;
-  const contrasena = contrasenaInputRegister.value;
-  if (!email || !contrasena) {
-    console.log('Email o contraseña vacíos, se muestra msj de error');
-    registroMensaje.style.display = 'block';
-    return;
-  }
-  try {
-    await createUser(email, contrasena);
-    console.log('Usuario creado satisfactoriamente');
-    onNavigate('/feed');
-  } catch (error) {
-    console.log('Error al crear usuario:', error);
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
-  }
-});
+  continuarBtnRegister.addEventListener('click', async (event) => {
+    console.log('Click en btn Continuar');
+    event.preventDefault();
+    const email = emailInputRegister.value;
+    const contrasena = contrasenaInputRegister.value;
+    if (!email || !contrasena) {
+      console.log('Email o contraseña vacíos, se muestra msj de error');
+      registroMensaje.style.display = 'block';
+      return;
+    }
+    try {
+      await createUser(email, contrasena);
+      console.log('Usuario creado satisfactoriamente');
+      onNavigate('/feed');
+    } catch (error) {
+      console.log('Error al crear usuario:', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+    }
+  });
 
 
 
@@ -132,41 +132,41 @@ continuarBtnRegister.addEventListener('click', async (event) => {
   googleBtnRegister.classList.add('googleBtnR');
   googleBtnRegister.textContent = 'Continuar con Google';
 
-  
+
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
   logoGoogleRegister.alt = 'Iniciar sesión con Google';
   googleBtnRegister.appendChild(logoGoogleRegister);
-  
+
 
   // Click y mensaje de error Google
-const registroMensajeGoogle = document.createElement('p');
-registroMensajeGoogle.textContent = 'Debes registrarte para continuar';
-registroMensajeGoogle.classList.add('registro-mensaje');
-formularioRegister.appendChild(registroMensajeGoogle);
+  const registroMensajeGoogle = document.createElement('p');
+  registroMensajeGoogle.textContent = 'Debes registrarte para continuar';
+  registroMensajeGoogle.classList.add('registro-mensaje');
+  formularioRegister.appendChild(registroMensajeGoogle);
 
-registroMensajeGoogle.style.display = 'none';
+  registroMensajeGoogle.style.display = 'none';
 
 
-googleBtnRegister.addEventListener('click', async (event) => {
-  console.log('Click en btn Continuar con Google');
-  event.preventDefault();
-  try {
-    await signInGoogle();
-    console.log('Registro satisfactorio');
-    onNavigate('/feed');
-  } catch (error) {
-    console.log('Error al registrarse', error);
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
-  }
-});
-  
+  googleBtnRegister.addEventListener('click', async (event) => {
+    console.log('Click en btn Continuar con Google');
+    event.preventDefault();
+    try {
+      await signInGoogle();
+      console.log('Registro satisfactorio');
+      onNavigate('/feed');
+    } catch (error) {
+      console.log('Error al registrarse', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+    }
+  });
 
-contenedorGeneralRegister.appendChild(googleBtnRegister); 
+
+  contenedorGeneralRegister.appendChild(googleBtnRegister);
 
 
 

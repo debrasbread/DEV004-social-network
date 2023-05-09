@@ -1,4 +1,4 @@
-import { signInGoogle, loginUser, user, getUserProfile } from '../../lib/firebase/autenticar';
+import { signInGoogle, loginUser, user } from '../../lib/firebase/autenticar';
 import { onNavigate } from '../../lib/router/index';
 
 
@@ -31,19 +31,19 @@ export function login() {
   contenedorGeneralLogin.appendChild(iniciarSesionLogin);
 
 
-// Texto "Nombre" + label + input
-const nombreLabelLogin = document.createElement('label');
-nombreLabelLogin.textContent = 'Nombre:';
-nombreLabelLogin.setAttribute('for', 'nombre-InputL');
-nombreLabelLogin.id = 'nombre-LabelL';
-nombreLabelLogin.classList.add('nombreLabelL');
-contenedorGeneralLogin.appendChild(nombreLabelLogin);
+  // Texto "Nombre" + label + input
+  const nombreLabelLogin = document.createElement('label');
+  nombreLabelLogin.textContent = 'Nombre:';
+  nombreLabelLogin.setAttribute('for', 'nombre-InputL');
+  nombreLabelLogin.id = 'nombre-LabelL';
+  nombreLabelLogin.classList.add('nombreLabelL');
+  contenedorGeneralLogin.appendChild(nombreLabelLogin);
 
-const nombreInputLogin = document.createElement('input');
-nombreInputLogin.setAttribute('type', 'text');
-nombreInputLogin.setAttribute('id', 'nombre-InputL');
-nombreInputLogin.classList.add('nombreInputL');
-contenedorGeneralLogin.appendChild(nombreInputLogin);
+  const nombreInputLogin = document.createElement('input');
+  nombreInputLogin.setAttribute('type', 'text');
+  nombreInputLogin.setAttribute('id', 'nombre-InputL');
+  nombreInputLogin.classList.add('nombreInputL');
+  contenedorGeneralLogin.appendChild(nombreInputLogin);
 
   // Texto "Email" + label + input
   const emailLabelLogin = document.createElement('label');
@@ -80,8 +80,8 @@ contenedorGeneralLogin.appendChild(nombreInputLogin);
 
 
 
-const parrafoError = document.createElement('p');
-contenedorGeneralLogin.appendChild(parrafoError);
+  const parrafoError = document.createElement('p');
+  contenedorGeneralLogin.appendChild(parrafoError);
 
 
 
@@ -95,103 +95,104 @@ contenedorGeneralLogin.appendChild(parrafoError);
   contenedorGeneralLogin.appendChild(continuarBtnLogin);
 
 
-// Click y mensaje de error
-console.log('Se crea msj de error');
-const loginMensaje = document.createElement('p');
-loginMensaje.textContent = 'Debes iniciar sesión para continuar';
-loginMensaje.classList.add('login-mensaje');
-contenedorGeneralLogin.appendChild(loginMensaje);
+  // Click y mensaje de error
+  console.log('Se crea msj de error');
+  const loginMensaje = document.createElement('p');
+  loginMensaje.textContent = 'Debes iniciar sesión para continuar';
+  loginMensaje.classList.add('login-mensaje');
+  contenedorGeneralLogin.appendChild(loginMensaje);
 
-loginMensaje.style.display = 'none';
+  loginMensaje.style.display = 'none';
 
 
 
-continuarBtnLogin.addEventListener('click', async (event) => {
-  console.log('Click en btn Continuar');
-  event.preventDefault();
-  const email = emailInputLogin.value;
-  const contrasena = contraseñaInputLogin.value;
-  const nombre = nombreInputLogin.value; // Obtener el valor del campo de nombre
-  if (!email || !contrasena || !nombre) { // Verificar que todos los campos estén llenos
-    console.log('Email, contraseña o nombre vacíos, se muestra msj de error');
-    loginMensaje.style.display = 'block';
-    return;
-  }
-  try {
-    await loginUser(email, contrasena);
-    console.log('Usuario creado satisfactoriamente');
-
-    // Ejemplo de uso de 'user'
-    if (user) {
-      console.log('Usuario:', user);
-    } else {
-      console.log('No hay usuario autenticado');
+  continuarBtnLogin.addEventListener('click', async (event) => {
+    console.log('Click en btn Continuar');
+    event.preventDefault();
+    const email = emailInputLogin.value;
+    const contrasena = contraseñaInputLogin.value;
+    const nombre = nombreInputLogin.value; // Obtener el valor del campo de nombre
+    if (!email || !contrasena || !nombre) { // Verificar que todos los campos estén llenos
+      console.log('Email, contraseña o nombre vacíos, se muestra msj de error');
+      loginMensaje.style.display = 'block';
+      return;
     }
-
-    // Ejemplo de uso de 'getUserProfile'
     try {
-      const userProfile = await getUserProfile();
-      console.log('Perfil de usuario:', userProfile);
+      await loginUser(email, contrasena);
+      console.log('Usuario creado satisfactoriamente');
+
+      // Ejemplo de uso de 'user'
+      if (user) {
+        console.log('Usuario:', user);
+        onNavigate('/feed');
+      } else {
+        console.log('No hay usuario autenticado');
+      }
+
+      // Ejemplo de uso de 'getUserProfile'
+    /*  try {
+        const userProfile = await getUserProfile();
+        console.log('Perfil de usuario:', userProfile);
+      } catch (error) {
+        console.log('Error al obtener perfil de usuario:', error);
+      } */
+
+      //onNavigate('/feed');
     } catch (error) {
-      console.log('Error al obtener perfil de usuario:', error);
+      console.log('Error al crear usuario:', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      parrafoError.innerHTML = `Error ${errorCode}: ${errorMessage}`;
     }
-
-    onNavigate('/feed');
-  } catch (error) {
-    console.log('Error al crear usuario:', error);
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    parrafoError.innerHTML = `Error ${errorCode}: ${errorMessage}`;
-  }
-});
+  });
 
 
 
 
 
-// Botón "Continuar con Google"
-const googleBtnLogin = document.createElement('button');
-googleBtnLogin.classList.add('googleBtnL');
-googleBtnLogin.textContent = 'Continuar con Google';
-googleBtnLogin.id = 'continuar-GoogleBtnL';
-contenedorGeneralLogin.appendChild(googleBtnLogin);
+  // Botón "Continuar con Google"
+  const googleBtnLogin = document.createElement('button');
+  googleBtnLogin.classList.add('googleBtnL');
+  googleBtnLogin.textContent = 'Continuar con Google';
+  googleBtnLogin.id = 'continuar-GoogleBtnL';
+  contenedorGeneralLogin.appendChild(googleBtnLogin);
 
 
-// Logo de Google
-const logoGoogleLogin = document.createElement('img');
-logoGoogleLogin.src = '../imagenes/logo-google.png';
-logoGoogleLogin.alt = 'Iniciar sesión con Google';
-googleBtnLogin.appendChild(logoGoogleLogin);
+  // Logo de Google
+  const logoGoogleLogin = document.createElement('img');
+  logoGoogleLogin.src = '../imagenes/logo-google.png';
+  logoGoogleLogin.alt = 'Iniciar sesión con Google';
+  googleBtnLogin.appendChild(logoGoogleLogin);
 
 
-// Click y mensaje de error Google
-const loginMensajeGoogle = document.createElement('p');
-loginMensajeGoogle.textContent = 'Debes iniciar sesión para continuar';
-loginMensajeGoogle.classList.add('login-mensaje');
-contenedorGeneralLogin.appendChild(loginMensajeGoogle);
+  // Click y mensaje de error Google
+  const loginMensajeGoogle = document.createElement('p');
+  loginMensajeGoogle.textContent = 'Debes iniciar sesión para continuar';
+  loginMensajeGoogle.classList.add('login-mensaje');
+  contenedorGeneralLogin.appendChild(loginMensajeGoogle);
 
-loginMensajeGoogle.style.display = 'none';
+  loginMensajeGoogle.style.display = 'none';
 
-googleBtnLogin.addEventListener('click', async (event) => {
-  console.log('Click en btn Continuar con Google');
-  event.preventDefault();
-  try {
-    await signInGoogle();
-    console.log('Inicio de sesión satisfactorio');
-    onNavigate('/feed');
-  } catch (error) {
-    console.log('Error al iniciar sesión', error);
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
-  }
-});
-
-
+  googleBtnLogin.addEventListener('click', async (event) => {
+    console.log('Click en btn Continuar con Google');
+    event.preventDefault();
+    try {
+      await signInGoogle();
+      console.log('Inicio de sesión satisfactorio');
+      onNavigate('/feed');
+    } catch (error) {
+      console.log('Error al iniciar sesión', error);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+    }
+  });
 
 
-contenedorGeneralLogin.appendChild(googleBtnLogin); 
+
+
+  contenedorGeneralLogin.appendChild(googleBtnLogin);
 
 
 

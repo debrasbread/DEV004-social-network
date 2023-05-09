@@ -1,6 +1,6 @@
 import { getAuth, signOut } from 'firebase/auth';
 import { onNavigate } from '../../lib/router/index';
-import { createPost, verPosts, loginUser, getUserProfile } from '../../lib/firebase/autenticar';
+import { createPost, verPosts } from '../../lib/firebase/autenticar';
 
 
 export function feed() {
@@ -57,16 +57,21 @@ export function feed() {
     const postData = textBox.value;
 
     try {
-      await loginUser(); // Llamada a la función loginUser para iniciar sesión
+     // await loginUser(); // Llamada a la función loginUser para iniciar sesión
+     await createPost(postData);
+     console.log('Post creado exitosamente');
+     textBox.value = '';
 
-      const auth = getAuth();
+
+
+     /* const auth = getAuth();
       if (auth.currentUser) {
         await createPost(postData);
         console.log('Post creado exitosamente');
         textBox.value = '';
       } else {
-        console.error('El usuario no ha iniciado sesión');
-      }
+      console.error('El usuario no ha iniciado sesión');
+      } */
     } catch (error) {
       console.error('Error al crear el post:', error);
     }
@@ -92,36 +97,40 @@ export function feed() {
 
   contenedorGeneralFeed.appendChild(logoutButton);
 
-  const footerFeed = document.createElement('footer');
-  footerFeed.id = 'footer-Feed';
-  footerFeed.classList.add('footerF');
-  footerFeed.textContent = 'Marchantes, 2023';
-  contenedorGeneralFeed.appendChild(footerFeed);
+ 
 
   const postsContainer = document.createElement('div');
   postsContainer.id = 'posts-container';
   contenedorGeneralFeed.appendChild(postsContainer);
 
   verPosts(updatePosts);
-
+  console.log(getAuth().currentUser)
   async function updatePosts(snapshot) {
     postsContainer.innerHTML = '';
-  
+
     try {
-      const userProfile = await getUserProfile();
-      console.log(userProfile);
-  
+     // const userProfile = await getUserProfile();
+    //  console.log(userProfile);
+
       snapshot.forEach((doc, index) => {
         const post = doc.data();
-  
+
         const listItem = document.createElement('div');
-        const postContent = `${userProfile.displayName}: ${post.text}`;
+        /* if (post.name == null)
+        {
+          const postContent = `${post.email}: ${post.text}`;
+
+        } else {
+          const postContent = `${post.name}: ${post.text}`;
+
+        } */
+        const postContent = `${post.name == null? post.email:post.name}: ${post.text}`;
         listItem.textContent = postContent;
-  
+
         postsContainer.appendChild(listItem);
-  
-        // Separador
-        if (index !== snapshot.size - 1) {
+
+         // Separador
+         if (index !== snapshot.size - 1) {
           const separator = document.createElement('hr');
           separator.classList.add('post-separator');
           postsContainer.appendChild(separator);
@@ -131,8 +140,8 @@ export function feed() {
       console.error('Error al obtener el perfil del usuario:', error);
     }
   }
-  
-  
-  
+
+
+
   return containerFeed;
 }

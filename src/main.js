@@ -4,6 +4,7 @@ import { home } from './components/views/home.js';
 import { login } from './components/views/login.js';
 import { register } from './components/views/register.js';
 import { feed } from './components/views/feed.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
 addRoutes({
@@ -21,3 +22,11 @@ window.onload = () => {
 window.onpopstate = () => {
   onNavigate(window.location.pathname);
 };
+
+onAuthStateChanged (getAuth(), (user) => {
+  if (user){
+    onNavigate ('/feed')
+  
+  }
+  else {onNavigate ('/')}
+})
