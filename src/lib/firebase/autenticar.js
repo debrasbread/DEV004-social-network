@@ -13,6 +13,9 @@ import {
   onSnapshot,
   Timestamp,
   orderBy,
+  doc, 
+  updateDoc,
+
 } from 'firebase/firestore';
 
 // Autenticación con correo electrónico y contraseña - Firebase
@@ -112,4 +115,13 @@ if (user) {
   // ...
 } else {
   // No user is signed in.
+}
+
+// EDITAR POST
+
+
+export function editPost(postId, newData) {
+  const postRef = doc(firestore, 'post', postId);
+
+  return updateDoc(postRef, newData);
 }
