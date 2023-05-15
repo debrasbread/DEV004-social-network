@@ -57,21 +57,12 @@ export function feed() {
     const postData = textBox.value;
 
     try {
-     // await loginUser(); // Llamada a la función loginUser para iniciar sesión
-     await createPost(postData);
-     console.log('Post creado exitosamente');
-     textBox.value = '';
+
+      await createPost(postData);
+      console.log('Post creado exitosamente');
+      textBox.value = '';
 
 
-
-     /* const auth = getAuth();
-      if (auth.currentUser) {
-        await createPost(postData);
-        console.log('Post creado exitosamente');
-        textBox.value = '';
-      } else {
-      console.error('El usuario no ha iniciado sesión');
-      } */
     } catch (error) {
       console.error('Error al crear el post:', error);
     }
@@ -97,7 +88,7 @@ export function feed() {
 
   contenedorGeneralFeed.appendChild(logoutButton);
 
- 
+
 
   const postsContainer = document.createElement('div');
   postsContainer.id = 'posts-container';
@@ -109,28 +100,115 @@ export function feed() {
     postsContainer.innerHTML = '';
 
     try {
-     // const userProfile = await getUserProfile();
-    //  console.log(userProfile);
 
       snapshot.forEach((doc, index) => {
         const post = doc.data();
 
         const listItem = document.createElement('div');
-        /* if (post.name == null)
-        {
-          const postContent = `${post.email}: ${post.text}`;
 
-        } else {
-          const postContent = `${post.name}: ${post.text}`;
-
-        } */
-        const postContent = `${post.name == null? post.email:post.name}: ${post.text}`;
+        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
         listItem.textContent = postContent;
+
+
+
+
+
+
+  // Botón editar post
+
+  const editButton = document.createElement('button');
+  editButton.id = 'edit-button';
+  editButton.classList.add('edit-button');
+  editButton.textContent = 'Edit';
+
+
+editButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
+
+
+
+        editButton.addEventListener('click', async (event) => {
+          const postId = event.target.dataset.id;
+          try {
+            await editarPost(postId);
+            console.log('Post editado exitosamente');
+          } catch (error) {
+            console.error('Error al editar el post:', error);
+          }
+        });
+
+
+        async function editarPost(postId) {
+          const db = getFirestore();
+          const postRef = doc(db, 'posts', postId);
+          await editDoc(postRef);
+        }
+
+
+
+
+
+
+
+
+  contenedorGeneralFeed.appendChild(editButton);
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+        //Botón eliminar post
+
+        const deleteButton = document.createElement('button');
+        deleteButton.id = 'delete-button';
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
+
+
+
+        deleteButton.addEventListener('click', async (event) => {
+          const postId = event.target.dataset.id;
+          try {
+            await eliminarPost(postId);
+            console.log('Post eliminado exitosamente');
+          } catch (error) {
+            console.error('Error al eliminar el post:', error);
+          }
+        });
+
+
+        async function eliminarPost(postId) {
+          const db = getFirestore();
+          const postRef = doc(db, 'posts', postId);
+          await deleteDoc(postRef);
+        }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
         postsContainer.appendChild(listItem);
 
-         // Separador
-         if (index !== snapshot.size - 1) {
+        // Separador
+
+        if (index !== snapshot.size - 1) {
           const separator = document.createElement('hr');
           separator.classList.add('post-separator');
           postsContainer.appendChild(separator);

@@ -1,21 +1,42 @@
-export { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from './firebase'
+import { initializeApp, 
+} from 'firebase/app';
+export {
+  getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, 
+} from 'firebase/auth';
 
 // NUEVO - FIRESTORE
-import { addDoc, collection, getFirestore, query, onSnapshot, Timestamp, orderBy } from "firebase/firestore";
-
+import {
+  addDoc,
+  collection,
+  getFirestore,
+  query,
+  onSnapshot,
+  Timestamp,
+  orderBy,
+} from 'firebase/firestore';
 
 // Autenticación con correo electrónico y contraseña - Firebase
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from 'firebase/auth';
+
+import { firebaseConfig, 
+} from './firebase';
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
 
-
 export async function createUser(email, password) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
     // Signed in
 
     const user = userCredential.user;
@@ -23,19 +44,21 @@ export async function createUser(email, password) {
     const errorCode = error.code;
     const errorMessage = error.message;
   }
-
 }
 
 export async function loginUser(email, password) {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     // Signed in
     const user = userCredential.user;
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
   }
-
 }
 
 // Google - Firebase
@@ -60,31 +83,24 @@ export async function signInGoogle() {
   }
 }
 
-
-// Acceder mediante redireccionamiento Google
-
-// import { signInWithRedirect } from 'firebase/auth';
-
-// signInWithRedirect(auth, provider);
-
 const firestore = getFirestore();
 
 export function createPost(data) {
-  return addDoc(collection(firestore, "post"), {
+  return addDoc(collection(firestore, 'post'), {
     text: data,
     email: auth.currentUser.email,
     date: Timestamp.now(),
-    name: auth.currentUser.displayName
+    name: auth.currentUser.displayName,
   });
 }
 
-
 export function verPosts(callback) {
-  const queryPost = query(collection(firestore, "post"), orderBy('date','desc'));
+  const queryPost = query(
+    collection(firestore, 'post'),
+    orderBy('date', 'desc')
+  );
   onSnapshot(queryPost, callback);
 }
-
-
 
 // OBTENER EL USUARIO QUE ACCEDIÓ
 
@@ -97,36 +113,3 @@ if (user) {
 } else {
   // No user is signed in.
 }
-
-
-// OBTENER PERFIL DE UN USUARIO
-
-/* export const getUserProfile = () => {
-  return new Promise((resolve, reject) => {
-    const user = auth.currentUser;
-
-    if (user !== null) {
-      // The user object has basic properties such as display name, email, etc.
-      const displayName = user.displayName;
-      const email = user.email;
-      const photoURL = user.photoURL;
-      const emailVerified = user.emailVerified;
-
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
-      const uid = user.uid;
-
-      resolve({
-        displayName,
-        email,
-        photoURL,
-        emailVerified,
-        uid
-      });
-    } else {
-      reject(new Error('No hay usuario autenticado'));
-    }
-  });
-};
-*/
