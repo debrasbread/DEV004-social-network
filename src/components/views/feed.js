@@ -113,17 +113,15 @@ export function feed() {
 
 
 
-  // Botón editar post
+      
 
-  const editButton = document.createElement('button');
-  editButton.id = 'edit-button';
-  editButton.classList.add('edit-button');
-  editButton.textContent = 'Edit';
+        // Botón editar post
 
-
-editButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
-
-
+        const editButton = document.createElement('button');
+        editButton.id = 'edit-button';
+        editButton.classList.add('edit-button');
+        editButton.textContent = 'Edit';
+        editButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
 
         editButton.addEventListener('click', async (event) => {
           const postId = event.target.dataset.id;
@@ -135,13 +133,95 @@ editButton.dataset.id = doc.id; // almacenar el ID del post en el botón Elimina
           }
         });
 
-
         async function updatePost(postId, newPostData) {
           const db = getFirestore();
           const postRef = doc(db, 'posts', postId);
-        
+
           try {
             await updateDoc(postRef, newPostData);
+            console.log('Post actualizado exitosamente');
+          } catch (error) {
+            console.error('Error al actualizar el post:', error);
+          }
+        }
+
+        //CAMPO DE TEXTO OCULTO DENTRO DE POST PARA EDITARLO
+
+        snapshot.forEach((doc, index) => {
+          const post = doc.data();
+
+          const listItem = document.createElement('div');
+
+          // Mostrar el contenido original del post
+          const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
+          listItem.textContent = postContent;
+
+          // Agregar campo de texto para editar el post
+          const editField = document.createElement('textarea');
+          editField.classList.add('edit-field');
+          editField.value = post.text; // Mostrar el contenido original del post
+          editField.style.display = 'none'; // Ocultar el campo de texto
+          listItem.appendChild(editField);
+
+          // Botón editar post
+          const editButton = document.createElement('button');
+          editButton.id = 'edit-button';
+          editButton.classList.add('edit-button');
+          editButton.textContent = 'Editar';
+          editButton.dataset.id = doc.id;
+
+          editButton.addEventListener('click', () => {
+            // Mostrar el campo de texto
+            listItem.removeChild(listItem.firstChild);
+            editField.style.display = 'block';
+            listItem.insertBefore(editField, listItem.firstChild);
+          });
+
+          // Botón guardar cambios
+          const saveButton = document.createElement('button');
+          saveButton.id = 'save-button';
+          saveButton.classList.add('save-button');
+          saveButton.textContent = 'Guardar';
+          //saveButton.style.display = 'none'; // Ocultar el botón "Save"
+          listItem.appendChild(saveButton);
+
+          saveButton.addEventListener('click', async () => {
+            const newPostData = editField.value;
+            try {
+              await updatePost(doc.id, { text: newPostData });
+              console.log('Post editado exitosamente');
+              // Mostrar el contenido editado del post
+              listItem.removeChild(listItem.firstChild);
+              listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
+            } catch (error) {
+              console.error('Error al editar el post:', error);
+            }
+          });
+
+          listItem.appendChild(editButton);
+
+          postsContainer.appendChild(listItem);
+
+          // Separador
+          if (index !== snapshot.size - 1) {
+            const separator = document.createElement('hr');
+            separator.classList.add('post-separator');
+            postsContainer.appendChild(separator);
+          }
+        });
+
+
+
+        //ACTUALIZAR CONTENIDO DEL POST EN LA BASE DE DATOS
+
+
+        async function updatePost(postId, newPostData) {
+          try {
+            const db = getFirestore();
+            const postRef = doc(db, 'posts', postId);
+
+            await updateDoc(postRef, newPostData);
+
             console.log('Post actualizado exitosamente');
           } catch (error) {
             console.error('Error al actualizar el post:', error);
@@ -151,150 +231,37 @@ editButton.dataset.id = doc.id; // almacenar el ID del post en el botón Elimina
 
 
 
-//CAMPO DE TEXTO OCULTO DENTRO DE POST PARA EDITARLO
-
-snapshot.forEach((doc, index) => {
-  const post = doc.data();
-
-  const listItem = document.createElement('div');
-
-  // Mostrar el contenido original del post
-  const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
-  listItem.textContent = postContent;
-
-  // Agregar campo de texto para editar el post
-  const editField = document.createElement('textarea');
-  editField.classList.add('edit-field');
-  editField.value = post.text; // Mostrar el contenido original del post
-  editField.style.display = 'none'; // Ocultar el campo de texto
-  listItem.appendChild(editField);
-
-  // Botón editar post
-  const editButton = document.createElement('button');
-  editButton.id = 'edit-button';
-  editButton.classList.add('edit-button');
-  editButton.textContent = 'Edit';
-  editButton.dataset.id = doc.id;
-
-  editButton.addEventListener('click', () => {
-    // Mostrar el campo de texto
-    listItem.removeChild(listItem.firstChild);
-    editField.style.display = 'block';
-    listItem.insertBefore(editField, listItem.firstChild);
-  });
-
-  // Botón guardar cambios
-  const saveButton = document.createElement('button');
-  saveButton.id = 'save-button';
-  saveButton.classList.add('save-button');
-  saveButton.textContent = 'Save';
-  saveButton.style.display = 'none'; // Ocultar el botón "Save"
-  listItem.appendChild(saveButton);
-
-  saveButton.addEventListener('click', async () => {
-    const newPostData = editField.value;
-    try {
-      await updatePost(doc.id, { text: newPostData });
-      console.log('Post editado exitosamente');
-      // Mostrar el contenido editado del post
-      listItem.removeChild(listItem.firstChild);
-      listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
-    } catch (error) {
-      console.error('Error al editar el post:', error);
-    }
-  });
-
-  listItem.appendChild(editButton);
-
-  postsContainer.appendChild(listItem);
-
-  // Separador
-  if (index !== snapshot.size - 1) {
-    const separator = document.createElement('hr');
-    separator.classList.add('post-separator');
-    postsContainer.appendChild(separator);
-  }
-});
+        contenedorGeneralFeed.appendChild(editButton);
 
 
-
-//ACTUALIZAR CONTENIDO DEL POST EN LA BASE DE DATOS
-
-
-async function updatePost(postId, newPostData) {
-  try {
-    const db = getFirestore();
-    const postRef = doc(db, 'posts', postId);
-    
-    await updateDoc(postRef, newPostData);
-    
-    console.log('Post actualizado exitosamente');
-  } catch (error) {
-    console.error('Error al actualizar el post:', error);
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  contenedorGeneralFeed.appendChild(editButton);
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        //Botón eliminar post
-
-        const deleteButton = document.createElement('button');
-        deleteButton.id = 'delete-button';
-        deleteButton.classList.add('delete-button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
-
-
-
-        deleteButton.addEventListener('click', async (event) => {
-          const postId = event.target.dataset.id;
-          try {
-            await eliminarPost(postId);
-            console.log('Post eliminado exitosamente');
-          } catch (error) {
-            console.error('Error al eliminar el post:', error);
-          }
-        });
-
-
-        async function eliminarPost(postId) {
-          const db = getFirestore();
-          const postRef = doc(db, 'posts', postId);
-          await deleteDoc(postRef);
-        }
-*/
+        /*
+                //Botón eliminar post
+        
+                const deleteButton = document.createElement('button');
+                deleteButton.id = 'delete-button';
+                deleteButton.classList.add('delete-button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
+        
+        
+        
+                deleteButton.addEventListener('click', async (event) => {
+                  const postId = event.target.dataset.id;
+                  try {
+                    await eliminarPost(postId);
+                    console.log('Post eliminado exitosamente');
+                  } catch (error) {
+                    console.error('Error al eliminar el post:', error);
+                  }
+                });
+        
+        
+                async function eliminarPost(postId) {
+                  const db = getFirestore();
+                  const postRef = doc(db, 'posts', postId);
+                  await deleteDoc(postRef);
+                }
+        */
 
 
 
