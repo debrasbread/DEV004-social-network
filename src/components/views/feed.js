@@ -92,156 +92,99 @@ export function feed() {
   postsContainer.id = 'posts-container'; // Asigna el valor 'posts-container' al atributo id del elemento
   contenedorGeneralFeed.appendChild(postsContainer); // Agrega el elemento postsContainer como hijo de contenedorGeneralFeed
 
-  verPosts(updatePosts); // Llama a la función verPosts y pasa la función updatePosts como argumento
+  verPosts(updatePost); // Llama a la función verPosts y pasa la función updatePosts como argumento
   console.log(getAuth().currentUser); // Imprime en la consola el usuario actual obtenido de la autenticación
 
-  async function updatePosts(snapshot) { // Declara una función asíncrona llamada updatePosts y recibe un parámetro llamado snapshot
-    postsContainer.innerHTML = ''; // Borra el contenido actual del elemento postsContainer
+
+  async function updatePost(snapshot) {
+    postsContainer.innerHTML = '';
 
     try {
-      snapshot.forEach((doc, index) => { // Itera sobre cada documento en el snapshot
-        const post = doc.data(); // Obtiene los datos del documento
+      snapshot.forEach((doc, index) => {
+        const post = doc.data();
 
-        const listItem = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable listItem
+        const listItem = document.createElement('div');
+        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
+        listItem.textContent = postContent;
 
-        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`; // Construye el contenido del post
-        listItem.textContent = postContent; // Asigna el contenido del post al contenido de listItem
+        const editField = document.createElement('textarea');
+        editField.classList.add('edit-field');
+        editField.value = post.text;
+        editField.style.display = 'none';
+        listItem.appendChild(editField);
 
+        const editButton = document.createElement('button');
+        editButton.id = 'edit-button';
+        editButton.classList.add('edit-button');
+        editButton.textContent = 'Editar';
+        editButton.dataset.id = doc.id;
 
+        editButton.addEventListener('click', () => {
+          listItem.removeChild(listItem.firstChild);
+          editField.style.display = 'block';
+          listItem.insertBefore(editField, listItem.firstChild);
+        });
 
-        // EDITAR POST
+        const saveButton = document.createElement('button');
+        saveButton.id = 'save-button';
+        saveButton.classList.add('save-button');
+        saveButton.textContent = 'Guardar';
+        listItem.appendChild(saveButton);
 
-          async function editPost(postId, newPostData) { // Declara una función asíncrona llamada updatePost y recibe dos parámetros: postId y newPostData
-          const db = getFirestore(); // Obtiene la instancia de Firestore
-          const postRef = doc(db, 'posts', postId); // Obtiene la referencia del documento del post utilizando el ID y la colección 'posts'
-
+        saveButton.addEventListener('click', async () => {
+          const newPostData = editField.value;
           try {
-            await updateDoc(postRef, newPostData); // Actualiza el documento del post con los nuevos datos
-            console.log('Post actualizado exitosamente');
+            await editPost(doc.id, { text: newPostData });
+            console.log('Post editado exitosamente');
+            listItem.removeChild(listItem.firstChild);
+            listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
           } catch (error) {
-            console.error('Error al actualizar el post:', error);
-          }
-        }
-
-
-        //CAMPO DE TEXTO OCULTO DENTRO DE POST PARA EDITARLO
-
-        snapshot.forEach((doc, index) => { // Itera sobre cada documento en el snapshot
-          const post = doc.data(); // Obtiene los datos del documento
-
-          const listItem = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable listItem
-
-          const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`; // Construye el contenido original del post
-          listItem.textContent = postContent; // Asigna el contenido original del post al contenido de listItem
-
-          const editField = document.createElement('textarea'); // Crea un elemento <textarea> y lo asigna a la variable editField
-          editField.classList.add('edit-field'); // Agrega la clase 'edit-field' al elemento
-          editField.value = post.text; // Asigna el contenido original del post al valor del campo de texto
-          editField.style.display = 'none'; // Oculta el campo de texto estableciendo su estilo a 'none'
-          listItem.appendChild(editField); // Agrega el elemento editField como hijo de listItem
-
-          const editButton = document.createElement('button'); // Crea un elemento <button> y lo asigna a la variable editButton
-          editButton.id = 'edit-button'; // Asigna el valor 'edit-button' al atributo id del elemento
-          editButton.classList.add('edit-button'); // Agrega la clase 'edit-button' al elemento
-          editButton.textContent = 'Editar'; // Asigna el texto 'Editar' al contenido del elemento
-          editButton.dataset.id = doc.id; // Almacena el ID del post en el atributo dataset del botón editar
-
-          editButton.addEventListener('click', () => {
-            listItem.removeChild(listItem.firstChild); // Elimina el primer hijo de listItem (contenido original del post)
-            editField.style.display = 'block'; // Muestra el campo de texto estableciendo su estilo a 'block'
-            listItem.insertBefore(editField, listItem.firstChild); // Inserta el campo de texto como el primer hijo de listItem
-          });
-
-
-          // Botón guardar cambios
-          const saveButton = document.createElement('button');
-          saveButton.id = 'save-button';
-          saveButton.classList.add('save-button');
-          saveButton.textContent = 'Guardar';
-          //saveButton.style.display = 'none'; // Ocultar el botón "Save"
-          listItem.appendChild(saveButton);
-
-          saveButton.addEventListener('click', async () => {
-            const newPostData = editField.value;
-            try {
-              await updatePost(doc.id, { text: newPostData });
-              console.log('Post editado exitosamente');
-              // Mostrar el contenido editado del post
-              listItem.removeChild(listItem.firstChild);
-              listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
-            } catch (error) {
-              console.error('Error al editar el post:', error);
-            }
-          });
-
-          listItem.appendChild(editButton);
-
-          postsContainer.appendChild(listItem);
-
-          // Separador
-          if (index !== snapshot.size - 1) {
-            const separator = document.createElement('hr');
-            separator.classList.add('post-separator');
-            postsContainer.appendChild(separator);
+            console.error('Error al editar el post:', error);
           }
         });
 
-        //ACTUALIZAR CONTENIDO DEL POST EN LA BASE DE DATOS
-
-        async function updatePost(postId, newPostData) {
-          try {
-            const db = getFirestore();
-            const postRef = doc(db, 'posts', postId);
-
-            await updateDoc(postRef, newPostData);
-
-            console.log('Post actualizado exitosamente');
-          } catch (error) {
-            console.error('Error al actualizar el post:', error);
-          }
-        }
-
-        contenedorGeneralFeed.appendChild(editButton);
-
+        listItem.appendChild(editButton);
         postsContainer.appendChild(listItem);
 
-
+        // Separador
+        if (index !== snapshot.size - 1) {
+          const separator = document.createElement('hr');
+          separator.classList.add('post-separator');
+          postsContainer.appendChild(separator);
+        }
       });
     } catch (error) {
-      console.error('Error al obtener el perfil del usuario:', error);
+      console.error('Error al obtener los posts:', error);
     }
   }
 
+  /*
+                  //Botón eliminar post
+          
+                  const deleteButton = document.createElement('button');
+                  deleteButton.id = 'delete-button';
+                  deleteButton.classList.add('delete-button');
+                  deleteButton.textContent = 'Delete';
+                  deleteButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
+          
+          
+          
+                  deleteButton.addEventListener('click', async (event) => {
+                    const postId = event.target.dataset.id;
+                    try {
+                      await eliminarPost(postId);
+                      console.log('Post eliminado exitosamente');
+                    } catch (error) {
+                      console.error('Error al eliminar el post:', error);
+                    }
+                  });
+                  
+                  async function eliminarPost(postId) {
+                    const db = firestore;
+                    const postRef = doc(db, 'posts', postId);
+                    await deleteDoc(postRef);
+                  }
+          */
+
   return containerFeed;
 }
-
-
-
-/*
-                //Botón eliminar post
-        
-                const deleteButton = document.createElement('button');
-                deleteButton.id = 'delete-button';
-                deleteButton.classList.add('delete-button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.dataset.id = doc.id; // almacenar el ID del post en el botón Eliminar
-        
-        
-        
-                deleteButton.addEventListener('click', async (event) => {
-                  const postId = event.target.dataset.id;
-                  try {
-                    await eliminarPost(postId);
-                    console.log('Post eliminado exitosamente');
-                  } catch (error) {
-                    console.error('Error al eliminar el post:', error);
-                  }
-                });
-        
-        
-                async function eliminarPost(postId) {
-                  const db = getFirestore();
-                  const postRef = doc(db, 'posts', postId);
-                  await deleteDoc(postRef);
-                }
-        */

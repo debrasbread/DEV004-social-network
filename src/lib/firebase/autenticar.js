@@ -119,9 +119,9 @@ if (user) {
 
 // EDITAR POST
 
-
-export function editPost(postId, newData) {
+export async function editPost(postId, newData) {
   const postRef = doc(firestore, 'post', postId);
-
-  return updateDoc(postRef, newData);
+  await updateDoc(postRef, newData);
 }
+
+
