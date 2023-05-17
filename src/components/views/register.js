@@ -3,20 +3,6 @@ import { onNavigate } from '../../lib/router/index';
 
 
 
-/*
-
-import { collection, addDoc } from "firebase/firestore";
-
-// Add a new document with a generated id.
-const docRef = await addDoc(collection(db, "usuarios"), {
-  email: '',
-  password: ''
-});
-console.log("Document written with ID: ", docRef.id);
-
-
-*/
-
 
 
 export function register() {
@@ -54,6 +40,23 @@ export function register() {
   formularioRegister.id = 'formulario-Register';
   formularioRegister.classList.add('formularioR');
   contenedorGeneralRegister.appendChild(formularioRegister);
+
+  
+
+// Nombre completo label + input
+const nombreLabelRegister = document.createElement('label');
+nombreLabelRegister.textContent = 'Nombre completo:';
+nombreLabelRegister.setAttribute('for', 'nombre-InputR');
+
+const nombreInputRegister = document.createElement('input');
+nombreInputRegister.type = 'text';
+nombreInputRegister.id = 'nombre-InputR';
+nombreInputRegister.required = true;
+nombreInputRegister.classList.add('nombreInputR');
+
+formularioRegister.append(nombreLabelRegister, nombreInputRegister);
+
+
 
   // Email label + input
   const emailLabelRegister = document.createElement('label');
@@ -103,15 +106,16 @@ export function register() {
   continuarBtnRegister.addEventListener('click', async (event) => {
     console.log('Click en btn Continuar');
     event.preventDefault();
+    const nombre = nombreInputRegister.value; // Obtener el valor del nombre
     const email = emailInputRegister.value;
     const contrasena = contrasenaInputRegister.value;
-    if (!email || !contrasena) {
-      console.log('Email o contraseña vacíos, se muestra msj de error');
+    if (!nombre || !email || !contrasena) {
+      console.log('Nombre, email o contraseña vacíos, se muestra msj de error');
       registroMensaje.style.display = 'block';
       return;
     }
     try {
-      await createUser(email, contrasena);
+      await createUser(nombre, email, contrasena);
       console.log('Usuario creado satisfactoriamente');
       onNavigate('/feed');
     } catch (error) {
@@ -122,6 +126,7 @@ export function register() {
       errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
     }
   });
+  
 
 
 

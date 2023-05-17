@@ -1,7 +1,8 @@
-import { initializeApp, 
+import {
+  initializeApp,
 } from 'firebase/app';
 export {
-  getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, 
+  getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile,
 } from 'firebase/auth';
 
 // NUEVO - FIRESTORE
@@ -13,8 +14,9 @@ import {
   onSnapshot,
   Timestamp,
   orderBy,
-  doc, 
+  doc,
   updateDoc,
+  deleteDoc,
 
 } from 'firebase/firestore';
 
@@ -27,32 +29,47 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 
-import { firebaseConfig, 
+import {
+  firebaseConfig,
 } from './firebase';
 
 initializeApp(firebaseConfig);
 const auth = getAuth();
 
-export async function createUser(email, password) {
+export async function createUser(nombre, email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
-    // Signed in
 
+    // Signed in
     const user = userCredential.user;
+    await updateDisplayName(user, nombre); // Actualizar el nombre del usuario
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
   }
 }
 
+// Función para actualizar el nombre del usuario
+async function updateDisplayName(user, nombre) {
+  try {
+    await updateProfile(user, {
+      displayName: nombre,
+    });
+  } catch (error) {
+    // Manejar el error al actualizar el nombre
+    console.log('Error al actualizar el nombre del usuario:', error);
+  }
+}
+
+
 export async function loginUser(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(
-      auth,
+      auth.currentUser.displayName,
       email,
       password
     );
@@ -106,7 +123,6 @@ export function verPosts(callback) {
 }
 
 // OBTENER EL USUARIO QUE ACCEDIÓ
-
 export const user = auth.currentUser;
 
 if (user) {
@@ -117,11 +133,16 @@ if (user) {
   // No user is signed in.
 }
 
-// EDITAR POST
 
+// EDITAR POST
 export async function editPost(postId, newData) {
   const postRef = doc(firestore, 'post', postId);
   await updateDoc(postRef, newData);
 }
 
 
+
+// BORRAR POST
+export async function deletePost(postId) {
+     await deleteDoc(doc(firestore, 'post', postId));
+  }
