@@ -1,6 +1,6 @@
 import { getAuth, signOut } from 'firebase/auth'; // Importa las funciones getAuth y signOut del módulo 'firebase/auth'
 import { onNavigate } from '../../lib/router/index'; // Importa la función onNavigate del archivo '../../lib/router/index'
-import { createPost, verPosts, editPost, deletePost } from '../../lib/firebase/autenticar'; // Importa las funciones createPost, verPosts y editPost del archivo '../../lib/firebase/autenticar'
+import { createPost, verPosts, editPost, deletePost, isAuthor } from '../../lib/firebase/autenticar'; // Importa las funciones createPost, verPosts y editPost del archivo '../../lib/firebase/autenticar'
 
 export function feed() {
   const containerFeed = document.createElement('main'); // Crea un elemento <main> y lo asigna a la variable containerFeed
@@ -102,6 +102,7 @@ export function feed() {
     try {
       snapshot.forEach((doc, index) => { // Itera sobre cada documento en el snapshot
         const post = doc.data(); // Obtiene los datos del documento actual
+        
 
         const listItem = document.createElement('div'); // Crea un elemento div
         const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`; // Crea el contenido de la publicación
@@ -112,41 +113,95 @@ export function feed() {
         editField.value = post.text; // Asigna el valor del texto de la publicación al elemento textarea
         editField.style.display = 'none'; // Oculta el elemento textarea
         listItem.appendChild(editField); // Agrega el elemento textarea al elemento div
+        
+        const editButton = document.createElement('button');
+        editButton.id = 'edit-button';
+        editButton.classList.add('edit-button');
+        editButton.textContent = 'Editar';
+        editButton.dataset.id = doc.id;
+        
 
-        const editButton = document.createElement('button'); // Crea un elemento button
-        editButton.id = 'edit-button'; // Asigna el ID 'edit-button' al elemento
-        editButton.classList.add('edit-button'); // Agrega la clase 'edit-button' al elemento
-        editButton.textContent = 'Editar'; // Asigna el texto 'Editar' al elemento
-        editButton.dataset.id = doc.id; // Asigna el ID del documento actual al atributo de datos 'id' del elemento
 
-        editButton.addEventListener('click', () => { // Agrega un evento de clic al botón de editar
-          listItem.removeChild(listItem.firstChild); // Elimina el primer hijo del elemento div (el contenido original)
-          editField.style.display = 'block'; // Muestra el elemento textarea
-          listItem.insertBefore(editField, listItem.firstChild); // Inserta el elemento textarea al principio del elemento div
+
+
+
+
+
+
+       
+        
+        const editButtonContainer = document.createElement('div'); // Crea un elemento <div> para contener el botón de edición
+        editButtonContainer.appendChild(editButton); // Agrega el botón de edición al contenedor
+        
+        if (isAuthor(post)) {
+          editButtonContainer.style.display = 'block'; // Mostrar el contenedor del botón solo si el usuario es el autor del post
+        } else {
+          editButtonContainer.style.display = 'none'; // Ocultar el contenedor del botón si el usuario no es el autor del post
+        }
+        
+        editButton.addEventListener('click', () => {
+          listItem.removeChild(listItem.firstChild);
+          editField.style.display = 'block';
+          listItem.insertBefore(editField, listItem.firstChild);
         });
+        
+        listItem.appendChild(editButtonContainer); // Agrega el contenedor del botón al elemento div
+        
 
-        const saveButton = document.createElement('button'); // Crea un elemento button
-        saveButton.id = 'save-button'; // Asigna el ID 'save-button' al elemento
-        saveButton.classList.add('save-button'); // Agrega la clase 'save-button' al elemento
-        saveButton.textContent = 'Guardar'; // Asigna el texto 'Guardar' al elemento
-        listItem.appendChild(saveButton); // Agrega el elemento button al elemento div
 
-        saveButton.addEventListener('click', async () => { // Agrega un evento de clic al botón de guardar
-          const newPostData = editField.value; // Obtiene el nuevo valor del texto de la publicación desde el elemento textarea
+
+
+
+
+
+        editButton.addEventListener('click', () => {
+          listItem.removeChild(listItem.firstChild);
+          editField.style.display = 'block';
+          listItem.insertBefore(editField, listItem.firstChild);
+        });
+        
+
+
+
+
+
+
+        const saveButton = document.createElement('button');
+        saveButton.id = 'save-button';
+        saveButton.classList.add('save-button');
+        saveButton.textContent = 'Guardar';
+
+
+
+        const saveButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de guardar
+        saveButtonContainer.appendChild(saveButton); // Agrega el botón de guardar al contenedor
+        
+
+
+        
+        if (isAuthor(post)) {
+          saveButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
+        } else {
+          saveButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
+        }
+        
+        saveButton.addEventListener('click', async () => {
+          const newPostData = editField.value;
           try {
-            await editPost(doc.id, { text: newPostData }); // Llama a la función 'editPost' para editar la publicación en el servidor
+            await editPost(doc.id, { text: newPostData });
             console.log('Post editado exitosamente');
-            listItem.removeChild(listItem.firstChild); // Elimina el primer hijo del elemento div (el textarea)
-            listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`; // Actualiza el contenido del elemento div con el texto editado
+            listItem.removeChild(listItem.firstChild);
+            listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
           } catch (error) {
-            console.error('Error al editar el post:', error); // Muestra un mensaje de error si ocurre un error al editar la publicación
+            console.error('Error al editar el post:', error);
           }
         });
+        
+        listItem.appendChild(saveButton);
+        
 
-        listItem.appendChild(editButton); // Agrega el botón de editar al elemento div
 
-
-
+        listItem.appendChild(saveButtonContainer); // Agrega el contenedor del botón al elemento div
 
 
 
@@ -156,8 +211,20 @@ export function feed() {
         deleteButton.id = 'delete-button';
         deleteButton.classList.add('delete-button');
         deleteButton.textContent = 'Eliminar';
-        deleteButton.dataset.id = doc.id; // Almacenar el ID del post en el botón Eliminar
 
+
+
+        const deleteButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de eliminar
+        deleteButtonContainer.appendChild(deleteButton); // Agrega el botón de eliminar al contenedor
+
+
+        
+        if (isAuthor(post)) {
+          deleteButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
+        } else {
+          deleteButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
+        }
+        
         deleteButton.addEventListener('click', async (event) => {
           const postId = event.target.dataset.id;
           try {
@@ -167,8 +234,14 @@ export function feed() {
             console.error('Error al eliminar el post:', error);
           }
         });
+        
+
+        listItem.appendChild(deleteButtonContainer); // Agrega el contenedor del botón al elemento div
+
 
         listItem.appendChild(deleteButton);
+        
+
 
         postsContainer.appendChild(listItem);
 

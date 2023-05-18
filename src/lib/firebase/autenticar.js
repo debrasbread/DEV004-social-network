@@ -146,3 +146,13 @@ export async function editPost(postId, newData) {
 export async function deletePost(postId) {
      await deleteDoc(doc(firestore, 'post', postId));
   }
+
+  
+// Verificar que usuario actual se autor del post
+export function isAuthor(post) {
+    return auth.currentUser && post.email === auth.currentUser.email;
+  }
+
+
+  
+  
