@@ -204,46 +204,48 @@ export function feed() {
         listItem.appendChild(saveButtonContainer); // Agrega el contenedor del botón al elemento div
 
 
+  // Botón eliminar post
 
-        // Botón eliminar post
-
-        const deleteButton = document.createElement('button');
-        deleteButton.id = 'delete-button';
-        deleteButton.classList.add('delete-button');
-        deleteButton.textContent = 'Eliminar';
-
-
-
-        const deleteButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de eliminar
-        deleteButtonContainer.appendChild(deleteButton); // Agrega el botón de eliminar al contenedor
+  const deleteButton = document.createElement('button');
+  deleteButton.id = 'delete-button';
+  deleteButton.classList.add('delete-button');
+  deleteButton.textContent = 'Eliminar';
+  deleteButton.dataset.id = doc.id; // Almacenar el ID del post en el botón Eliminar
 
 
-        
-        if (isAuthor(post)) {
-          deleteButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
-        } else {
-          deleteButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
-        }
-        
-        deleteButton.addEventListener('click', async (event) => {
-          const postId = event.target.dataset.id;
-          try {
-            await deletePost(postId);
-            console.log('Post eliminado exitosamente');
-          } catch (error) {
-            console.error('Error al eliminar el post:', error);
-          }
-        });
-        
 
-        listItem.appendChild(deleteButtonContainer); // Agrega el contenedor del botón al elemento div
+  const deleteButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de guardar
+  deleteButtonContainer.appendChild(deleteButton); // Agrega el botón de guardar al contenedor
+  
 
 
-        listItem.appendChild(deleteButton);
-        
+
+  if (isAuthor(post)) {
+    deleteButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
+  } else {
+    deleteButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
+  }
 
 
-        postsContainer.appendChild(listItem);
+
+
+  deleteButton.addEventListener('click', async (event) => {
+    const postId = event.target.dataset.id;
+    try {
+      await deletePost(postId);
+      console.log('Post eliminado exitosamente');
+    } catch (error) {
+      console.error('Error al eliminar el post:', error);
+    }
+  });
+
+  listItem.appendChild(deleteButton);
+
+  postsContainer.appendChild(listItem);
+
+  listItem.appendChild(deleteButtonContainer); // Agrega el contenedor del botón al elemento div
+
+
 
         // Separador
         if (index !== snapshot.size - 1) {
