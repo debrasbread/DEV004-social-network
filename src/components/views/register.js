@@ -1,10 +1,6 @@
 import { createUser, signInGoogle } from '../../lib/firebase/autenticar';
 import { onNavigate } from '../../lib/router/index';
 
-
-
-
-
 export function register() {
   // Creación de div y asignación a variable container
   const containerRegister = document.createElement('main');
@@ -41,22 +37,18 @@ export function register() {
   formularioRegister.classList.add('formularioR');
   contenedorGeneralRegister.appendChild(formularioRegister);
 
-  
+  // Nombre completo label + input
+  const nombreLabelRegister = document.createElement('label');
+  nombreLabelRegister.textContent = 'Nombre completo:';
+  nombreLabelRegister.setAttribute('for', 'nombre-InputR');
 
-// Nombre completo label + input
-const nombreLabelRegister = document.createElement('label');
-nombreLabelRegister.textContent = 'Nombre completo:';
-nombreLabelRegister.setAttribute('for', 'nombre-InputR');
+  const nombreInputRegister = document.createElement('input');
+  nombreInputRegister.type = 'text';
+  nombreInputRegister.id = 'nombre-InputR';
+  nombreInputRegister.required = true;
+  nombreInputRegister.classList.add('nombreInputR');
 
-const nombreInputRegister = document.createElement('input');
-nombreInputRegister.type = 'text';
-nombreInputRegister.id = 'nombre-InputR';
-nombreInputRegister.required = true;
-nombreInputRegister.classList.add('nombreInputR');
-
-formularioRegister.append(nombreLabelRegister, nombreInputRegister);
-
-
+  formularioRegister.append(nombreLabelRegister, nombreInputRegister);
 
   // Email label + input
   const emailLabelRegister = document.createElement('label');
@@ -95,7 +87,7 @@ formularioRegister.append(nombreLabelRegister, nombreInputRegister);
   contenedorGeneralRegister.appendChild(continuarBtnRegister);
 
   // Click y mensaje de error
-  console.log('Se crea msj de error');
+  // console.log('Se crea msj de error');
   const registroMensaje = document.createElement('p');
   registroMensaje.textContent = 'Debes registrarte para continuar';
   registroMensaje.classList.add('registro-mensaje');
@@ -104,46 +96,39 @@ formularioRegister.append(nombreLabelRegister, nombreInputRegister);
   registroMensaje.style.display = 'none';
 
   continuarBtnRegister.addEventListener('click', async (event) => {
-    console.log('Click en btn Continuar');
+    // console.log('Click en btn Continuar');
     event.preventDefault();
     const nombre = nombreInputRegister.value; // Obtener el valor del nombre
     const email = emailInputRegister.value;
     const contrasena = contrasenaInputRegister.value;
     if (!nombre || !email || !contrasena) {
-      console.log('Nombre, email o contraseña vacíos, se muestra msj de error');
+      // console.log('Nombre, email o contraseña vacíos, se muestra msj de error');
       registroMensaje.style.display = 'block';
       return;
     }
     try {
       await createUser(nombre, email, contrasena);
-      console.log('Usuario creado satisfactoriamente');
+      // console.log('Usuario creado satisfactoriamente');
       onNavigate('/feed');
     } catch (error) {
-      console.log('Error al crear usuario:', error);
+      // console.log('Error al crear usuario:', error);
       const errorCode = error.code;
       const errorMessage = error.message;
       const errorDiv = document.getElementById('error-message');
       errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
     }
   });
-  
-
-
-
-
 
   // Botón 'Continuar con Google'
   const googleBtnRegister = document.createElement('button');
   googleBtnRegister.classList.add('googleBtnR');
   googleBtnRegister.textContent = 'Continuar con Google';
 
-
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
   logoGoogleRegister.alt = 'Iniciar sesión con Google';
   googleBtnRegister.appendChild(logoGoogleRegister);
-
 
   // Click y mensaje de error Google
   const registroMensajeGoogle = document.createElement('p');
@@ -153,16 +138,15 @@ formularioRegister.append(nombreLabelRegister, nombreInputRegister);
 
   registroMensajeGoogle.style.display = 'none';
 
-
   googleBtnRegister.addEventListener('click', async (event) => {
-    console.log('Click en btn Continuar con Google');
+    // console.log('Click en btn Continuar con Google');
     event.preventDefault();
     try {
       await signInGoogle();
-      console.log('Registro satisfactorio');
+      // console.log('Registro satisfactorio');
       onNavigate('/feed');
     } catch (error) {
-      console.log('Error al registrarse', error);
+      // console.log('Error al registrarse', error);
       const errorCode = error.code;
       const errorMessage = error.message;
       const errorDiv = document.getElementById('error-message');
@@ -170,13 +154,7 @@ formularioRegister.append(nombreLabelRegister, nombreInputRegister);
     }
   });
 
-
   contenedorGeneralRegister.appendChild(googleBtnRegister);
-
-
-
-
-
 
   // Footer
   const footerRegister = document.createElement('footer');

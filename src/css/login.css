@@ -1,84 +1,84 @@
-
 /*********LOGIN*********/
 
 .contenedorGeneralL {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.313);
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  .backgroundImgL {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 50%;
-    background-image: url("../imagenes/background-login.jpg");
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-  }
-  
-  .logoL {
-    width: 20vh;
-    height: 20vh;
-    margin-bottom: 2em;
-  }
-  
-  .emailLabelL {
-    margin-bottom: 0.5em;
-    text-align: left;
-  }
-  
-  .emailInputL {
-    margin-bottom: 1em;
-    text-align: left;
-  }
-  
-  .contraseñaLabelL {
-    margin-bottom: 0.5em;
-    text-align: left;
-  }
-  
-  .contraseñaInputL {
-    margin-bottom: 2em;
-    text-align: left;
-  }
-  
-  .continuarBtnL {
-    padding: 5px;
-    color: #161515;
-    background-color: #ffffff;
-    margin-top: 10%;
-  }
-  
-  #continuar-GoogleBtnL {
-    margin-top: 2em;
-    background-color: #ffffff;
-  }
-  
-  .logoGoogleL {
-    margin-right: 8px; /* Espacio entre el logo y el texto */
-  }
-  
-  .footerL {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    text-align: center;
-    padding: 10px;
-    font-family: "Poppins";
-    font-size: small;
-  }
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.313);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.backgroundImgL {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 50%;
+  background-image: url("../imagenes/background-login.jpg");
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.logoL {
+  width: 20vh;
+  height: 20vh;
+  margin-bottom: 2em;
+}
+
+.emailLabelL {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.emailInputL {
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.contraseñaLabelL {
+  margin-bottom: 0.5em;
+  text-align: left;
+}
+
+.contraseñaInputL {
+  margin-bottom: 2em;
+  text-align: left;
+}
+
+.continuarBtnL {
+  padding: 5px;
+  color: #161515;
+  background-color: #ffffff;
+  margin-top: 10%;
+}
+
+#continuar-GoogleBtnL {
+  margin-top: 2em;
+  background-color: #ffffff;
+}
+
+.logoGoogleL {
+  margin-right: 8px;
+  /* Espacio entre el logo y el texto */
+}
+
+.footerL {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+  font-family: "Poppins";
+  font-size: small;
+}

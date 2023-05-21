@@ -1,251 +1,206 @@
-import { getAuth, signOut } from 'firebase/auth'; // Importa las funciones getAuth y signOut del módulo 'firebase/auth'
-import { onNavigate } from '../../lib/router/index'; // Importa la función onNavigate del archivo '../../lib/router/index'
-import { createPost, verPosts, editPost, deletePost, isAuthor } from '../../lib/firebase/autenticar'; // Importa las funciones createPost, verPosts y editPost del archivo '../../lib/firebase/autenticar'
+import { getAuth, signOut } from 'firebase/auth';
+import { onNavigate } from '../../lib/router/index';
+import {
+  createPost, verPosts, editPost, deletePost, isAuthor,
+}
+  from '../../lib/firebase/autenticar';
 
 export function feed() {
-  const containerFeed = document.createElement('main'); // Crea un elemento <main> y lo asigna a la variable containerFeed
+  const containerFeed = document.createElement('main');
 
-  const backgroundImgFeed = document.createElement('img'); // Crea un elemento <img> y lo asigna a la variable backgroundImgFeed
-  backgroundImgFeed.classList.add('backgroundImgF'); // Agrega la clase 'backgroundImgF' al elemento
-  containerFeed.appendChild(backgroundImgFeed); // Agrega el elemento como hijo de containerFeed
+  const backgroundImgFeed = document.createElement('img');
+  backgroundImgFeed.classList.add('backgroundImgF');
+  containerFeed.appendChild(backgroundImgFeed);
 
-  const contenedorGeneralFeed = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable contenedorGeneralFeed
-  contenedorGeneralFeed.id = 'contenedor-GeneralF'; // Asigna el id 'contenedor-GeneralF' al elemento
-  contenedorGeneralFeed.classList.add('contenedorGeneralF'); // Agrega la clase 'contenedorGeneralF' al elemento
-  containerFeed.appendChild(contenedorGeneralFeed); // Agrega el elemento como hijo de containerFeed
+  const contenedorGeneralFeed = document.createElement('div');
+  contenedorGeneralFeed.id = 'contenedor-GeneralF';
+  contenedorGeneralFeed.classList.add('contenedorGeneralF');
+  containerFeed.appendChild(contenedorGeneralFeed);
 
-  const logoFeed = document.createElement('img'); // Crea un elemento <img> y lo asigna a la variable logoFeed
-  logoFeed.classList.add('logoF'); // Agrega la clase 'logoF' al elemento
-  logoFeed.src = '../imagenes/logo-marchantes.png'; // Asigna la ruta de la imagen al atributo src del elemento
-  contenedorGeneralFeed.appendChild(logoFeed); // Agrega el elemento como hijo de contenedorGeneralFeed
+  const logoFeed = document.createElement('img');
+  logoFeed.src = '../imagenes/logo-marchantes.png';
+  contenedorGeneralFeed.appendChild(logoFeed);
 
-  const container = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable container
-  container.classList.add('compose-container'); // Agrega la clase 'compose-container' al elemento
+  const container = document.createElement('div');
+  container.classList.add('compose-container');
 
-  const textBox = document.createElement('textarea'); // Crea un elemento <textarea> y lo asigna a la variable textBox
-  textBox.classList.add('compose-text'); // Agrega la clase 'compose-text' al elemento
-  textBox.placeholder = '¿Qué hay de nuevo?'; // Asigna el texto del atributo placeholder del elemento
-  container.appendChild(textBox); // Agrega el elemento como hijo de container
+  const textBox = document.createElement('textarea');
+  textBox.classList.add('compose-text');
+  textBox.placeholder = '¿Qué hay de nuevo?';
+  container.appendChild(textBox);
 
-  const optionsBox = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable optionsBox
-  optionsBox.classList.add('compose-options'); // Agrega la clase 'compose-options' al elemento
-  container.appendChild(optionsBox); // Agrega el elemento como hijo de container
+  const optionsBox = document.createElement('div');
+  optionsBox.classList.add('compose-options');
+  container.appendChild(optionsBox);
 
-  const imageButton = document.createElement('label'); // Crea un elemento <label> y lo asigna a la variable imageButton
-  imageButton.classList.add('compose-option'); // Agrega la clase 'compose-option' al elemento
-  imageButton.htmlFor = 'compose-image-upload'; // Asigna el valor 'compose-image-upload' al atributo htmlFor del elemento
+  const imageButton = document.createElement('label');
+  imageButton.classList.add('compose-option');
+  imageButton.htmlFor = 'compose-image-upload';
 
-  const imageIcon = document.createElement('i'); // Crea un elemento <i> y lo asigna a la variable imageIcon
-  imageIcon.classList.add('fas', 'fa-image'); // Agrega las clases 'fas' y 'fa-image' al elemento
-  imageButton.appendChild(imageIcon); // Agrega el elemento imageIcon como hijo de imageButton
-  optionsBox.appendChild(imageButton); // Agrega el elemento imageButton como hijo de optionsBox
+  const imageIcon = document.createElement('i');
+  imageIcon.classList.add('fas', 'fa-image');
+  imageButton.appendChild(imageIcon);
+  optionsBox.appendChild(imageButton);
 
-  const imageUpload = document.createElement('input'); // Crea un elemento <input> y lo asigna a la variable imageUpload
-  imageUpload.type = 'file'; // Asigna el tipo 'file' al elemento
-  imageUpload.id = 'compose-image-upload'; // Asigna el valor 'compose-image-upload' al atributo id del elemento
-  imageUpload.multiple = true; // Permite seleccionar múltiples archivos
-  imageUpload.accept = 'image/*'; // Define que solo se aceptarán imágenes
-  optionsBox.appendChild(imageUpload); // Agrega el elemento imageUpload como hijo de optionsBox
+  const imageUpload = document.createElement('input');
+  imageUpload.type = 'file';
+  imageUpload.id = 'compose-image-upload';
+  imageUpload.multiple = true;
+  imageUpload.accept = 'image/*';
+  optionsBox.appendChild(imageUpload);
 
-  const sendButton = document.createElement('button'); // Crea un elemento <button> y lo asigna a la variable sendButton
-  sendButton.classList.add('compose-option', 'compose-send'); // Agrega las clases 'compose-option' y 'compose-send' al elemento
-  sendButton.textContent = 'Publicar'; // Asigna el texto 'Publicar' al contenido del elemento
-  optionsBox.appendChild(sendButton); // Agrega el elemento sendButton como hijo de optionsBox
+  const sendButton = document.createElement('button');
+  sendButton.classList.add('compose-option', 'compose-send');
+  sendButton.textContent = 'Publicar';
+  optionsBox.appendChild(sendButton);
 
-  sendButton.addEventListener('click', async () => { // Agrega un event listener para detectar el clic en sendButton
-    const postData = textBox.value; // Obtiene el valor del campo de texto textBox
+  sendButton.addEventListener('click', async () => {
+    const postData = textBox.value;
 
     try {
-      await createPost(postData); // Llama a la función createPost con el contenido del campo de texto
-      console.log('Post creado exitosamente');
-      textBox.value = ''; // Borra el contenido del campo de texto
-
+      await createPost(postData);
+      // console.log('Post creado exitosamente');
+      textBox.value = '';
     } catch (error) {
-      console.error('Error al crear el post:', error);
+      // console.error('Error al crear el post:', error);
     }
   });
 
-  contenedorGeneralFeed.appendChild(container); // Agrega el elemento container como hijo de contenedorGeneralFeed
+  contenedorGeneralFeed.appendChild(container);
 
-  const logoutButton = document.createElement('button'); // Crea un elemento <button> y lo asigna a la variable logoutButton
-  logoutButton.id = 'logout-button'; // Asigna el valor 'logout-button' al atributo id del elemento
-  logoutButton.classList.add('logout-button'); // Agrega la clase 'logout-button' al elemento
-  logoutButton.textContent = 'Salir'; // Asigna el texto 'Salir' al contenido del elemento
+  const logoutButton = document.createElement('button');
+  logoutButton.id = 'logout-button';
+  logoutButton.classList.add('logout-button');
+  logoutButton.textContent = 'Salir';
 
-  logoutButton.addEventListener('click', async () => { // Agrega un event listener para detectar el clic en logoutButton
+  logoutButton.addEventListener('click', async () => {
     try {
-      const auth = getAuth(); // Obtiene la autenticación actual
-      await signOut(auth); // Cierra la sesión con la autenticación
-      console.log('Cierre de sesión exitoso');
-      onNavigate('/'); // Navega a la página de inicio
-
+      const auth = getAuth();
+      await signOut(auth);
+      // console.log('Cierre de sesión exitoso');
+      onNavigate('/');
     } catch (error) {
-      console.error('Error durante el cierre de sesión:', error);
+      // console.error('Error durante el cierre de sesión:', error);
     }
   });
 
-  contenedorGeneralFeed.appendChild(logoutButton); // Agrega el elemento logoutButton como hijo
+  contenedorGeneralFeed.appendChild(logoutButton);
 
+  const postsContainer = document.createElement('div');
+  postsContainer.id = 'posts-container';
+  contenedorGeneralFeed.appendChild(postsContainer);
 
-
-  const postsContainer = document.createElement('div'); // Crea un elemento <div> y lo asigna a la variable postsContainer
-  postsContainer.id = 'posts-container'; // Asigna el valor 'posts-container' al atributo id del elemento
-  contenedorGeneralFeed.appendChild(postsContainer); // Agrega el elemento postsContainer como hijo de contenedorGeneralFeed
-
-  verPosts(updatePost); // Llama a la función verPosts y pasa la función updatePosts como argumento
-  console.log(getAuth().currentUser); // Imprime en la consola el usuario actual obtenido de la autenticación
-
+  verPosts(updatePost);
+  // console.log(getAuth().currentUser);
 
   async function updatePost(snapshot) {
-    postsContainer.innerHTML = ''; // Limpia el contenido de postsContainer
+    postsContainer.innerHTML = '';
 
     try {
-      snapshot.forEach((doc, index) => { // Itera sobre cada documento en el snapshot
-        const post = doc.data(); // Obtiene los datos del documento actual
-        
+      snapshot.forEach((doc, index) => {
+        const post = doc.data();
 
-        const listItem = document.createElement('div'); // Crea un elemento div
-        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`; // Crea el contenido de la publicación
-        listItem.textContent = postContent; // Asigna el contenido al elemento div
+        const listItem = document.createElement('div');
+        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
+        listItem.textContent = postContent;
 
-        const editField = document.createElement('textarea'); // Crea un elemento textarea
-        editField.classList.add('edit-field'); // Agrega la clase 'edit-field' al elemento
-        editField.value = post.text; // Asigna el valor del texto de la publicación al elemento textarea
-        editField.style.display = 'none'; // Oculta el elemento textarea
-        listItem.appendChild(editField); // Agrega el elemento textarea al elemento div
-        
+        const editField = document.createElement('textarea');
+        editField.classList.add('edit-field');
+        editField.value = post.text;
+        editField.style.display = 'none';
+        listItem.appendChild(editField);
+
         const editButton = document.createElement('button');
         editButton.id = 'edit-button';
         editButton.classList.add('edit-button');
         editButton.textContent = 'Editar';
         editButton.dataset.id = doc.id;
-        
 
+        const editButtonContainer = document.createElement('div');
+        editButtonContainer.appendChild(editButton);
 
-
-
-
-
-
-
-       
-        
-        const editButtonContainer = document.createElement('div'); // Crea un elemento <div> para contener el botón de edición
-        editButtonContainer.appendChild(editButton); // Agrega el botón de edición al contenedor
-        
         if (isAuthor(post)) {
-          editButtonContainer.style.display = 'block'; // Mostrar el contenedor del botón solo si el usuario es el autor del post
+          editButtonContainer.style.display = 'block';
         } else {
-          editButtonContainer.style.display = 'none'; // Ocultar el contenedor del botón si el usuario no es el autor del post
+          editButtonContainer.style.display = 'none';
         }
-        
-        editButton.addEventListener('click', () => {
-          listItem.removeChild(listItem.firstChild);
-          editField.style.display = 'block';
-          listItem.insertBefore(editField, listItem.firstChild);
-        });
-        
-        listItem.appendChild(editButtonContainer); // Agrega el contenedor del botón al elemento div
-        
-
-
-
-
-
-
 
         editButton.addEventListener('click', () => {
           listItem.removeChild(listItem.firstChild);
           editField.style.display = 'block';
           listItem.insertBefore(editField, listItem.firstChild);
         });
-        
 
+        listItem.appendChild(editButtonContainer);
 
-
-
-
+        editButton.addEventListener('click', () => {
+          listItem.removeChild(listItem.firstChild);
+          editField.style.display = 'block';
+          listItem.insertBefore(editField, listItem.firstChild);
+        });
 
         const saveButton = document.createElement('button');
         saveButton.id = 'save-button';
         saveButton.classList.add('save-button');
         saveButton.textContent = 'Guardar';
 
+        const saveButtonContainer = document.createElement('div');
+        saveButtonContainer.appendChild(saveButton);
 
-
-        const saveButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de guardar
-        saveButtonContainer.appendChild(saveButton); // Agrega el botón de guardar al contenedor
-        
-
-
-        
         if (isAuthor(post)) {
-          saveButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
+          saveButton.style.display = 'block';
         } else {
-          saveButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
+          saveButton.style.display = 'none';
         }
-        
+
         saveButton.addEventListener('click', async () => {
           const newPostData = editField.value;
           try {
             await editPost(doc.id, { text: newPostData });
-            console.log('Post editado exitosamente');
+            // console.log('Post editado exitosamente');
             listItem.removeChild(listItem.firstChild);
             listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
           } catch (error) {
-            console.error('Error al editar el post:', error);
+            // console.error('Error al editar el post:', error);
           }
         });
-        
+
         listItem.appendChild(saveButton);
-        
 
+        listItem.appendChild(saveButtonContainer);
 
-        listItem.appendChild(saveButtonContainer); // Agrega el contenedor del botón al elemento div
+        // Botón eliminar post
 
+        const deleteButton = document.createElement('button');
+        deleteButton.id = 'delete-button';
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.dataset.id = doc.id;
 
-  // Botón eliminar post
+        const deleteButtonContainer = document.createElement('div');
+        deleteButtonContainer.appendChild(deleteButton);
 
-  const deleteButton = document.createElement('button');
-  deleteButton.id = 'delete-button';
-  deleteButton.classList.add('delete-button');
-  deleteButton.textContent = 'Eliminar';
-  deleteButton.dataset.id = doc.id; // Almacenar el ID del post en el botón Eliminar
+        if (isAuthor(post)) {
+          deleteButton.style.display = 'block';
+        } else {
+          deleteButton.style.display = 'none';
+        }
 
+        deleteButton.addEventListener('click', async (event) => {
+          const postId = event.target.dataset.id;
+          try {
+            await deletePost(postId);
+            // console.log('Post eliminado exitosamente');
+          } catch (error) {
+            // console.error('Error al eliminar el post:', error);
+          }
+        });
 
+        listItem.appendChild(deleteButton);
 
-  const deleteButtonContainer = document.createElement('div'); // Crea un contenedor para el botón de guardar
-  deleteButtonContainer.appendChild(deleteButton); // Agrega el botón de guardar al contenedor
-  
+        postsContainer.appendChild(listItem);
 
-
-
-  if (isAuthor(post)) {
-    deleteButton.style.display = 'block'; // Mostrar el botón solo si el usuario es el autor del post
-  } else {
-    deleteButton.style.display = 'none'; // Ocultar el botón si el usuario no es el autor del post
-  }
-
-
-
-
-  deleteButton.addEventListener('click', async (event) => {
-    const postId = event.target.dataset.id;
-    try {
-      await deletePost(postId);
-      console.log('Post eliminado exitosamente');
-    } catch (error) {
-      console.error('Error al eliminar el post:', error);
-    }
-  });
-
-  listItem.appendChild(deleteButton);
-
-  postsContainer.appendChild(listItem);
-
-  listItem.appendChild(deleteButtonContainer); // Agrega el contenedor del botón al elemento div
-
-
+        listItem.appendChild(deleteButtonContainer);
 
         // Separador
         if (index !== snapshot.size - 1) {
@@ -255,7 +210,7 @@ export function feed() {
         }
       });
     } catch (error) {
-      console.error('Error al obtener los posts:', error);
+      // console.error('Error al obtener los posts:', error);
     }
   }
 

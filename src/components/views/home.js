@@ -28,8 +28,7 @@ export function home() {
 
   iniciarSesionBtnHome.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate('/login')
-
+    onNavigate('/login');
   });
 
   contenedorGeneralHome.appendChild(iniciarSesionBtnHome);
@@ -42,10 +41,8 @@ export function home() {
 
   registroLinkHome.addEventListener('click', (event) => {
     event.preventDefault();
-    onNavigate('/register')
-
+    onNavigate('/register');
   });
-
   contenedorGeneralHome.appendChild(registroLinkHome);
 
   // Footer
