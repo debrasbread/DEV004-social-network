@@ -68,6 +68,7 @@ export function feed() {
 
   contenedorGeneralFeed.appendChild(container);
 
+  // Botón cerrar sesión
   const logoutButton = document.createElement('button');
   logoutButton.id = 'logout-button';
   logoutButton.classList.add('logout-button');
@@ -89,8 +90,6 @@ export function feed() {
   const postsContainer = document.createElement('div');
   postsContainer.id = 'posts-container';
   contenedorGeneralFeed.appendChild(postsContainer);
-
-  verPosts(updatePost);
   // console.log(getAuth().currentUser);
 
   async function updatePost(snapshot) {
@@ -213,6 +212,6 @@ export function feed() {
       // console.error('Error al obtener los posts:', error);
     }
   }
-
+  verPosts(updatePost);
   return containerFeed;
 }

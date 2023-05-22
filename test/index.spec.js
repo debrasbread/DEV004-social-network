@@ -1,40 +1,29 @@
-// importamos la funcion que vamos a testear
-/*
-import { myFunction } from '../src/lib/index';
+import { addRoutes } from '../src/lib/router/index.js';
+import { home } from '../src/components/views/home.js';
 
-describe('myFunction', () => {
-  it('debería ser una función', () => {
-    expect(typeof myFunction).toBe('function');
-  });
-});
+test('La función home debe retornar un contenedor principal con sus elementos', () => {
+  const container = document.createElement('div');
 
-*/
+  container.appendChild(home());
 
-import { home } from './src/components/views/home'; // Corregir ruta
+  expect(container.querySelector('.backgroundImgH')).toBeTruthy();
+  expect(container.querySelector('.logoH')).toBeTruthy();
+  expect(container.querySelector('.iniciarSesionBtnH')).toBeTruthy();
+  expect(container.querySelector('.registroLinkH')).toBeTruthy();
+  expect(container.querySelector('.footerH')).toBeTruthy();
 
-test('La función home debe retornar un contenedor principal con los elementos adecuados', () => {
+  const onNavigateMock = jest.fn();
 
-});
+  const originalOnNavigate = addRoutes.onNavigate;
+  addRoutes.onNavigate = onNavigateMock;
 
-const container = document.createElement('div');
+  container.querySelector('.iniciarSesionBtnH').click();
+  expect(onNavigateMock).toHaveBeenCalledWith('/login');
 
-container.appendChild(home());
+  container.querySelector('.registroLinkH a').click();
+  expect(onNavigateMock).toHaveBeenCalledWith('/register');
 
-expect(container.querySelector('.backgroundImgH')).toBeTruthy();
-expect(container.querySelector('.logoH')).toBeTruthy();
-expect(container.querySelector('.iniciarSesionBtnH')).toBeTruthy();
-expect(container.querySelector('.registroLinkH')).toBeTruthy();
-expect(container.querySelector('.footerH')).toBeTruthy();
-
-const onNavigateMock = jest.fn();
-
-container.querySelector('.iniciarSesionBtnH').click();
-expect(onNavigateMock).toHaveBeenCalledWith('/login');
-
-container.querySelector('.registroLinkH').click();
-expect(onNavigateMock).toHaveBeenCalledWith('/register');
-
-afterEach(() => {
-  // Restaurar el estado original del DOM después de cada prueba
   container.innerHTML = '';
+
+  addRoutes.onNavigate = originalOnNavigate;
 });
