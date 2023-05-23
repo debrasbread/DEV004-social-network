@@ -114,14 +114,6 @@ export function login() {
         // console.log('No hay usuario autenticado');
       }
 
-      // Ejemplo de uso de 'getUserProfile'
-      /*  try {
-          const userProfile = await getUserProfile();
-          console.log('Perfil de usuario:', userProfile);
-        } catch (error) {
-          console.log('Error al obtener perfil de usuario:', error);
-        } */
-
       // onNavigate('/feed');
     } catch (error) {
       // console.log('Error al crear usuario:', error);
