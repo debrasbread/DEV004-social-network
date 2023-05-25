@@ -22,7 +22,7 @@
 }
 
 .logoF::before {
-    content: url('../imagenes/logo-marchantes.png');
+    image-rendering: url('../imagenes/logo-marchantes-feed.png');
     display: block;
     position: absolute;
     top: 30%;
@@ -30,8 +30,6 @@
     transform: translate(-50%, -50%);
   }
   
-
-
 .compose-container {
   margin-top: 20px;
   background-color: #fff;
