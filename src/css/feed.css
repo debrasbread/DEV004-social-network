@@ -21,10 +21,16 @@
   padding: 20px;
 }
 
-.logoF {
-  max-width: 200px;
-  margin-bottom: 20px;
-}
+.logoF::before {
+    content: url('../imagenes/logo-marchantes.png');
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+
 
 .compose-container {
   margin-top: 20px;

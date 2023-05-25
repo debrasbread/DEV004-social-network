@@ -28,10 +28,13 @@
   object-fit: cover;
 }
 
-.logoL {
-  width: 20vh;
-  height: 20vh;
-  margin-bottom: 2em;
+.logoL::before {
+  content: url('../imagenes/logo-marchantes.png');
+  display: block;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .emailLabelL {

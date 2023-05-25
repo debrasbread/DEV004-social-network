@@ -28,14 +28,13 @@
   object-fit: cover;
 }
 
-.logoH {
+.logoH::before {
+  content: url('../imagenes/logo-marchantes.png');
+  display: block;
   position: absolute;
-  top: 36%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20vh;
-  height: 20vh;
-  margin-bottom: 28vh;
 }
 
 .iniciarSesionBtnH {

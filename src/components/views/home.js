@@ -18,7 +18,7 @@ export function home() {
   // Logo
   const logoHome = document.createElement('img');
   logoHome.classList.add('logoH');
-  logoHome.src = '../imagenes/logo-marchantes.png';
+  logoHome.src = '../imagenes/logo-marchantes-feed.png';
   contenedorGeneralHome.appendChild(logoHome);
 
   // Botón 'Iniciar sesión'

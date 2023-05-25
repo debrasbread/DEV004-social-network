@@ -18,7 +18,7 @@ export function feed() {
   containerFeed.appendChild(contenedorGeneralFeed);
 
   const logoFeed = document.createElement('img');
-  logoFeed.src = '../imagenes/logo-marchantes.png';
+  logoFeed.src = '../imagenes/logo-marchantes-feed.png';
   contenedorGeneralFeed.appendChild(logoFeed);
 
   const container = document.createElement('div');
