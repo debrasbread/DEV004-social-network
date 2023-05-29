@@ -135,7 +135,7 @@ export function login() {
   // Logo de Google
   const logoGoogleLogin = document.createElement('img');
   logoGoogleLogin.src = '../imagenes/logo-google.png';
-  logoGoogleLogin.alt = 'Iniciar sesión con Google';
+  // logoGoogleLogin.alt = 'Iniciar sesión con Google';
   googleBtnLogin.appendChild(logoGoogleLogin);
 
   // Click y mensaje de error Google

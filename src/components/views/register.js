@@ -127,7 +127,7 @@ export function register() {
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
-  logoGoogleRegister.alt = 'Iniciar sesión con Google';
+  // logoGoogleRegister.alt = 'Iniciar sesión con Google';
   googleBtnRegister.appendChild(logoGoogleRegister);
 
   // Click y mensaje de error Google

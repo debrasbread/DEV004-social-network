@@ -21,14 +21,13 @@
   padding: 20px;
 }
 
-.logoF::before {
-    display: block;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
+.logoF {
+  content: url('../imagenes/logo-marchantes-feed.png');
+  display: block;
+  position: relative;
+  top: 5px;
+}
+
 .compose-container {
   margin-top: 20px;
   background-color: #fff;
