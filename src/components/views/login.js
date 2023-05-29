@@ -23,11 +23,13 @@ export function login() {
   contenedorGeneralLogin.appendChild(logoLogin);
 
   // Texto "Iniciar sesión"
+  /*
   const iniciarSesionLogin = document.createElement('h1');
   iniciarSesionLogin.id = 'iniciarSesionL';
   iniciarSesionLogin.classList.add('iniciarSesionL');
   iniciarSesionLogin.textContent = 'Iniciar sesión';
   contenedorGeneralLogin.appendChild(iniciarSesionLogin);
+*/
 
   // Texto "Nombre" + label + input
   const nombreLabelLogin = document.createElement('label');
@@ -40,7 +42,7 @@ export function login() {
   const nombreInputLogin = document.createElement('input');
   nombreInputLogin.setAttribute('type', 'text');
   nombreInputLogin.setAttribute('id', 'nombre-InputL');
-  nombreInputLogin.classList.add('nombreInputL');
+  nombreInputLogin.classList.add('nombreInputLog');
   contenedorGeneralLogin.appendChild(nombreInputLogin);
 
   // Texto "Email" + label + input

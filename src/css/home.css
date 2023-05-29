@@ -25,12 +25,12 @@
   object-fit: cover;
 }
 
-.logoH::before {
-  /* content: url('../imagenes/logo-marchantes.png'); */
+.logoH {
+  content: url('../imagenes/logo-marchantes.png');
   display: block;
-  position: relative;
-  /* Cambiado de absolute a relative */
-  top: 30%;
+  position: absolute;
+  top: 190px;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
