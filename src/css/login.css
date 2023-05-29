@@ -32,7 +32,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -10px; /* Ajusta la distancia vertical según tu preferencia */
+  margin-top: -10px; 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 200px; 
+  height: 200px; 
+  margin-bottom: 30px; 
 }
 
 .nombreLabelL {
