@@ -1,16 +1,13 @@
 /*********HOME*********/
-
 .contenedorGeneralH {
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.313);
-  height: 100%;
-  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
 }
 
 .backgroundImgH {
@@ -29,18 +26,28 @@
 }
 
 .logoH::before {
-  content: url('../imagenes/logo-marchantes.png');
+  /* content: url('../imagenes/logo-marchantes.png'); */
   display: block;
-  position: absolute;
+  position: relative;
+  /* Cambiado de absolute a relative */
   top: 30%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .iniciarSesionBtnH {
+  min-width: 130px;
+  height: 40px;
+  color: #2d2b2b;
   padding: 5px;
-  color: #161515;
-  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0;
   margin-top: 10%;
 }
 
@@ -49,7 +56,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 3px;
-  top: 70vh;
+  top: 75vh;
   left: 0;
   right: 0;
   margin: auto;

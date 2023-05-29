@@ -1,16 +1,14 @@
 /*********LOGIN*********/
 
 .contenedorGeneralL {
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: left;
-  background-color: rgba(255, 255, 255, 0.313);
-  height: 100%;
-  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
 }
 
 .backgroundImgL {
@@ -58,15 +56,37 @@
 }
 
 .continuarBtnL {
+  min-width: 130px;
+  height: 40px;
+  color: #2d2b2b;
   padding: 5px;
-  color: #161515;
-  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0;
   margin-top: 10%;
 }
 
 #continuar-GoogleBtnL {
-  margin-top: 2em;
-  background-color: #ffffff;
+  min-width: 130px;
+  height: 40px;
+  color: #2d2b2b;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0;
+  margin-top: 50px;
 }
 
 .logoGoogleL {

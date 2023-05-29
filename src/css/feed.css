@@ -22,7 +22,6 @@
 }
 
 .logoF::before {
-    image-rendering: url('../imagenes/logo-marchantes-feed.png');
     display: block;
     position: absolute;
     top: 30%;
@@ -109,6 +108,5 @@
   height: 50px;
   text-align: center;
   padding: 10px;
-  /* font-family: "Poppins"; */
   font-size: small;
 }

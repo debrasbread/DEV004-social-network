@@ -1,16 +1,14 @@
 /*******REGISTER*******/
 
 .contenedorGeneralR {
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: left;
-  background-color: rgba(255, 255, 255, 0.313);
-  height: 100%;
-  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
 }
 
 .backgroundImgR {
@@ -25,47 +23,60 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 50%;
+  opacity: 45%;
 }
 
-.logoR::before {
+.logoR {
   content: url('../imagenes/logo-marchantes.png');
   display: block;
   position: absolute;
-  top: 30%;
+  top: 190px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-/*
-  .uneteR {
-    margin-top: 10px;
-    position: absolute;
-    bottom: 600px;
-  }
-  */
-
 .formularioR {
   display: flex;
   flex-direction: column;
-  padding-top: 400px;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin-top: 150px; /* Ajusta el margen vertical aquí */
+  padding: 20px;
+  position: relative;
 }
 
 .continuarBtnR {
-  background-color: #47b88f;
-  color: #161515;
-  justify-content: center;
-  align-items: center;
-  margin-top: 350px;
+  min-width: 130px;
+  height: 40px;
+  color: #2d2b2b;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0;
+  margin-top: 10%;
 }
 
 .googleBtnR {
-  background-color: #ffffff;
-  justify-content: center;
-  align-items: center;
+  min-width: 130px;
+  height: 40px;
+  color: #2d2b2b;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0;
   margin-top: 50px;
 }
 
@@ -82,6 +93,5 @@
   height: 50px;
   text-align: center;
   padding: 10px;
-  /* font-family: "Poppins"; */
   font-size: small;
 }
