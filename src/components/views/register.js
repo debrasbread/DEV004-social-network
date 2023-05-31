@@ -3,111 +3,97 @@ import { onNavigate } from '../../lib/router/index';
 
 export function register() {
   // Creación de div y asignación a variable container
-  const containerRegister = document.createElement('main');
+  const registerContainer = document.createElement('main');
+  registerContainer.classList.add('containerR');
 
   // Imagen de fondo
-  const backgroundImgRegister = document.createElement('img');
-  backgroundImgRegister.classList.add('backgroundImgR');
-  containerRegister.appendChild(backgroundImgRegister);
-
-  // Contenedor de elementos
-  const contenedorGeneralRegister = document.createElement('main');
-  contenedorGeneralRegister.id = 'contenedor-GeneralR';
-  contenedorGeneralRegister.classList.add('contenedorGeneralR');
-  containerRegister.appendChild(contenedorGeneralRegister);
+  const registerBackgroundImg = document.createElement('img');
+  registerBackgroundImg.classList.add('backgroundImgR');
+  registerContainer.appendChild(registerBackgroundImg);
 
   // Logo
-  const logoRegister = document.createElement('img');
-  logoRegister.classList.add('logoR');
-  logoRegister.src = '../imagenes/logo-marchantes.png';
-  contenedorGeneralRegister.appendChild(logoRegister);
-
-  /*
-    // Texto 'Únete a Marchantes'
-    const uneteRegister = document.createElement('h1');
-    uneteRegister.id = 'iniciarSesionL';
-    uneteRegister.classList.add('uneteR');
-    uneteRegister.textContent = 'Únete a Marchantes';
-    contenedorGeneralRegister.appendChild(uneteRegister);
-  */
+  const registerLogo = document.createElement('img');
+  registerLogo.classList.add('logoR');
+  registerLogo.src = '../imagenes/logo-marchantes.png';
+  registerContainer.appendChild(registerLogo);
 
   // Formulario
-  const formularioRegister = document.createElement('form');
-  formularioRegister.id = 'formulario-Register';
-  formularioRegister.classList.add('formularioR');
-  contenedorGeneralRegister.appendChild(formularioRegister);
+  const registerForm = document.createElement('form');
+  registerForm.id = 'formulario-Register';
+  registerForm.classList.add('formularioR');
+  registerContainer.appendChild(registerForm);
 
-  // Nombre completo label + input
-  const nombreLabelRegister = document.createElement('label');
-  nombreLabelRegister.textContent = 'Nombre completo:';
-  nombreLabelRegister.setAttribute('for', 'nombre-InputR');
+  // Nombre label e input
+  const NameLabelRegister = document.createElement('label');
+  NameLabelRegister.textContent = 'Nombre completo:';
+  NameLabelRegister.setAttribute('for', 'nombre-InputR');
 
-  const nombreInputRegister = document.createElement('input');
-  nombreInputRegister.type = 'text';
-  nombreInputRegister.id = 'nombre-InputR';
-  nombreInputRegister.required = true;
-  nombreInputRegister.classList.add('nombreInputR');
+  const nameInputRegister = document.createElement('input');
+  nameInputRegister.type = 'text';
+  nameInputRegister.id = 'nombre-InputR';
+  nameInputRegister.required = true;
+  nameInputRegister.classList.add('nombreInputR');
 
-  formularioRegister.append(nombreLabelRegister, nombreInputRegister);
+  registerForm.append(NameLabelRegister, nameInputRegister);
 
-  // Email label + input
+  // Email label e input
   const emailLabelRegister = document.createElement('label');
   emailLabelRegister.textContent = 'Correo electrónico:';
   emailLabelRegister.setAttribute('for', 'email-InputR');
 
-  const emailInputRegister = document.createElement('input');
-  emailInputRegister.type = 'email';
-  emailInputRegister.id = 'email-InputR';
-  emailInputRegister.required = true;
-  emailInputRegister.classList.add('emailInputR');
+  const registerEmailInput = document.createElement('input');
+  registerEmailInput.type = 'email';
+  registerEmailInput.id = 'email-InputR';
+  registerEmailInput.required = true;
+  registerEmailInput.classList.add('emailInputR');
 
-  formularioRegister.append(emailLabelRegister, emailInputRegister);
+  registerForm.append(emailLabelRegister, registerEmailInput);
 
   // Contraseña
-  const contrasenaLabelRegister = document.createElement('label');
-  contrasenaLabelRegister.textContent = 'Contraseña:';
-  contrasenaLabelRegister.setAttribute('for', 'contrasena');
+  const registerPasswordLabel = document.createElement('label');
+  registerPasswordLabel.textContent = 'Contraseña:';
+  registerPasswordLabel.setAttribute('for', 'contrasena');
 
-  const contrasenaInputRegister = document.createElement('input');
-  contrasenaInputRegister.type = 'password';
-  contrasenaInputRegister.id = 'contrasena-InputR';
-  contrasenaInputRegister.required = true;
-  contrasenaInputRegister.classList.add('contrasenaInputR');
+  const registerPasswordInput = document.createElement('input');
+  registerPasswordInput.type = 'password';
+  registerPasswordInput.id = 'contrasena-InputR';
+  registerPasswordInput.required = true;
+  registerPasswordInput.classList.add('contrasenaInputR');
 
-  formularioRegister.append(contrasenaLabelRegister, contrasenaInputRegister);
+  registerForm.append(registerPasswordLabel, registerPasswordInput);
 
   // Agregar el formulario al body del documento
-  contenedorGeneralRegister.append(formularioRegister);
+  registerContainer.append(registerForm);
 
   // Botón 'Continuar'
 
-  const continuarBtnRegister = document.createElement('button');
-  continuarBtnRegister.classList.add('continuarBtnR');
-  continuarBtnRegister.textContent = 'Continuar';
-  contenedorGeneralRegister.appendChild(continuarBtnRegister);
+  const registerContinueButton = document.createElement('button');
+  registerContinueButton.classList.add('continuarBtnR');
+  registerContinueButton.textContent = 'Continuar';
+  registerContainer.appendChild(registerContinueButton);
 
   // Click y mensaje de error
   // console.log('Se crea msj de error');
-  const registroMensaje = document.createElement('p');
-  registroMensaje.textContent = 'Debes registrarte para continuar';
-  registroMensaje.classList.add('registro-mensaje');
-  formularioRegister.appendChild(registroMensaje);
+  const registerMessage = document.createElement('p');
+  registerMessage.textContent = 'Debes registrarte para continuar';
+  registerMessage.classList.add('registro-mensaje');
+  registerForm.appendChild(registerMessage);
 
-  registroMensaje.style.display = 'none';
+  registerMessage.style.display = 'none';
 
-  continuarBtnRegister.addEventListener('click', async (event) => {
+  registerContinueButton.addEventListener('click', async (event) => {
     // console.log('Click en btn Continuar');
     event.preventDefault();
-    const nombre = nombreInputRegister.value; // Obtener el valor del nombre
-    const email = emailInputRegister.value;
-    const contrasena = contrasenaInputRegister.value;
-    if (!nombre || !email || !contrasena) {
+    const name = nameInputRegister.value; // Obtener el valor del nombre
+    const email = registerEmailInput.value;
+    const password = registerPasswordInput.value;
+    if (!name || !email || !password) {
       // console.log('Nombre, email o contraseña vacíos, se muestra msj de error');
-      registroMensaje.style.display = 'block';
+      registerMessage.style.display = 'block';
       return;
     }
     try {
-      await createUser(nombre, email, contrasena);
+      await createUser(name, email, password);
       // console.log('Usuario creado satisfactoriamente');
       onNavigate('/feed');
     } catch (error) {
@@ -120,25 +106,25 @@ export function register() {
   });
 
   // Botón 'Continuar con Google'
-  const googleBtnRegister = document.createElement('button');
-  googleBtnRegister.classList.add('googleBtnR');
-  googleBtnRegister.textContent = 'Continuar con Google';
+  const registerGoogleButton = document.createElement('button');
+  registerGoogleButton.classList.add('googleBtnR');
+  registerGoogleButton.textContent = 'Continuar con Google';
 
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
   // logoGoogleRegister.alt = 'Iniciar sesión con Google';
-  googleBtnRegister.appendChild(logoGoogleRegister);
+  registerGoogleButton.appendChild(logoGoogleRegister);
 
   // Click y mensaje de error Google
-  const registroMensajeGoogle = document.createElement('p');
-  registroMensajeGoogle.textContent = 'Debes registrarte para continuar';
-  registroMensajeGoogle.classList.add('registro-mensaje');
-  formularioRegister.appendChild(registroMensajeGoogle);
+  const registerGoogleMessage = document.createElement('p');
+  registerGoogleMessage.textContent = 'Debes registrarte para continuar';
+  registerGoogleMessage.classList.add('registro-mensaje');
+  registerForm.appendChild(registerGoogleMessage);
 
-  registroMensajeGoogle.style.display = 'none';
+  registerGoogleMessage.style.display = 'none';
 
-  googleBtnRegister.addEventListener('click', async (event) => {
+  registerGoogleButton.addEventListener('click', async (event) => {
     // console.log('Click en btn Continuar con Google');
     event.preventDefault();
     try {
@@ -154,14 +140,6 @@ export function register() {
     }
   });
 
-  contenedorGeneralRegister.appendChild(googleBtnRegister);
-
-  // Footer
-  const footerRegister = document.createElement('footer');
-  footerRegister.id = 'footer-Register';
-  footerRegister.classList.add('footerR');
-  footerRegister.textContent = 'Marchantes, 2023';
-  contenedorGeneralRegister.appendChild(footerRegister);
-
-  return containerRegister;
+  registerContainer.appendChild(registerGoogleButton);
+  return registerContainer;
 }

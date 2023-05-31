@@ -1,6 +1,4 @@
-/*******REGISTER*******/
-
-.contenedorGeneralR {
+.containerR{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,22 +21,14 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 45%;
+  opacity: 0.45;
 }
 
 .logoR {
-  content: url('../imagenes/logo-marchantes.png');
   display: block;
-  position: absolute;
-  top: 190px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 200px; 
-  height: 200px; 
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
+  width: 200px;
+  height: 200px;
 }
 
 .formularioR {
@@ -46,10 +36,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 800px;
   margin-top: 150px;
   padding: 20px;
-  position: relative;
 }
 
 .continuarBtnR {
@@ -88,16 +76,34 @@
 
 .logoGoogleR {
   margin-right: 8px;
-  /* Espacio entre el logo y el texto */
 }
 
-.footerR {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  text-align: center;
-  padding: 10px;
-  font-size: small;
+/* Dispositivos móviles pequeños (por ejemplo, iPhone) */
+@media only screen and (max-width: 480px) {
+  /* Agrega tus estilos específicos para dispositivos móviles pequeños aquí */
+}
+
+/* Dispositivos móviles medianos (por ejemplo, tablets) */
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  /* Agrega tus estilos específicos para dispositivos móviles medianos aquí */
+}
+
+/* Dispositivos móviles grandes (por ejemplo, tablets en modo apaisado) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Agrega tus estilos específicos para dispositivos móviles grandes aquí */
+}
+
+/* Pantallas pequeñas y dispositivos con resolución baja */
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+  /* Agrega tus estilos específicos para pantallas pequeñas aquí */
+}
+
+/* Pantallas medianas y dispositivos con resolución media */
+@media only screen and (min-width: 1367px) and (max-width: 1680px) {
+  /* Agrega tus estilos específicos para pantallas medianas aquí */
+}
+
+/* Pantallas grandes y dispositivos con resolución alta */
+@media only screen and (min-width: 1681px) {
+  /* Agrega tus estilos específicos para pantallas grandes aquí */
 }

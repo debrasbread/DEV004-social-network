@@ -1,57 +1,62 @@
+// Importo la función onNavigate desde el módulo '../../lib/router/index'
 import { onNavigate } from '../../lib/router/index';
 
+// Defino la función home
 export function home() {
-  // Creación de main y asignación a variable home
+  // Creo un elemento <main> y lo asigno a la variable containerHome
   const containerHome = document.createElement('main');
+  // Agrego la clase 'containerHome' al elemento containerHome
+  containerHome.classList.add('containerHome');
 
-  // Imagen de fondo
+  // Creo un elemento <img> y lo asigno a la variable backgroundImgHome
   const backgroundImgHome = document.createElement('img');
+  // Agrego la clase 'backgroundImgH' al elemento backgroundImgHome
   backgroundImgHome.classList.add('backgroundImgH');
+  // Agrego el elemento backgroundImgHome como hijo del elemento containerHome
   containerHome.appendChild(backgroundImgHome);
 
-  // Contenedor de elementos
-  const contenedorGeneralHome = document.createElement('main');
-  contenedorGeneralHome.id = 'contenedor-GeneralH';
-  contenedorGeneralHome.classList.add('contenedorGeneralH');
-  containerHome.appendChild(contenedorGeneralHome);
-
-  // Logo
+  // Creo un elemento <img> y lo asigno a la variable logoHome
   const logoHome = document.createElement('img');
+  // Agrego la clase 'logoH' al elemento logoHome
   logoHome.classList.add('logoH');
+  // Establezco la ruta de la imagen para el atributo src del elemento logoHome
   logoHome.src = '../imagenes/logo-marchantes.png';
-  contenedorGeneralHome.appendChild(logoHome);
+  // Agrego el elemento logoHome como hijo del elemento containerHome
+  containerHome.appendChild(logoHome);
 
-  // Botón 'Iniciar sesión'
-  const iniciarSesionBtnHome = document.createElement('button');
-  iniciarSesionBtnHome.classList.add('iniciarSesionBtnH');
-  iniciarSesionBtnHome.textContent = 'Iniciar sesión';
+  // Creo un elemento <button> y lo asigno a la variable loginButtonHome
+  const loginButtonHome = document.createElement('button');
+  // Agrego la clase 'loginBtnH' al elemento loginButtonHome
+  loginButtonHome.classList.add('loginBtnH');
+  // Establezco el texto 'Iniciar sesión' como contenido del elemento loginButtonHome
+  loginButtonHome.textContent = 'Iniciar sesión';
 
-  iniciarSesionBtnHome.addEventListener('click', (event) => {
+  // Agrego un evento de clic al elemento loginButtonHome
+  loginButtonHome.addEventListener('click', (event) => {
+    // Evito el comportamiento predeterminado del evento de clic
     event.preventDefault();
+    // Llamo a la función onNavigate con la ruta '/login' como argumento
     onNavigate('/login');
   });
+  // Agrego el elemento loginButtonHome como hijo del elemento containerHome
+  containerHome.appendChild(loginButtonHome);
 
-  contenedorGeneralHome.appendChild(iniciarSesionBtnHome);
+  // Creo un elemento <p> y lo asigno a la variable registerLinkHome
+  const registerLinkHome = document.createElement('p');
+  // Agrego la clase 'registerLinkH' al elemento registerLinkHome
+  registerLinkHome.classList.add('registerLinkH');
+  // Establezco el contenido HTML del elemento registerLinkHome
+  registerLinkHome.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
 
-  // Texto e hipervínculo 'Regístrate'
-  const registroLinkHome = document.createElement('p');
-  registroLinkHome.classList.add('registroLinkH');
-  registroLinkHome.innerHTML = '¿No tienes una cuenta? <a href="#">Regístrate</a>.';
-  contenedorGeneralHome.appendChild(registroLinkHome);
-
-  registroLinkHome.addEventListener('click', (event) => {
+  // Agrego un evento de clic al elemento registerLinkHome
+  registerLinkHome.addEventListener('click', (event) => {
+    // Evito el comportamiento predeterminado del evento de clic
     event.preventDefault();
+    // Llamo a la función onNavigate con la ruta '/register' como argumento
     onNavigate('/register');
   });
-  contenedorGeneralHome.appendChild(registroLinkHome);
-
-  // Footer
-  const footerHome = document.createElement('footer');
-  footerHome.id = 'footer-Home';
-  footerHome.classList.add('footerH');
-  footerHome.textContent = 'Marchantes, 2023';
-  contenedorGeneralHome.appendChild(footerHome);
-
-  // Retorna el contenedor principal
+  // Agrego el elemento registerLinkHome como hijo del elemento containerHome
+  containerHome.appendChild(registerLinkHome);
+  // Retorno el contenedor principal
   return containerHome;
 }

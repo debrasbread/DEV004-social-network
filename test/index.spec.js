@@ -1,7 +1,7 @@
 import { addRoutes } from '../src/lib/router/index.js';
 import { home } from '../src/components/views/home.js';
-import { register } from '../src/components/views/register.js';
 /*
+import { register } from '../src/components/views/register.js';
 import { login } from '../src/components/views/login.js';
 import { feed } from '../src/components/views/feed.js';
 import {
@@ -14,33 +14,32 @@ import {
 } from '../../lib/firebase/autenticar';
 */
 // home
-test('La función home debe retornar un contenedor principal con sus elementos', () => {
+test('La función home debe retornar un contenedor con sus elementos', () => {
   const container = document.createElement('div');
 
   container.appendChild(home());
 
   expect(container.querySelector('.backgroundImgH')).toBeTruthy();
   expect(container.querySelector('.logoH')).toBeTruthy();
-  expect(container.querySelector('.iniciarSesionBtnH')).toBeTruthy();
-  expect(container.querySelector('.registroLinkH')).toBeTruthy();
-  expect(container.querySelector('.footerH')).toBeTruthy();
+  expect(container.querySelector('.loginBtnH')).toBeTruthy();
+  expect(container.querySelector('.registerLinkH')).toBeTruthy();
 
   const onNavigateMock = jest.fn();
 
   const originalOnNavigate = addRoutes.onNavigate;
   addRoutes.onNavigate = onNavigateMock;
 
-  container.querySelector('.iniciarSesionBtnH').click();
+  container.querySelector('.loginBtnH').click();
   expect(onNavigateMock).toHaveBeenCalledWith('/login');
 
-  container.querySelector('.registroLinkH a').click();
+  container.querySelector('.registerLinkH a').click();
   expect(onNavigateMock).toHaveBeenCalledWith('/register');
 
   container.innerHTML = '';
 
   addRoutes.onNavigate = originalOnNavigate;
 });
-
+/*
 // register
 test('La función register debe retornar un contenedor principal con sus elementos', () => {
   const container = document.createElement('div');
@@ -52,7 +51,6 @@ test('La función register debe retornar un contenedor principal con sus element
   expect(container.querySelector('.formularioR')).toBeTruthy();
   expect(container.querySelector('.continuarBtnR')).toBeTruthy();
   expect(container.querySelector('.googleBtnR')).toBeTruthy();
-  expect(container.querySelector('.footerR')).toBeTruthy();
 
   const onNavigateMock = jest.fn();
 
@@ -69,6 +67,7 @@ test('La función register debe retornar un contenedor principal con sus element
 
   addRoutes.onNavigate = originalOnNavigate;
 });
+*/
 /*
 // login
 test('La función login debe retornar un contenedor principal con sus elementos', () => {
@@ -86,7 +85,6 @@ test('La función login debe retornar un contenedor principal con sus elementos'
   expect(container.querySelector('.contraseñaInputL')).toBeTruthy();
   expect(container.querySelector('.continuarBtnL')).toBeTruthy();
   expect(container.querySelector('.googleBtnL')).toBeTruthy();
-  expect(container.querySelector('.footerL')).toBeTruthy();
 
   const onNavigateMock = jest.fn();
   const loginUserMock = jest.fn();

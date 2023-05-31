@@ -1,5 +1,5 @@
 /*********HOME*********/
-.contenedorGeneralH {
+.containerHome {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,13 +35,13 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 200px; 
-  height: 200px; 
+  width: 200px;
+  height: 200px;
   margin-top: 20px;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
-.iniciarSesionBtnH {
+.loginBtnH {
   min-width: 130px;
   height: 40px;
   color: #2d2b2b;
@@ -58,7 +58,7 @@
   margin-top: 10%;
 }
 
-.registroLinkH {
+.registerLinkH {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -68,16 +68,4 @@
   right: 0;
   margin: auto;
   width: 30vh;
-}
-
-.footerH {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  text-align: center;
-  padding: 10px;
-  /* font-family: "Poppins"; */
-  font-size: small;
 }

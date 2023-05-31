@@ -1,176 +1,220 @@
+// Importar funciones de autenticación
 import { signInGoogle, loginUser, user } from '../../lib/firebase/autenticar';
+// Importar función de navegación
 import { onNavigate } from '../../lib/router/index';
 
 export function login() {
-  // Creación de main y asignación a variable container
-  const containerLogin = document.createElement('main');
+  // Crear elemento 'main' y asignarlo a la variable loginContainer
+  const loginContainer = document.createElement('main');
+  // Agregar la clase 'containerL' al elemento loginContainer
+  loginContainer.classList = 'containerL';
 
-  // Imagen de fondo
-  const backgroundImgLogin = document.createElement('img');
-  backgroundImgLogin.classList.add('backgroundImgL');
-  containerLogin.appendChild(backgroundImgLogin);
+  // Crear elemento 'img' para la imagen de fondo
+  const loginBackgroundImg = document.createElement('img');
+  // Agregar la clase 'backgroundImgL' al elemento loginBackgroundImg
+  loginBackgroundImg.classList.add('backgroundImgL');
+  // Agregar loginBackgroundImg como hijo de loginContainer
+  loginContainer.appendChild(loginBackgroundImg);
 
-  // Contenedor de elementos
-  const contenedorGeneralLogin = document.createElement('main');
-  contenedorGeneralLogin.id = 'contenedor-GeneralL';
-  contenedorGeneralLogin.classList.add('contenedorGeneralL');
-  containerLogin.appendChild(contenedorGeneralLogin);
+  // Crear elemento 'img' para el logo
+  const loginLogo = document.createElement('img');
+  // Agregar la clase 'logoL' al elemento loginLogo
+  loginLogo.classList.add('logoL');
+  // Establecer la fuente de la imagen del logo
+  loginLogo.src = '../imagenes/logo-marchantes.png';
+  // Agregar loginLogo como hijo de loginContainer
 
-  // Logo
-  const logoLogin = document.createElement('img');
-  logoLogin.classList.add('logoL');
-  logoLogin.src = '../imagenes/logo-marchantes.png';
-  contenedorGeneralLogin.appendChild(logoLogin);
+  loginContainer.appendChild(loginLogo);
 
-  // Texto "Iniciar sesión"
-  /*
-  const iniciarSesionLogin = document.createElement('h1');
-  iniciarSesionLogin.id = 'iniciarSesionL';
-  iniciarSesionLogin.classList.add('iniciarSesionL');
-  iniciarSesionLogin.textContent = 'Iniciar sesión';
-  contenedorGeneralLogin.appendChild(iniciarSesionLogin);
-*/
+  // Crear elemento 'label' para el texto "Nombre"
+  const loginNameLabel = document.createElement('label');
+  // Establecer el texto del elemento loginNameLabel
+  loginNameLabel.textContent = 'Nombre:';
+  // Establecer el atributo 'for' del elemento loginNameLabel
+  loginNameLabel.setAttribute('for', 'nombre-InputL');
+  // Establecer el id del elemento loginNameLabel
+  loginNameLabel.id = 'nombre-LabelL';
+  // Agregar la clase 'nombreLabelL' al elemento loginNameLabel
+  loginNameLabel.classList.add('nombreLabelL');
+  // Agregar loginNameLabel como hijo de loginContainer
+  loginContainer.appendChild(loginNameLabel);
 
-  // Texto "Nombre" + label + input
-  const nombreLabelLogin = document.createElement('label');
-  nombreLabelLogin.textContent = 'Nombre:';
-  nombreLabelLogin.setAttribute('for', 'nombre-InputL');
-  nombreLabelLogin.id = 'nombre-LabelL';
-  nombreLabelLogin.classList.add('nombreLabelL');
-  contenedorGeneralLogin.appendChild(nombreLabelLogin);
+  // Crear elemento 'input' para el campo de nombre
+  const loginNameInput = document.createElement('input');
+  // Establecer el atributo 'type' del elemento loginNameInput
+  loginNameInput.setAttribute('type', 'text');
+  // Establecer el atributo 'id' del elemento loginNameInput
+  loginNameInput.setAttribute('id', 'nombre-InputL');
+  // Agregar la clase 'nombreInputLog' al elemento loginNameInput
+  loginNameInput.classList.add('nombreInputLog');
+  // Agregar loginNameInput como hijo de loginContainer
+  loginContainer.appendChild(loginNameInput);
 
-  const nombreInputLogin = document.createElement('input');
-  nombreInputLogin.setAttribute('type', 'text');
-  nombreInputLogin.setAttribute('id', 'nombre-InputL');
-  nombreInputLogin.classList.add('nombreInputLog');
-  contenedorGeneralLogin.appendChild(nombreInputLogin);
+  // Crear elemento 'label' para el texto "Email"
+  const loginEmailLabel = document.createElement('label');
+  // Establecer el atributo 'for' del elemento loginEmailLabel
+  loginEmailLabel.setAttribute('for', 'email-InputL');
+  // Establecer el id del elemento loginEmailLabel
+  loginEmailLabel.id = 'email-LabelL';
+  // Establecer el texto del elemento loginEmailLabel
+  loginEmailLabel.textContent = 'Email:';
+  // Agregar la clase 'emailLabelL' al elemento loginEmailLabel
+  loginEmailLabel.classList.add('emailLabelL');
+  // Agregar loginEmailLabel como hijo de loginContainer
+  loginContainer.append(loginEmailLabel);
 
-  // Texto "Email" + label + input
-  const emailLabelLogin = document.createElement('label');
-  emailLabelLogin.setAttribute('for', 'email-InputL');
-  emailLabelLogin.id = 'email-LabelL';
-  emailLabelLogin.textContent = 'Email:';
-  emailLabelLogin.classList.add('emailLabelL');
-  contenedorGeneralLogin.append(emailLabelLogin);
+  // Crear elemento 'input' para el campo de email
+  const loginEmailInput = document.createElement('input');
+  // Establecer el atributo 'id' del elemento loginEmailInput
+  loginEmailInput.setAttribute('id', 'email-InputL');
+  // Establecer el atributo 'type' del elemento loginEmailInput
+  loginEmailInput.setAttribute('type', 'email');
+  // Agregar la clase 'emailInputL' al elemento loginEmailInput
+  loginEmailInput.classList.add('emailInputL');
+  // Agregar loginEmailInput como hijo de loginContainer
+  loginContainer.append(loginEmailInput);
 
-  const emailInputLogin = document.createElement('input');
-  emailInputLogin.setAttribute('id', 'email-InputL');
-  emailInputLogin.setAttribute('type', 'email');
-  emailInputLogin.classList.add('emailInputL');
-  contenedorGeneralLogin.append(emailInputLogin);
+  // Crear elemento 'label' para el texto "Contraseña"
+  const loginPasswordLabel = document.createElement('label');
+  // Establecer el texto del elemento loginPasswordLabel
+  loginPasswordLabel.textContent = 'Contraseña:';
+  // Establecer el atributo 'for' del elemento loginPasswordLabel
+  loginPasswordLabel.setAttribute('for', 'contraseña-InputL');
+  // Establecer el id del elemento loginPasswordLabel
+  loginPasswordLabel.id = 'contraseña-LabelL';
+  // Agregar la clase 'contraseñaLabelL' al elemento loginPasswordLabel
+  loginPasswordLabel.classList.add('contraseñaLabelL');
+  // Agregar loginPasswordLabel como hijo de loginContainer
+  loginContainer.appendChild(loginPasswordLabel);
 
-  // Texto "Contraseña" + label + input
-  const contraseñaLabelLogin = document.createElement('label');
-  contraseñaLabelLogin.textContent = 'Contraseña:';
-  contraseñaLabelLogin.setAttribute('for', 'contraseña-InputL');
-  contraseñaLabelLogin.id = 'contraseña-LabelL';
-  contraseñaLabelLogin.classList.add('contraseñaLabelL');
-  contenedorGeneralLogin.appendChild(contraseñaLabelLogin);
+  // Crear elemento 'input' para el campo de contraseña
+  const loginPasswordInput = document.createElement('input');
+  // Establecer el atributo 'type' del elemento loginPasswordInput
+  loginPasswordInput.setAttribute('type', 'password');
+  // Establecer el atributo 'id' del elemento loginPasswordInput
+  loginPasswordInput.setAttribute('id', 'contraseña-InputL');
+  // Establecer el atributo 'name' del elemento loginPasswordInput
+  loginPasswordInput.setAttribute('name', 'contraseña');
+  // Agregar la clase 'contraseñaInputL' al elemento loginPasswordInput
+  loginPasswordInput.classList.add('contraseñaInputL');
+  // Agregar loginPasswordInput como hijo de loginContainer
+  loginContainer.appendChild(loginPasswordInput);
 
-  const contraseñaInputLogin = document.createElement('input');
-  contraseñaInputLogin.setAttribute('type', 'password');
-  contraseñaInputLogin.setAttribute('id', 'contraseña-InputL');
-  contraseñaInputLogin.setAttribute('name', 'contraseña');
-  contraseñaInputLogin.classList.add('contraseñaInputL');
-  contenedorGeneralLogin.appendChild(contraseñaInputLogin);
+  // Crear elemento 'p' para el párrafo de error
+  const errorParagraph = document.createElement('p');
+  // Agregar errorParagraph como hijo de loginContainer
+  loginContainer.appendChild(errorParagraph);
 
-  const parrafoError = document.createElement('p');
-  contenedorGeneralLogin.appendChild(parrafoError);
+  // Crear elemento 'button' para el botón "Continuar"
+  const loginContinueBtn = document.createElement('button');
+  // Agregar la clase 'continuarBtnL' al elemento loginContinueBtn
+  loginContinueBtn.classList.add('continuarBtnL');
+  // Establecer el texto del elemento loginContinueBtn
+  loginContinueBtn.textContent = 'Continuar';
+  // Establecer el id del elemento loginContinueBtn
+  loginContinueBtn.id = 'continuar-BtnL';
+  // Agregar loginContinueBtn como hijo de loginContainer
+  loginContainer.appendChild(loginContinueBtn);
 
-  // Botón "Continuar"
-  const continuarBtnLogin = document.createElement('button');
-  continuarBtnLogin.classList.add('continuarBtnL');
-  continuarBtnLogin.textContent = 'Continuar';
-  continuarBtnLogin.id = 'continuar-BtnL';
-  contenedorGeneralLogin.appendChild(continuarBtnLogin);
+  // Crear elemento 'p' para el mensaje de error
+  const loginMessage = document.createElement('p');
+  // Establecer el texto del elemento loginMessage
+  loginMessage.textContent = 'Debes iniciar sesión para continuar';
+  // Agregar la clase 'login-mensaje' al elemento loginMessage
+  loginMessage.classList.add('login-mensaje');
+  // Agregar loginMessage como hijo de loginContainer
 
-  // Click y mensaje de error
-  // console.log('Se crea msj de error');
-  const loginMensaje = document.createElement('p');
-  loginMensaje.textContent = 'Debes iniciar sesión para continuar';
-  loginMensaje.classList.add('login-mensaje');
-  contenedorGeneralLogin.appendChild(loginMensaje);
+  loginContainer.appendChild(loginMessage);
+  // Establecer el estilo 'display' del elemento loginMessage a 'none'
+  loginMessage.style.display = 'none';
 
-  loginMensaje.style.display = 'none';
-
-  continuarBtnLogin.addEventListener('click', async (event) => {
-    // console.log('Click en btn Continuar');
+  // Se añade un evento 'click' al botón 'loginContinueBtn'
+  loginContinueBtn.addEventListener('click', async (event) => {
+    // Previene el comportamiento predeterminado del evento
     event.preventDefault();
-    const email = emailInputLogin.value;
-    const contrasena = contraseñaInputLogin.value;
-    const nombre = nombreInputLogin.value; // Obtener el valor del campo de nombre
-    if (!email || !contrasena || !nombre) { // Verificar que todos los campos estén llenos
-      // console.log('Email, contraseña o nombre vacíos, se muestra msj de error');
-      loginMensaje.style.display = 'block';
+    // Obtiene el valor del campo de entrada de correo electrónico
+    const email = loginEmailInput.value;
+    // Obtiene el valor del campo de entrada de contraseña
+    const contrasena = loginPasswordInput.value;
+    // Obtiene el valor del campo de entrada de nombre
+    const nombre = loginNameInput.value;
+    // Verifica si alguno de los campos está vacío
+    if (!email || !contrasena || !nombre) {
+      // Muestra el mensaje de error
+      loginMessage.style.display = 'block';
+      // Finaliza la ejecución de la función
       return;
     }
     try {
+      // Intenta iniciar sesión del usuario
       await loginUser(email, contrasena);
-      // console.log('Usuario creado satisfactoriamente');
-
-      // Ejemplo de uso de 'user'
-      if (user) {
-        // console.log('Usuario:', user);
-        onNavigate('/feed');
+      if (user) { // Verifica si hay un usuario autenticado
+        onNavigate('/feed'); // Navega al feed
       } else {
         // console.log('No hay usuario autenticado');
       }
-
-      // onNavigate('/feed');
     } catch (error) {
-      // console.log('Error al crear usuario:', error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      parrafoError.innerHTML = `Error ${errorCode}: ${errorMessage}`;
+      const errorCode = error.code; // Obtiene el código de error
+      const errorMessage = error.message; // Obtiene el mensaje de error
+      // Muestra el mensaje de error en el párrafo correspondiente
+      errorParagraph.innerHTML = `Error ${errorCode}: ${errorMessage}`;
     }
   });
 
-  // Botón "Continuar con Google"
-  const googleBtnLogin = document.createElement('button');
-  googleBtnLogin.classList.add('googleBtnL');
-  googleBtnLogin.textContent = 'Continuar con Google';
-  googleBtnLogin.id = 'continuar-GoogleBtnL';
-  contenedorGeneralLogin.appendChild(googleBtnLogin);
+  // Crea un elemento 'button' para el botón "Continuar con Google"
+  const loginGoogleBtn = document.createElement('button');
+  // Agrega la clase 'googleBtnL' al botón
+  loginGoogleBtn.classList.add('googleBtnL');
+  // Establece el texto del botón como 'Continuar con Google'
+  loginGoogleBtn.textContent = 'Continuar con Google';
+  // Establece el ID del botón como 'continuar-GoogleBtnL'
+  loginGoogleBtn.id = 'continuar-GoogleBtnL';
+  // Agrega el botón al contenedor de inicio de sesión
+  loginContainer.appendChild(loginGoogleBtn);
 
-  // Logo de Google
-  const logoGoogleLogin = document.createElement('img');
-  logoGoogleLogin.src = '../imagenes/logo-google.png';
-  // logoGoogleLogin.alt = 'Iniciar sesión con Google';
-  googleBtnLogin.appendChild(logoGoogleLogin);
+  // Crea un elemento 'img' para el logo de Google
+  const loginGoogleLogo = document.createElement('img');
+  // Establece la ruta de la imagen del logo de Google
+  loginGoogleLogo.src = '../imagenes/logo-google.png';
+  // Agrega el logo de Google como hijo del botón
+  loginGoogleBtn.appendChild(loginGoogleLogo);
 
-  // Click y mensaje de error Google
-  const loginMensajeGoogle = document.createElement('p');
-  loginMensajeGoogle.textContent = 'Debes iniciar sesión para continuar';
-  loginMensajeGoogle.classList.add('login-mensaje');
-  contenedorGeneralLogin.appendChild(loginMensajeGoogle);
+  // Crea un elemento 'p' para el mensaje de error de Google
+  const loginGoogleMessage = document.createElement('p');
+  // Establece el texto del mensaje de error
+  loginGoogleMessage.textContent = 'Debes iniciar sesión para continuar';
+  // Agrega la clase 'login-mensaje' al mensaje de error
+  loginGoogleMessage.classList.add('login-mensaje');
+  // Agrega el mensaje de error al contenedor de inicio de sesión
+  loginContainer.appendChild(loginGoogleMessage);
+  // Oculta el mensaje de error de Google inicialmente
+  loginGoogleMessage.style.display = 'none';
 
-  loginMensajeGoogle.style.display = 'none';
-
-  googleBtnLogin.addEventListener('click', async (event) => {
-    // console.log('Click en btn Continuar con Google');
+  // Se añade un evento 'click' al botón 'loginGoogleBtn'
+  loginGoogleBtn.addEventListener('click', async (event) => {
+    // Previene el comportamiento predeterminado del evento
     event.preventDefault();
     try {
+      // Intenta iniciar sesión con Google
       await signInGoogle();
       // console.log('Inicio de sesión satisfactorio');
+      // Navega al feed
       onNavigate('/feed');
     } catch (error) {
       // console.log('Error al iniciar sesión', error);
+      // Obtiene el código de error
       const errorCode = error.code;
+      // Obtiene el mensaje de error
       const errorMessage = error.message;
+      // Obtiene el elemento con el ID 'error-message'
       const errorDiv = document.getElementById('error-message');
+      // Muestra el mensaje de error en el elemento correspondiente
       errorDiv.innerHTML = `Error ${errorCode}: ${errorMessage}`;
     }
   });
-
-  contenedorGeneralLogin.appendChild(googleBtnLogin);
-
-  // Footer
-  const footerLogin = document.createElement('footer');
-  footerLogin.id = 'footer-Login';
-  footerLogin.classList.add('footerL');
-  footerLogin.textContent = 'Marchantes, 2023';
-  contenedorGeneralLogin.appendChild(footerLogin);
+  // Agrega el botón de inicio de sesión con Google al contenedor de inicio de sesión
+  loginContainer.appendChild(loginGoogleBtn);
 
   // Retorna el elemento div (con sus elementos hijos dentro)
-  return containerLogin;
+  return loginContainer;
 }

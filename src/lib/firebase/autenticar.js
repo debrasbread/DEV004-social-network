@@ -35,13 +35,13 @@ async function updateDisplayName(user, nombre) {
   }
 }
 
-export async function createUser(nombre, email, password) {
+export async function createUser(name, email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
     // Signed in
     const user = userCredential.user;
-    await updateDisplayName(user, nombre); // Actualizar el nombre del usuario
+    await updateDisplayName(user, name); // Actualizar el nombre del usuario
   } catch (error) {
     // Handle Errors here.
   }
