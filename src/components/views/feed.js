@@ -12,7 +12,7 @@ export function feed() {
   backgroundImgFeed.classList.add('backgroundImgF');
   containerFeed.appendChild(backgroundImgFeed);
 
-  const contenedorGeneralFeed = document.createElement('div');
+  const contenedorGeneralFeed = document.createElement('section');
   contenedorGeneralFeed.id = 'contenedor-GeneralF';
   contenedorGeneralFeed.classList.add('contenedorGeneralF');
   containerFeed.appendChild(contenedorGeneralFeed);
@@ -88,7 +88,7 @@ export function feed() {
 
   contenedorGeneralFeed.appendChild(logoutButton);
 
-  const postsContainer = document.createElement('div');
+  const postsContainer = document.createElement('section');
   postsContainer.id = 'posts-container';
   contenedorGeneralFeed.appendChild(postsContainer);
   // console.log(getAuth().currentUser);
@@ -100,7 +100,7 @@ export function feed() {
       snapshot.forEach((doc, index) => {
         const post = doc.data();
 
-        const listItem = document.createElement('div');
+        const listItem = document.createElement('article');
         const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
         listItem.textContent = postContent;
 
