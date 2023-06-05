@@ -2,22 +2,15 @@
 
 Marchantes es una red social dirigida a productores, comerciantes y compradores locales. Consiste en una _Single-page Application (SPA) responsive_ que, hasta este momento, permite a los usuarios crear una cuenta de acceso, loguearse, ver el feed general, crear publicaciones y editarlas o borrarlas. Por ahora cuenta con cuatro vistas: home, register, logIn y feed. Para realizar los procesos de autenticación y garantizar la persistencia de los datos usé Firebase y Firestore, respectivamente. Si bien las funcionalidades son aún muy elementales, éste es un proyecto escalable. Más adelante pueden leerse algunas mejoras contempladas para la siguiente fase de desarrollo.
 
-![Interfaz de usuario para teléfono: home](ruta_de_la_imagen)
+![Interfaz de usuario para teléfono: home, register, logIn y feed](vistas_marchantes_cel.png)
 
-![Interfaz de usuario para teléfono: register](ruta_de_la_imagen)
+![Interfaz de usuario para escritorio: home](home_escritorio.png)
 
-![Interfaz de usuario para teléfono: logIn](ruta_de_la_imagen)
+![Interfaz de usuario para escritorio: register](registro_escritorio.png)
 
-![Interfaz de usuario para teléfono: feed](ruta_de_la_imagen)
+![Interfaz de usuario para escritorio: logIn](login_escritorio.png)
 
-
-![Interfaz de usuario para escritorio: home](ruta_de_la_imagen)
-
-![Interfaz de usuario para escritorio: register](ruta_de_la_imagen)
-
-![Interfaz de usuario para escritorio: logIn](ruta_de_la_imagen)
-
-![Interfaz de usuario para escritorio: feed](ruta_de_la_imagen)
+![Interfaz de usuario para escritorio: feed](feed_escritorio.png)
 
 ## Principales usuarios del producto:
 
@@ -111,39 +104,16 @@ HU5.- _Yo, como compradora y usuaria de Marchantes, quiero poder cerrar sesión 
 
 Para definir el flujo del usuario dentro de la aplicación y decidir cuáles serían las instancias mínimas por las que atravesaría en esta primera fase de desarrollo, elaboré el siguiente diagrama.
 
-![Diagrama de flujo de usuario]('../imagenes/diagrama-de-flujo.png')
+![Diagrama de flujo de usuario]('diagrama-de-flujo.png')
 
 ### Prototipos de alta calidad
 
 Tras haber definido el flujo de usuario y elaborado un prototipo de baja calidad o bosquejo de la interfaz de usuario para cada una de las vistas, hice uno de alta calidad usando Figma. Si bien hay elementos que en la última versión del sitio, ya desplegado, lucen distintos, este modelo resultó sumamente útil como guía para la definición de la composición, los estilos e incluso las funcionalidades de la aplicación.
 
-![Prototipo de alta calidad]('../imagenes/prototipo-marchantes.png')
+![Prototipo de alta calidad]('prototipo-marchantes.png')
 
 ### Pruebas unitarias
 
 - Las pruebas unitarias detectaron problemas que aún debo resolver. Para efectos de esta primera entrega mostraré el test que corresponde a la función 'home', de la vista con el mismo nombre, con una cobertura de apenas 82.85% para sentencias (statements), 50% para ramas (branch), 50% para funciones (functions), y 82.85% para líneas (lines) del total de los archivos asociados.
 
-![Test para Home]('../imagenes/test-home.png')
-
-### Backlog
-
-Registro e inicio de sesión
-
-* Validaciones:
-  - Solamente se permite el acceso a usuarios con cuentas válidas.
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-
-* Comportamiento:
-  - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
-  - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
-  usuario a corregirlos.
-
-Feed
-
-* Validaciones:
-  - Al publicar, se debe validar que exista contenido en el _input_.
-* Comportamiento:
-  - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
-  - Llevar un conteo de los _likes_.
-  - Pedir confirmación antes de eliminar un _post_.
+![Test para Home]('test-home.png')

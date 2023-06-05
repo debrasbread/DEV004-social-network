@@ -62,8 +62,8 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  bottom: 250px;
   padding: 3px;
-  bottom: 350px;
   left: 0;
   right: 0;
   margin: auto;

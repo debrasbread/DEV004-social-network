@@ -25,6 +25,7 @@
 }
 
 .logoR {
+  content: url('../imagenes/logo-marchantes.png');
   display: block;
   margin-bottom: 30px;
   width: 200px;
