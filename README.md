@@ -2,7 +2,7 @@
 
 Marchantes es una red social dirigida a productores, comerciantes y compradores locales. Consiste en una _Single-page Application (SPA) responsive_ que, hasta este momento, permite a los usuarios crear una cuenta de acceso, loguearse, ver el feed general, crear publicaciones y editarlas o borrarlas. Por ahora cuenta con cuatro vistas: home, register, logIn y feed. Para realizar los procesos de autenticación y garantizar la persistencia de los datos usé Firebase y Firestore, respectivamente. Si bien las funcionalidades son aún muy elementales, éste es un proyecto escalable. Más adelante pueden leerse algunas mejoras contempladas para la siguiente fase de desarrollo.
 
-![Interfaz de usuario para teléfono: home, register, logIn y feed](vistas_marchantes_cel.png)
+![Interfaz de usuario para teléfono: home, register, logIn y feed](src/imagenes/vistas_marchantes_cel.png)
 
 ![Interfaz de usuario para escritorio: home](home_escritorio.png)
 
