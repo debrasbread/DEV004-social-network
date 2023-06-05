@@ -172,12 +172,14 @@ export function login() {
   // Agrega el botón al contenedor de inicio de sesión
   loginContainer.appendChild(loginGoogleBtn);
 
+  /*
   // Crea un elemento 'img' para el logo de Google
   const loginGoogleLogo = document.createElement('img');
   // Establece la ruta de la imagen del logo de Google
   loginGoogleLogo.src = '../imagenes/logo-google.png';
   // Agrega el logo de Google como hijo del botón
   loginGoogleBtn.appendChild(loginGoogleLogo);
+  */
 
   // Crea un elemento 'p' para el mensaje de error de Google
   const loginGoogleMessage = document.createElement('p');

@@ -2,6 +2,23 @@
 
 Marchantes es una red social dirigida a productores, comerciantes y compradores locales. Consiste en una _Single-page Application (SPA) responsive_ que, hasta este momento, permite a los usuarios crear una cuenta de acceso, loguearse, ver el feed general, crear publicaciones y editarlas o borrarlas. Por ahora cuenta con cuatro vistas: home, register, logIn y feed. Para realizar los procesos de autenticación y garantizar la persistencia de los datos usé Firebase y Firestore, respectivamente. Si bien las funcionalidades son aún muy elementales, éste es un proyecto escalable. Más adelante pueden leerse algunas mejoras contempladas para la siguiente fase de desarrollo.
 
+![Interfaz de usuario para teléfono: home](ruta_de_la_imagen)
+
+![Interfaz de usuario para teléfono: register](ruta_de_la_imagen)
+
+![Interfaz de usuario para teléfono: logIn](ruta_de_la_imagen)
+
+![Interfaz de usuario para teléfono: feed](ruta_de_la_imagen)
+
+
+![Interfaz de usuario para escritorio: home](ruta_de_la_imagen)
+
+![Interfaz de usuario para escritorio: register](ruta_de_la_imagen)
+
+![Interfaz de usuario para escritorio: logIn](ruta_de_la_imagen)
+
+![Interfaz de usuario para escritorio: feed](ruta_de_la_imagen)
+
 ## Principales usuarios del producto:
 
 * Pequeños productores de frutas y verduras o alimentos frescos y derivados.
@@ -40,7 +57,7 @@ HU2.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de re
 
 - Botón para registrarse con Google
 
-### HU3.- logIn
+### LogIn
 
 HU1.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de iniciar sesión con mi nombre, mi correo y una contraseña (ya guardados) para ingresar a la página de manera sencilla._
 
@@ -51,7 +68,7 @@ HU2.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de in
 
 - Botón para iniciar sesión con Google
 
-### HU4.- Feed
+### Feed
 
 HU1.- _Yo, como compradora y usuaria de Marchantes, quiero poder ver las publicaciones de otros usuarios para conocerlos y estar al tanto de las novedades relacionadas con productos o puntos de venta._
 
@@ -94,7 +111,21 @@ HU5.- _Yo, como compradora y usuaria de Marchantes, quiero poder cerrar sesión 
 
 Para definir el flujo del usuario dentro de la aplicación y decidir cuáles serían las instancias mínimas por las que atravesaría en esta primera fase de desarrollo, elaboré el siguiente diagrama.
 
-#### Backlog
+![Diagrama de flujo de usuario]('../imagenes/diagrama-de-flujo.png')
+
+### Prototipos de alta calidad
+
+Tras haber definido el flujo de usuario y elaborado un prototipo de baja calidad o bosquejo de la interfaz de usuario para cada una de las vistas, hice uno de alta calidad usando Figma. Si bien hay elementos que en la última versión del sitio, ya desplegado, lucen distintos, este modelo resultó sumamente útil como guía para la definición de la composición, los estilos e incluso las funcionalidades de la aplicación.
+
+![Prototipo de alta calidad]('../imagenes/prototipo-marchantes.png')
+
+### Pruebas unitarias
+
+- Las pruebas unitarias detectaron problemas que aún debo resolver. Para efectos de esta primera entrega mostraré el test que corresponde a la función 'home', de la vista con el mismo nombre, con una cobertura de apenas 82.85% para sentencias (statements), 50% para ramas (branch), 50% para funciones (functions), y 82.85% para líneas (lines) del total de los archivos asociados.
+
+![Test para Home]('../imagenes/test-home.png')
+
+### Backlog
 
 Registro e inicio de sesión
 
@@ -116,6 +147,3 @@ Feed
   - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
   - Llevar un conteo de los _likes_.
   - Pedir confirmación antes de eliminar un _post_.
-
-Pruebas unitarias
-

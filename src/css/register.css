@@ -17,7 +17,7 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  background-image: url("../imagenes/background-register.jpg");
+  background-image: url('../imagenes/background-register.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -74,9 +74,11 @@
   margin-top: 50px;
 }
 
+/*
 .logoGoogleR {
   margin-right: 8px;
 }
+*/
 
 /* Dispositivos móviles pequeños (por ejemplo, iPhone) */
 @media only screen and (max-width: 480px) {

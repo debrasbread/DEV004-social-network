@@ -110,11 +110,13 @@ export function register() {
   registerGoogleButton.classList.add('googleBtnR');
   registerGoogleButton.textContent = 'Continuar con Google';
 
+  /*
   // Logo de Google
   const logoGoogleRegister = document.createElement('img');
   logoGoogleRegister.src = '../imagenes/logo-google.png';
   // logoGoogleRegister.alt = 'Iniciar sesión con Google';
   registerGoogleButton.appendChild(logoGoogleRegister);
+*/
 
   // Click y mensaje de error Google
   const registerGoogleMessage = document.createElement('p');

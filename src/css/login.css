@@ -103,9 +103,11 @@
   margin-top: 50px;
 }
 
+/*
 .logoGoogleL {
   margin-right: 8px;
 }
+*/
 
 /* Dispositivos móviles pequeños (por ejemplo, iPhone) */
 @media only screen and (max-width: 480px) {
