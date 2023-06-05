@@ -4,11 +4,11 @@ Marchantes es una red social dirigida a productores, comerciantes y compradores 
 
 ![Interfaz de usuario para teléfono: home, register, logIn y feed](src/imagenes/vistas_marchantes_cel.png)
 
-![Interfaz de usuario para escritorio: home](src/imagenes/feed_escritorio.png)
-
-![Interfaz de usuario para escritorio: register](src/imagenes/registro_escritorio.png) 
+![Interfaz de usuario para escritorio: home](src/imagenes/home_escritorio.png)
 
 ![Interfaz de usuario para escritorio: logIn](src/imagenes/login_escritorio.png)
+
+![Interfaz de usuario para escritorio: register](src/imagenes/registro_escritorio.png) 
 
 ![Interfaz de usuario para escritorio: feed](src/imagenes/feed_escritorio.png)  
 
