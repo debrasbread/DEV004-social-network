@@ -1,118 +1,121 @@
-# Marchantes, red social
+# Marchantes
 
-## Índice
+Marchantes es una red social dirigida a productores, comerciantes y compradores locales. Consiste en una _Single-page Application (SPA) responsive_ que, hasta este momento, permite a los usuarios crear una cuenta de acceso, loguearse, ver el feed general, crear publicaciones y editarlas o borrarlas. Por ahora cuenta con cuatro vistas: home, register, logIn y feed. Para realizar los procesos de autenticación y garantizar la persistencia de los datos usé Firebase y Firestore, respectivamente. Si bien las funcionalidades son aún muy elementales, éste es un proyecto escalable. Más adelante pueden leerse algunas mejoras contempladas para la siguiente fase de desarrollo.
 
-* [1. Preámbulo](#1-preámbulo)
+## Principales usuarios del producto:
+
+* Pequeños productores de frutas y verduras o alimentos frescos y derivados.
+* Pequeños comerciantes que quieran ampliar su oferta de productos o que busquen nuevos proveedores.
+* Compradores interesados en saber más sobre el origen de los productos, encontrar los mejores precios, conocer las frutas y verduras de estación, etc.
+
+## Problema que resuelve el producto:
+
+Marchantes busca ser un puente entre productores, comerciantes y compradores de productos frescos y derivados que habitualmente pueden encontrarse en un mercado para facilitar el contacto directo y el acceso a la información: origen, particularidades de la producción, precio, puntos de distribución, ventas especiales, etc.
+
+## Objetivo:
+
+* Promover el comercio justo (productor-comprador, productor-comerciante, comerciante-comprador).
+* Favorecer la producción y distribución local y a pequeña escala.
+* Reducir el desperdicio de alimentos (merma).
+
+## Historias de usuario y vistas
+
+Para determinar qué componentes conformarían cada una de las cuatro vistas que existen actualmente, tras haber realizado una consulta a manera de encuesta a cinco personas, con las peticiones elaboré una serie de historias de usuario (HU) o frases que se traducen en funcionalidades (como botones o inputs que hacen cosas). A continuación están enlistadas las vistas con sus respectivas HU (diez en total) y las funcionalidades correspondientes. Poseteriormente se encuentran los criterios de aceptación y la definición de terminado, en este caso, comunes a todas las HU.
+
+### Home
+
+HU1.- _Yo, como compradora y usuaria de Marchantes, quiero ver, en primera instancia, las opciones de acceso (logIn y Registro) para ingresar a la página de manera sencilla._
+
+- Botón para iniciar sesión
+- Botón para registrarse
+
+### Register
+
+HU1.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de registrarme con mi nombre, mi correo y una contraseña para ingresar a la página de manera sencilla._
+
+- Formulario para introducir nombre, correo y contraseña
+- Botón para continuar
+
+HU2.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de registrarme con mi cuenta de Google para ingresar a la página rápido, sin necesidad de llenar un formuario._
+
+- Botón para registrarse con Google
+
+### HU3.- logIn
+
+HU1.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de iniciar sesión con mi nombre, mi correo y una contraseña (ya guardados) para ingresar a la página de manera sencilla._
+
+- Formulario para introducir nombre, correo y contraseña
+- Botón para continuar
+
+HU2.- _Yo, como vendedora y usuaria de Marchantes, quiero tener la opción de iniciar sesión con mi cuenta de Google para ingresar a la página rápido, sin necesidad de llenar un formuario._
+
+- Botón para iniciar sesión con Google
+
+### HU4.- Feed
+
+HU1.- _Yo, como compradora y usuaria de Marchantes, quiero poder ver las publicaciones de otros usuarios para conocerlos y estar al tanto de las novedades relacionadas con productos o puntos de venta._
+
+- Listado de posts de todos los usuarios
+- Campo de texto para escribir post
+
+HU2.- _Yo, como compradora y usuaria de Marchantes, quiero poder crear mis propios posts para participar activamente en la comunidad._
+
+- Botón para publicar post
+
+HU3.- _Yo, como compradora y usuaria de Marchantes, quiero poder editar mis posts para hacer correcciones, aclaraciones o cambios si fuera necesario._
+
+- Botón para editar el post
+- Botón para guardar el post editado
+
+HU4.- _Yo, como compradora y usuaria de Marchantes, quiero poder eliminar mis posts para que deje estar a la vista de los demás información que ya no considero útil o precisa._
+
+- Botón para eliminar el post
+
+HU5.- _Yo, como compradora y usuaria de Marchantes, quiero poder cerrar sesión para evistar que otras personas accedan a mi cuenta si usan el mismo dispositivo; también para desconectarme y descansar._
+
+- Botón para cerrar sesión (volver a home)
 
 
-### 5.2 Definición del producto
+* **Criterios de aceptación para las historias de usuario:** 
 
-En el `README.md` cuéntanos brevemente cómo descubriste las necesidades de los
-usuarios y cómo llegaste a la definición final de tu producto. Es importante
-que detalles:
+  - Que se desplieguen todos los elementos correctamente: imágenes de fondo, logo, inputs (si aplica) y botones, y actúen conforme a lo esperado.
 
-* Quiénes son los principales usuarios de producto.
-* Qué problema resuelve el producto / para qué le servirá a estos usuarios.
+* **Definición de terminado para las historias de usuario:** 
 
-### 5.3 Historias de usuario
+  - Que sea una SPA.
+  - Que sea _responsive_.
+  - Que haya recibido _code review_ de al menos dos personas.
+  - Que cuente con _test_ unitario.
+  - Que cuente con _test_ manual.
+  - Que cuente con pruebas de usabilidad y se haya incorporado el _feedback_ de los usuarios.
+  - Que esté desplegada en GitHub/Vercel.
 
-Una vez que entiendas las necesidades de tus usuarixs, escribe las Historias de
-Usuario que representen todo lo que necesitan hacer/ver en la Red Social. Cada
-una de tus Historias de Usuario debe tener:
+### Diagrama de flujo
 
-* **Criterios de Aceptación:** todo lo que debe ocurrir para satisfacer las
-  necesidades del usuario.
+Para definir el flujo del usuario dentro de la aplicación y decidir cuáles serían las instancias mínimas por las que atravesaría en esta primera fase de desarrollo, elaboré el siguiente diagrama.
 
-* **Definición de terminado:** todos los aspectos técnicos que deben cumplirse
-  para que, como equipo, sepan que esa historia está terminada y lista
-  para publicarse. **Todas** tus Historias de Usuario (salvo excepciones), deben
-  incluir estos aspectos en su Definición de Terminado (más todo lo que
-  necesiten agregar):
+#### Backlog
 
-  - Debe ser una SPA.
-  - Debe ser _responsive_.
-  - Deben haber recibido _code review_ de al menos una compañera de otro equipo.
-  - Hicieron los _test_ unitarios
-  - Testearon manualmente buscando errores e imperfecciones simples.
-  - Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
-    usuarios como mejoras.
-  - Desplegaron su aplicación y etiquetaron la versión (git tag).
+Registro e inicio de sesión
 
-### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
-
-Debes definir cuál será el flujo que seguirá el usuario dentro de tu aplicación
-y, con eso, diseña la Interfaz de Usuario (UI por sus siglas en inglés) que
-siga este flujo.
-
-### 5.5 Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Te
-sugerimos seguir la técnica de [_`mobile first`_](#mobile-first) (más detalles sobre esta técnica
-al final).
-
-### 5.6 Consideraciones del comportamiento de la interfaz de usuario (UI)
-
-Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de
-tus H.U.:
-
-#### Creación de cuenta de usuario e inicio de sesión
-
-* _Login_ con Firebase:
-  - Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - Creación de cuenta de acceso y autenticación con cuenta de correo y
-    contraseña, y también con una cuenta de Google.
 * Validaciones:
   - Solamente se permite el acceso a usuarios con cuentas válidas.
   - No pueden haber usuarios repetidos.
   - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
+
 * Comportamiento:
   - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
   - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
   usuario a corregirlos.
 
-#### Muro/timeline
+Feed
 
 * Validaciones:
   - Al publicar, se debe validar que exista contenido en el _input_.
 * Comportamiento:
-  - Al recargar la aplicación, se debe verificar si el usuario está _logueado_
-    antes de mostrar contenido.
-  - Poder publicar un _post_.
   - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
   - Llevar un conteo de los _likes_.
-  - Poder eliminar un post específico.
   - Pedir confirmación antes de eliminar un _post_.
-  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
-    que permita editar el texto y luego guardar los cambios.
-  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
-    información editada.
-  - Al recargar la página debo de poder ver los textos editados.
 
-### 5.7 Consideraciones técnicas Front-end
-
-* Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-* Contar con múltiples vistas. Para esto, tu aplicación debe ser una
- [Single Page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-* Alterar y persistir datos. Los datos que agregues o modifiques deberán
-  persistir a lo largo de la aplicación. Te recomendamos que uses
-  [Firebase](https://firebase.google.com/) para eso también.
-
-#### Pruebas unitarias (unit tests)
-
-* Recuerda que no hay un _setup_ de **tests** definido, dependerá de
-  la estructura de tu proyecto. Algo que no debes de olvidar es pensar en éstas
-  pruebas, te pueden ayudar a definir la estructura y nomenclatura de tu lógica.
-
-* Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
-  _lines_, y _branches_.
-
-### 5.8 Consideraciones técnicas UX
-
-* Hacer al menos 2 entrevistas con usuarios.
-* Hacer un  prototipo de baja y alta fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
+Pruebas unitarias
 
