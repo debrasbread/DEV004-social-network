@@ -2,15 +2,15 @@
 
 Marchantes es una red social dirigida a productores, comerciantes y compradores locales. Consiste en una _Single-page Application (SPA) responsive_ que, hasta este momento, permite a los usuarios crear una cuenta de acceso, loguearse, ver el feed general, crear publicaciones y editarlas o borrarlas. Por ahora cuenta con cuatro vistas: home, register, logIn y feed. Para realizar los procesos de autenticación y garantizar la persistencia de los datos usé Firebase y Firestore, respectivamente. Si bien las funcionalidades son aún muy elementales, éste es un proyecto escalable. Más adelante pueden leerse algunas mejoras contempladas para la siguiente fase de desarrollo.
 
-![Interfaz de usuario para teléfono: home, register, logIn y feed]![Interfaz de usuario para teléfono: home, register, logIn y feed](src/imagenes/vistas_marchantes_cel.png)
+![Interfaz de usuario para teléfono: home, register, logIn y feed](src/imagenes/vistas_marchantes_cel.png)
 
-![Interfaz de usuario para escritorio: home]![Interfaz de usuario para escritorio: home](src/imagenes/feed_escritorio.png)
+![Interfaz de usuario para escritorio: home](src/imagenes/feed_escritorio.png)
 
-![Interfaz de usuario para escritorio: register]![Interfaz de usuario para escritorio: register](src/imagenes/registro_escritorio.png) 
+![Interfaz de usuario para escritorio: register](src/imagenes/registro_escritorio.png) 
 
-![Interfaz de usuario para escritorio: logIn]![Interfaz de usuario para escritorio: logIn](src/imagenes/login_escritorio.png)
+![Interfaz de usuario para escritorio: logIn](src/imagenes/login_escritorio.png)
 
-![Interfaz de usuario para escritorio: feed]![Interfaz de usuario para escritorio: feed](src/imagenes/feed_escritorio.png)  
+![Interfaz de usuario para escritorio: feed](src/imagenes/feed_escritorio.png)  
 
 ## Principales usuarios del producto:
 
@@ -104,16 +104,16 @@ HU5.- _Yo, como compradora y usuaria de Marchantes, quiero poder cerrar sesión 
 
 Para definir el flujo del usuario dentro de la aplicación y decidir cuáles serían las instancias mínimas por las que atravesaría en esta primera fase de desarrollo, elaboré el siguiente diagrama.
 
-![Diagrama de flujo de usuario]![Diagrama de flujo de usuario](src/imagenes/diagrama-de-flujo.png)
+![Diagrama de flujo de usuario](src/imagenes/diagrama-de-flujo.png)
 
 ### Prototipo de interfaz de usuario
 
 Tras haber definido el flujo de usuario y elaborado un prototipo de baja calidad o bosquejo de la interfaz de usuario para cada una de las vistas, hice uno de alta calidad usando Figma. Si bien hay elementos que en la última versión del sitio, ya desplegado, lucen distintos, este modelo resultó sumamente útil como guía para la definición de la composición, los estilos e incluso las funcionalidades de la aplicación.
 
-![Prototipo de alta calidad]![Prototipo de alta calidad](src/imagenes/prototipo-marchantes.png) 
+![Prototipo de alta calidad](src/imagenes/prototipo-marchantes.png) 
 
 ### Pruebas unitarias
 
 Las pruebas unitarias detectaron problemas que aún debo resolver. Para efectos de esta primera entrega mostraré el test que corresponde a la función 'home', de la vista con el mismo nombre, con una cobertura de apenas 82.85% para sentencias (statements), 50% para ramas (branch), 50% para funciones (functions), y 82.85% para líneas (lines) del total de los archivos asociados.
 
-![Test para Home]![Test para Home](src/imagenes/test-home.png)
+![Test para Home](src/imagenes/test-home.png)
