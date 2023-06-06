@@ -65,187 +65,187 @@ export function feed() {
   sendButton.textContent = 'Publicar';
   optionsBox.appendChild(sendButton);
 
-// Añadimos un evento 'click' al botón 'sendButton'
-sendButton.addEventListener('click', async () => {
-  const postData = textBox.value;
-  
-  try {
-  await createPost(postData);
-  // console.log('Post creado exitosamente');
-  textBox.value = '';
-  } catch (error) {
-  // console.error('Error al crear el post:', error);
-  }
+  // Añadimos un evento 'click' al botón 'sendButton'
+  sendButton.addEventListener('click', async () => {
+    const postData = textBox.value; // Obtenemos el valor del campo de texto 'textBox'
+
+    try {
+      await createPost(postData); // Llamamos a la función 'createPost' pasando el contenido del post como argumento
+      // console.log('Post creado exitosamente');
+      textBox.value = ''; // Vaciamos el campo de texto 'textBox'
+    } catch (error) {
+      // console.error('Error al crear el post:', error);
+    }
   });
-  
+
   // Añadimos el elemento 'container' al 'containerFeed'
   containerFeed.appendChild(container);
-  
+
   // Creamos un botón de cerrar sesión
-  const logoutButton = document.createElement('button');
-  logoutButton.id = 'logout-button';
-  logoutButton.classList.add('logout-button');
-  logoutButton.textContent = 'Salir';
-  
+  const logoutButton = document.createElement('button'); // Creamos un elemento de botón
+  logoutButton.id = 'logout-button'; // Asignamos el ID 'logout-button' al botón
+  logoutButton.classList.add('logout-button'); // Añadimos la clase 'logout-button' al botón
+  logoutButton.textContent = 'Salir'; // Establecemos el texto del botón como 'Salir'
+
   // Añadimos un evento 'click' al botón 'logoutButton'
   logoutButton.addEventListener('click', async () => {
-  try {
-  const auth = getAuth();
-  await signOut(auth);
-  // console.log('Cierre de sesión exitoso');
-  onNavigate('/');
-  } catch (error) {
-  // console.error('Error durante el cierre de sesión:', error);
-  }
+    try {
+      const auth = getAuth(); // Obtenemos la instancia de autenticación
+      await signOut(auth); // Llamamos a la función 'signOut' para cerrar la sesión
+      // console.log('Cierre de sesión exitoso');
+      onNavigate('/'); // Navegamos al inicio después del cierre de sesión
+    } catch (error) {
+      // console.error('Error durante el cierre de sesión:', error);
+    }
   });
-  
+
   // Añadimos el botón 'logoutButton' al 'containerFeed'
   containerFeed.appendChild(logoutButton);
-  
+
   // Creamos un elemento <section> y le asignamos el id 'posts-container'
   const postsContainer = document.createElement('section');
   postsContainer.id = 'posts-container';
-  
+
   // Añadimos el 'postsContainer' al 'containerFeed'
   containerFeed.appendChild(postsContainer);
   // console.log(getAuth().currentUser);
-  
+
   // Definimos una función asíncrona llamada 'updatePost' que recibe un parámetro 'snapshot'
   async function updatePost(snapshot) {
-  // Limpiamos el contenido del 'postsContainer'
-  postsContainer.innerHTML = '';
-  
-  try {
-  // Iteramos sobre cada documento en 'snapshot'
-  snapshot.forEach((doc, index) => {
-  const post = doc.data();
+    // Limpiamos el contenido del 'postsContainer'
+    postsContainer.innerHTML = '';
 
-          // Creamos un elemento <article>
-  const listItem = document.createElement('article');
-  const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
-  listItem.textContent = postContent;
+    try {
+      // Iteramos sobre cada documento en 'snapshot'
+      snapshot.forEach((doc, index) => {
+        const post = doc.data();
 
-  // Creamos un elemento <textarea> para editar el campo de texto
-  const editField = document.createElement('textarea');
-  editField.classList.add('edit-field');
-  editField.value = post.text;
-  editField.style.display = 'none';
-  listItem.appendChild(editField);
+        // Creamos un elemento <article>
+        const listItem = document.createElement('article');
+        const postContent = `${post.name == null ? post.email : post.name}: ${post.text}`;
+        listItem.textContent = postContent;
 
-  // Creamos un botón de edición
-  const editButton = document.createElement('button');
-  editButton.id = 'edit-button';
-  editButton.classList.add('edit-button');
-  editButton.textContent = 'Editar';
-  editButton.dataset.id = doc.id;
+        // Creamos un elemento <textarea> para editar el campo de texto
+        const editField = document.createElement('textarea');
+        editField.classList.add('edit-field');
+        editField.value = post.text;
+        editField.style.display = 'none';
+        listItem.appendChild(editField);
 
-  // Creamos un contenedor para el botón de edición
-  const editButtonContainer = document.createElement('div');
-  editButtonContainer.appendChild(editButton);
+        // Creamos un botón de edición
+        const editButton = document.createElement('button');
+        editButton.id = 'edit-button';
+        editButton.classList.add('edit-button');
+        editButton.textContent = 'Editar';
+        editButton.dataset.id = doc.id;
 
-  // Si el usuario es el autor del post, mostramos el botón de edición
-  if (isAuthor(post)) {
-    editButtonContainer.style.display = 'block';
-  } else {
-    editButtonContainer.style.display = 'none';
-  }
+        // Creamos un contenedor para el botón de edición
+        const editButtonContainer = document.createElement('div');
+        editButtonContainer.appendChild(editButton);
 
-  // Añadimos un evento 'click' al botón de edición para mostrar el campo de edición
-  editButton.addEventListener('click', () => {
-    listItem.removeChild(listItem.firstChild);
-    editField.style.display = 'block';
-    listItem.insertBefore(editField, listItem.firstChild);
-  });
+        // Si el usuario es el autor del post, mostramos el botón de edición
+        if (isAuthor(post)) {
+          editButtonContainer.style.display = 'block';
+        } else {
+          editButtonContainer.style.display = 'none';
+        }
 
-  listItem.appendChild(editButtonContainer);
-
-  // Añadimos otro evento 'click' al botón de edición para mostrar el campo de edición
-       editButton.addEventListener('click', () => {
+        // Añadimos un evento 'click' al botón de edición para mostrar el campo de edición
+        editButton.addEventListener('click', () => {
           listItem.removeChild(listItem.firstChild);
           editField.style.display = 'block';
           listItem.insertBefore(editField, listItem.firstChild);
         });
-// Creamos un botón de guardar
-const saveButton = document.createElement('button');
-saveButton.id = 'save-button';
-saveButton.classList.add('save-button');
-saveButton.textContent = 'Guardar';
 
-// Creamos un contenedor para el botón de guardar
-const saveButtonContainer = document.createElement('div');
-saveButtonContainer.appendChild(saveButton);
+        listItem.appendChild(editButtonContainer);
 
-// Si el usuario es el autor del post, mostramos el botón de guardar
-if (isAuthor(post)) {
-saveButton.style.display = 'block';
-} else {
-saveButton.style.display = 'none';
-}
+        // Añadimos otro evento 'click' al botón de edición para mostrar el campo de edición
+        editButton.addEventListener('click', () => {
+          listItem.removeChild(listItem.firstChild);
+          editField.style.display = 'block';
+          listItem.insertBefore(editField, listItem.firstChild);
+        });
+        // Creamos un botón de guardar
+        const saveButton = document.createElement('button');
+        saveButton.id = 'save-button';
+        saveButton.classList.add('save-button');
+        saveButton.textContent = 'Guardar';
 
-// Añadimos un evento 'click' al botón de guardar
-saveButton.addEventListener('click', async () => {
-const newPostData = editField.value;
-try {
-await editPost(doc.id, { text: newPostData });
-// console.log('Post editado exitosamente');
-listItem.removeChild(listItem.firstChild);
-listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
-} catch (error) {
-// console.error('Error al editar el post:', error);
-}
-});
+        // Creamos un contenedor para el botón de guardar
+        const saveButtonContainer = document.createElement('div');
+        saveButtonContainer.appendChild(saveButton);
 
-listItem.appendChild(saveButton);
-listItem.appendChild(saveButtonContainer);
+        // Si el usuario es el autor del post, mostramos el botón de guardar
+        if (isAuthor(post)) {
+          saveButton.style.display = 'block';
+        } else {
+          saveButton.style.display = 'none';
+        }
 
-// Creamos un botón de eliminar post
-const deleteButton = document.createElement('button');
-deleteButton.id = 'delete-button';
-deleteButton.classList.add('delete-button');
-deleteButton.textContent = 'Eliminar';
-deleteButton.dataset.id = doc.id;
+        // Añadimos un evento 'click' al botón de guardar
+        saveButton.addEventListener('click', async () => {
+          const newPostData = editField.value;
+          try {
+            await editPost(doc.id, { text: newPostData });
+            // console.log('Post editado exitosamente');
+            listItem.removeChild(listItem.firstChild);
+            listItem.textContent = `${post.name == null ? post.email : post.name}: ${newPostData}`;
+          } catch (error) {
+            // console.error('Error al editar el post:', error);
+          }
+        });
 
-// Creamos un contenedor para el botón de eliminar post
-const deleteButtonContainer = document.createElement('div');
-deleteButtonContainer.appendChild(deleteButton);
+        listItem.appendChild(saveButton);
+        listItem.appendChild(saveButtonContainer);
 
-// Si el usuario es el autor del post, mostramos el botón de eliminar post
-if (isAuthor(post)) {
-deleteButton.style.display = 'block';
-} else {
-deleteButton.style.display = 'none';
-}
+        // Creamos un botón de eliminar post
+        const deleteButton = document.createElement('button');
+        deleteButton.id = 'delete-button';
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.dataset.id = doc.id;
 
-// Añadimos un evento 'click' al botón de eliminar post
-deleteButton.addEventListener('click', async (event) => {
-const postId = event.target.dataset.id;
-try {
-await deletePost(postId);
-// console.log('Post eliminado exitosamente');
-} catch (error) {
-// console.error('Error al eliminar el post:', error);
-}
-});
+        // Creamos un contenedor para el botón de eliminar post
+        const deleteButtonContainer = document.createElement('div');
+        deleteButtonContainer.appendChild(deleteButton);
 
-listItem.appendChild(deleteButton);
-postsContainer.appendChild(listItem);
-listItem.appendChild(deleteButtonContainer);
+        // Si el usuario es el autor del post, mostramos el botón de eliminar post
+        if (isAuthor(post)) {
+          deleteButton.style.display = 'block';
+        } else {
+          deleteButton.style.display = 'none';
+        }
 
-// Separador
-if (index !== snapshot.size - 1) {
-const separator = document.createElement('hr');
-separator.classList.add('post-separator');
-postsContainer.appendChild(separator);
-}
-});
-} catch (error) {
-// console.error('Error al obtener los posts:', error);
-}
-}
+        // Añadimos un evento 'click' al botón de eliminar post
+        deleteButton.addEventListener('click', async (event) => {
+          const postId = event.target.dataset.id;
+          try {
+            await deletePost(postId);
+            // console.log('Post eliminado exitosamente');
+          } catch (error) {
+            // console.error('Error al eliminar el post:', error);
+          }
+        });
 
-// Llamamos a la función 'verPosts' pasando como argumento la función 'updatePost'
-verPosts(updatePost);
+        listItem.appendChild(deleteButton);
+        postsContainer.appendChild(listItem);
+        listItem.appendChild(deleteButtonContainer);
 
-// Retornamos el elemento 'containerFeed'
-return containerFeed;
+        // Separador
+        if (index !== snapshot.size - 1) {
+          const separator = document.createElement('hr');
+          separator.classList.add('post-separator');
+          postsContainer.appendChild(separator);
+        }
+      });
+    } catch (error) {
+      // console.error('Error al obtener los posts:', error);
+    }
+  }
+
+  // Llamamos a la función 'verPosts' pasando como argumento la función 'updatePost'
+  verPosts(updatePost);
+
+  // Retornamos el elemento 'containerFeed'
+  return containerFeed;
 }
