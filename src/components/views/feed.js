@@ -1,13 +1,13 @@
-// Importamos las funciones getAuth y signOut del módulo 'firebase/auth'
 import { getAuth, signOut } from 'firebase/auth';
-
-// Importamos la función onNavigate del módulo '../../lib/router/index'
 import { onNavigate } from '../../lib/router/index';
+import {
+  createPost,
+  verPosts,
+  editPost,
+  deletePost,
+  isAuthor,
+} from '../../lib/firebase/autenticar';
 
-// Importamos las funciones createPost, verPosts, editPost, deletePost, isAuthor del módulo '../../lib/firebase/autenticar'
-import { createPost, verPosts, editPost, deletePost, isAuthor } from '../../lib/firebase/autenticar';
-
-// Definimos una función llamada 'feed'
 export function feed() {
   // Creamos un elemento <main> y le asignamos el id 'container-feed' y la clase 'containerF'
   const containerFeed = document.createElement('main');
@@ -29,7 +29,10 @@ export function feed() {
   const container = document.createElement('div');
   container.classList.add('compose-container');
 
-  // Creamos un elemento <textarea> y le asignamos la clase 'compose-text' y el placeholder '¿Qué hay de nuevo?'
+  /*
+  Creamos un elemento <textarea> y le asignamos la clase
+  'compose-text' y el placeholder '¿Qué hay de nuevo?'
+  */
   const textBox = document.createElement('textarea');
   textBox.classList.add('compose-text');
   textBox.placeholder = '¿Qué hay de nuevo?';
@@ -40,18 +43,22 @@ export function feed() {
   optionsBox.classList.add('compose-options');
   container.appendChild(optionsBox);
 
-  // Creamos un elemento <label> y le asignamos la clase 'compose-option' y el atributo 'for' con el valor 'compose-image-upload'
+  /*
+  Creamos un elemento <label> y le asignamos la clase 'compose-option' y
+  el atributo 'for' con el valor 'compose-image-upload'
+  */
   const imageButton = document.createElement('label');
   imageButton.classList.add('compose-option');
   imageButton.htmlFor = 'compose-image-upload';
 
+  /*
   // Creamos un elemento <i> y le asignamos las clases 'fas' y 'fa-image'
   const imageIcon = document.createElement('i');
   imageIcon.classList.add('fas', 'fa-image');
   imageButton.appendChild(imageIcon);
   optionsBox.appendChild(imageButton);
+  */
 
-  // Creamos un elemento <input> de tipo 'file' y le asignamos el id 'compose-image-upload' y los atributos 'multiple' y 'accept' con los valores 'true' y 'image/' respectivamente
   const imageUpload = document.createElement('input');
   imageUpload.type = 'file';
   imageUpload.id = 'compose-image-upload';
@@ -59,7 +66,6 @@ export function feed() {
   imageUpload.accept = 'image/';
   optionsBox.appendChild(imageUpload);
 
-  // Creamos un elemento <button> y le asignamos las clases 'compose-option' y 'compose-send', y el texto 'Publicar'
   const sendButton = document.createElement('button');
   sendButton.classList.add('compose-option', 'compose-send');
   sendButton.textContent = 'Publicar';
@@ -70,7 +76,8 @@ export function feed() {
     const postData = textBox.value; // Obtenemos el valor del campo de texto 'textBox'
 
     try {
-      await createPost(postData); // Llamamos a la función 'createPost' pasando el contenido del post como argumento
+      // Llamamos a la función 'createPost' pasando el contenido del post como argumento
+      await createPost(postData);
       // console.log('Post creado exitosamente');
       textBox.value = ''; // Vaciamos el campo de texto 'textBox'
     } catch (error) {

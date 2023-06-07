@@ -1,11 +1,11 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app'; // Importar la función initializeApp de firebase/app
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
   updateProfile,
-} from 'firebase/auth';
+} from 'firebase/auth'; // Importar funciones y objetos relacionados con la autenticación de firebase/auth
 import {
   addDoc,
   collection,
@@ -17,11 +17,14 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  // Importar funciones y objetos relacionados con la base de datos de firestore
 } from 'firebase/firestore';
+// Importar la configuración de Firebase
 import { firebaseConfig } from './firebase';
 
+// Inicializar la aplicación de Firebase con la configuración proporcionada
 initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(); // Obtener la instancia del servicio de autenticación
 
 // Función para actualizar el nombre del usuario
 async function updateDisplayName(user, nombre) {
@@ -30,7 +33,7 @@ async function updateDisplayName(user, nombre) {
       displayName: nombre,
     });
   } catch (error) {
-    // Manejar el error al actualizar el nombre
+    // Manejar el error al actualizar el nombre del usuario
     // console.log('Error al actualizar el nombre del usuario:', error);
   }
 }
@@ -39,34 +42,34 @@ export async function createUser(name, email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    // Signed in
+    // El usuario se ha registrado exitosamente
     const user = userCredential.user;
     await updateDisplayName(user, name); // Actualizar el nombre del usuario
   } catch (error) {
-    // Handle Errors here.
+    // Manejar los errores aquí
   }
 }
 
 export async function loginUser() {
   try {
-    // Signed in
+    // El usuario ha iniciado sesión exitosamente
   } catch (error) {
-    // Handle Errors here.
+    // Manejar los errores aquí
   }
 }
 
-// Google - Firebase
+// Configuración para iniciar sesión con cuenta de Google
 const provider = new GoogleAuthProvider();
 export async function signInGoogle() {
-  // Acceder con cuenta de Google (popup, ventana emergente)
+  // Iniciar sesión utilizando una ventana emergente con cuenta de Google
   try {
     await signInWithPopup(auth, provider);
   } catch (error) {
-    // Handle Errors here.
+    // Manejar los errores aquí
   }
 }
 
-const firestore = getFirestore();
+const firestore = getFirestore(); // Obtener la instancia del servicio de firestore
 
 export function createPost(data) {
   return addDoc(collection(firestore, 'post'), {
@@ -76,20 +79,19 @@ export function createPost(data) {
     name: auth.currentUser.displayName,
   });
 }
+
 export function verPosts(callback) {
   const queryPost = query(collection(firestore, 'post'), orderBy('date', 'desc'));
   onSnapshot(queryPost, callback);
 }
 
-// OBTENER EL USUARIO QUE ACCEDIÓ
+// Obtener el usuario actual que ha iniciado sesión
 export const user = auth.currentUser;
 
 if (user) {
-  // User is signed in, see docs for a list of available properties
-  // https://firebase.google.com/docs/reference/js/firebase.User
-  // ...
+  // Hay un usuario autenticado
 } else {
-  // No user is signed in.
+  // No hay ningún usuario autenticado
 }
 
 // EDITAR POST
@@ -103,7 +105,7 @@ export async function deletePost(postId) {
   await deleteDoc(doc(firestore, 'post', postId));
 }
 
-// Verificar que usuario actual se autor del post
+// Verificar que el usuario actual es el autor del post
 export function isAuthor(post) {
   return auth.currentUser && post.email === auth.currentUser.email;
 }

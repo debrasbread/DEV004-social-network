@@ -14,12 +14,14 @@ addRoutes({
   '/feed': feed, // Ruta del feed
 });
 
-// Cuando la ventana se ha cargado completamente, llamar a la función onNavigate para cargar la vista correspondiente según la ruta actual
+/* Cuando la ventana se ha cargado completamente, llamar a la función
+onNavigate para cargar la vista correspondiente según la ruta actual */
 window.onload = () => {
   onNavigate(window.location.pathname);
 };
 
-// Manejar el evento de navegación cuando se realiza el historial de retroceso o avance en el navegador
+/* Manejar el evento de navegación cuando se realiza
+el historial de retroceso o avance en el navegador */
 window.onpopstate = () => {
   onNavigate(window.location.pathname);
 };
